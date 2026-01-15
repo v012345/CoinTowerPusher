@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, input, Input, EventTouch } from 'cc';
+import { _decorator, Component, Node, input, Input, EventTouch, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Pusher')
@@ -29,7 +29,7 @@ export class Pusher extends Component {
         if (!this.isHolding) return;
 
         // 小车向前（假设 Z 轴前进）
-        this.node.translate(-5 * dt, 0, 0);
+        this.node.translate(new Vec3(0, 0, 5 * dt));
         console.log(this.node.position);
     }
 
