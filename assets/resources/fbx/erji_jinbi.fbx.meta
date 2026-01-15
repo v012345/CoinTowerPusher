@@ -1,7 +1,7 @@
 {
   "ver": "2.3.13",
   "importer": "fbx",
-  "imported": true,
+  "imported": false,
   "uuid": "69b4fc8b-f03e-4cbc-89be-2bde52c3045f",
   "files": [
     "__original-animation-0.cconb"
@@ -228,7 +228,7 @@
       "skeletons": [],
       "textures": [],
       "materials": [
-        "c0b27142-c26b-4685-9703-cc717547e6d9"
+        null
       ],
       "scenes": [
         "69b4fc8b-f03e-4cbc-89be-2bde52c3045f@0f065"
