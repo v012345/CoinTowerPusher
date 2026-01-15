@@ -1,0 +1,96 @@
+{
+  "ver": "2.3.13",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "5447bc14-2869-4f18-b6d1-aff43ca37263",
+  "files": [],
+  "subMetas": {
+    "0c4f7": {
+      "importer": "gltf-mesh",
+      "uuid": "5447bc14-2869-4f18-b6d1-aff43ca37263@0c4f7",
+      "displayName": "",
+      "id": "0c4f7",
+      "name": "jinbic.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 48480
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "3c0fc": {
+      "importer": "gltf-material",
+      "uuid": "5447bc14-2869-4f18-b6d1-aff43ca37263@3c0fc",
+      "displayName": "",
+      "id": "3c0fc",
+      "name": "Mat_jinbi.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "ca2fb": {
+      "importer": "gltf-scene",
+      "uuid": "5447bc14-2869-4f18-b6d1-aff43ca37263@ca2fb",
+      "displayName": "",
+      "id": "ca2fb",
+      "name": "jinbic.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "5447bc14-2869-4f18-b6d1-aff43ca37263@0c4f7"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "5447bc14-2869-4f18-b6d1-aff43ca37263@3c0fc"
+      ],
+      "scenes": [
+        "5447bc14-2869-4f18-b6d1-aff43ca37263@ca2fb"
+      ]
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "ver": "2.3.13",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "4931b9d4-0994-414d-b679-873582b344db",
+  "files": [],
+  "subMetas": {
+    "0af42": {
+      "importer": "gltf-mesh",
+      "uuid": "4931b9d4-0994-414d-b679-873582b344db@0af42",
+      "displayName": "",
+      "id": "0af42",
+      "name": "sanji_jinbi_dizuo.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 9216
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "3c0fc": {
+      "importer": "gltf-material",
+      "uuid": "4931b9d4-0994-414d-b679-873582b344db@3c0fc",
+      "displayName": "",
+      "id": "3c0fc",
+      "name": "Mat_jinbi.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "3dcd8": {
+      "importer": "gltf-scene",
+      "uuid": "4931b9d4-0994-414d-b679-873582b344db@3dcd8",
+      "displayName": "",
+      "id": "3dcd8",
+      "name": "sanji_jinbi_dizuo.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "4931b9d4-0994-414d-b679-873582b344db@0af42"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "4931b9d4-0994-414d-b679-873582b344db@3c0fc"
+      ],
+      "scenes": [
+        "4931b9d4-0994-414d-b679-873582b344db@3dcd8"
+      ]
+    }
+  }
+}

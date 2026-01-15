@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.Material",
+  "_name": "Mat_jinbi",
+  "_objFlags": 0,
+  "__editorExtras__": {},
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "2ec11458-f855-4978-b14d-f3ed5cf697fa",
+    "__expectedType__": "cc.EffectAsset"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {}
+  ],
+  "_states": [
+    {
+      "rasterizerState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      },
+      "depthStencilState": {}
+    }
+  ],
+  "_props": [
+    {
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 170,
+        "g": 170,
+        "b": 170,
+        "a": 255
+      },
+      "albedoScale": 1,
+      "metallic": 0,
+      "roughness": 0,
+      "emissiveScale": 1,
+      "emissive": {
+        "__type__": "cc.Color",
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      },
+      "alphaSource": 1
+    }
+  ]
+}
