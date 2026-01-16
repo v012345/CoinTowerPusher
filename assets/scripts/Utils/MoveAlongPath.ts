@@ -67,6 +67,7 @@ export class MoveAlongPath extends Component {
 	private curDistance = 0;
 
 	protected start(): void {
+		console.log('MoveAlongPath start');
 		this.init();
 	}
 
