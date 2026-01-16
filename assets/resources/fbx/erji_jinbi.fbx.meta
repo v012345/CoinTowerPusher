@@ -251,6 +251,20 @@
       }
     ],
     "dumpMaterials": true,
-    "materialDumpDir": "db://assets/fbx/金币/.mayaSwatches"
+    "materialDumpDir": "db://assets/fbx/金币/.mayaSwatches",
+    "legacyFbxImporter": false,
+    "allowMeshDataAccess": true,
+    "addVertexColor": false,
+    "generateLightmapUVNode": false,
+    "meshOptimizer": {
+      "enable": false,
+      "algorithm": "simplify",
+      "simplifyOptions": {
+        "targetRatio": 1,
+        "enableSmartLink": true,
+        "agressiveness": 7,
+        "maxIterationCount": 100
+      }
+    }
   }
 }
