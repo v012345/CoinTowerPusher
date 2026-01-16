@@ -1,5 +1,5 @@
 import { _decorator, Camera, Node } from 'cc';
-// import { MainGame } from "./MainGame";
+import { MainGame } from "./MainGame";
 import { CameraControl } from './CameraControl';
 import { Actor } from './Actor';
 // import { CoinNumber } from './Utils/CoinNumber';
@@ -9,7 +9,7 @@ import { Actor } from './Actor';
 
 
 export class GameGlobal {
-    // public static mainGame: MainGame;
+    public static mainGame: MainGame;
     public static mainCamera: Camera;
     public static CameraControl: CameraControl;
     public static cameraMoving: boolean = false;

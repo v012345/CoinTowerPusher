@@ -6,11 +6,49 @@ const { ccclass, property } = _decorator;
 export class CameraControl extends Component {
 
 
-    eulerHeng = new Vec3(-60, 0, 0);
-    eulerShu = new Vec3(-60, 0, 0);
+    _eulerHeng = new Vec3(60, 0, 0);
+    @property
+    public set eulerHeng(v: Vec3) {
+        this._eulerHeng = v;
+        this.cameraOnLoad();
+    }
+    public get eulerHeng(): Vec3 {
+        return this._eulerHeng
+    }
+    _eulerShu = new Vec3(60, 0, 0);
     offsetPos = new Vec3(0, 0, 0);
-    hengPos = new Vec3(0, 24.678, 27.455);
-    shuPos = new Vec3(0, 35.678, 44.455);
+    _hengPos = new Vec3(0, 24.678, -27.455);
+    @property
+    public set eulerShu(v: Vec3) {
+        this._eulerShu = v;
+        this.cameraOnLoad();
+    }
+    public get eulerShu(): Vec3 {
+        return this._eulerShu
+    }
+
+
+    @property
+    public set hengPos(v: Vec3) {
+        this._hengPos = v;
+        this.cameraOnLoad();
+    }
+
+    public get hengPos(): Vec3 {
+        return this._hengPos
+    }
+    @property
+    public set shuPos(v: Vec3) {
+        this._shuPos = v;
+        this.cameraOnLoad();
+    }
+
+    public get shuPos(): Vec3 {
+        return this._shuPos
+    }
+
+
+    _shuPos = new Vec3(0, 35.678, -44.455);
 
     onLoad() {
         GameGlobal.CameraControl = this;

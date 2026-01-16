@@ -11,6 +11,7 @@ export class Actor extends Component {
     @property(PathLine)
     path: PathLine;
     moveAlongPath: MoveAlongPath;
+    isOver: boolean = false;
     onLoad() {
         GameGlobal.actor = this;
     }
@@ -28,7 +29,7 @@ export class Actor extends Component {
         this.moveAlongPath.setSpeed(10);
     }
     lateUpdate(deltaTime: number): void {
-        // GameGlobal.CameraControl.cameraFollow(deltaTime);
+        GameGlobal.CameraControl.cameraFollow(deltaTime);
     }
 }
 
