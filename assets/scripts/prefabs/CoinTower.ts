@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Node, MeshRenderer, Prefab, Vec3 } from 'cc';
+import { _decorator, Component, instantiate, Node, ITriggerEvent, MeshRenderer, Prefab, Collider, Vec3 } from 'cc';
 import { OneLayerOfCoins } from './OneLayerOfCoins';
 const { ccclass, property } = _decorator;
 
@@ -12,6 +12,11 @@ export class CoinTower extends Component {
     oneLayerOfCoins: Prefab;
     start() {
         this.buildTower(this.layerNum);
+        const col = this.node.getChildByName("Collider").getComponent(Collider);
+
+        col.on('onTriggerEnter', (event: ITriggerEvent) => {
+            console.log('A 与 B 发生触发');
+        }, this);
     }
 
     update(deltaTime: number) {
@@ -29,6 +34,7 @@ export class CoinTower extends Component {
         }
 
     }
+
 
     getRadius(): number {
         // const trigger = this.node.getChildByName("TriggerArea");
