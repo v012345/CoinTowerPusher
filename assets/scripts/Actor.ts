@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, BoxCollider, ITriggerEvent } from 'cc';
 import { GameGlobal } from './GameGlobal';
 import { PathLine } from './Utils/PathLine';
 import { MoveAlongPath } from './Utils/MoveAlongPath';
@@ -10,6 +10,8 @@ export class Actor extends Component {
     normalCameraAnchor: Node;
     @property(PathLine)
     path: PathLine;
+    @property(BoxCollider)
+    collider: BoxCollider;
     moveAlongPath: MoveAlongPath;
     isOver: boolean = false;
     speed: number = 0;
@@ -23,6 +25,10 @@ export class Actor extends Component {
             this.moveAlongPath.pathLine = this.path;
             this.moveAlongPath.startMove();
         })
+
+        this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
+            console.log('A 与 B 发生触发');
+        }, this);
     }
 
     move() {
