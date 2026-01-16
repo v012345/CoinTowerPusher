@@ -6,6 +6,8 @@ const { ccclass, property } = _decorator;
 export class CoinTower extends Component {
     @property
     layerNum: number = 15;
+    @property
+    level: number = 1;
     @property(Prefab)
     oneLayerOfCoins: Prefab;
     start() {
