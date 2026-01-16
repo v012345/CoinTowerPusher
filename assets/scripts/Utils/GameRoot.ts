@@ -20,22 +20,22 @@ export class GameRoot extends Component {
         // init AudioManager
         AudioManager.init(this._audioSource, this.node);
 
-        let enableAudio = (e) => {
-            // console.log('AudioManager.resume');
-            AudioManager.firstClick = true;
-			AudioManager.playSoundLog(e.type);
-            AudioManager.resume();
-    
-            // document.removeEventListener('mouseup', enableAudio, true);
-            // document.removeEventListener('touchend', enableAudio, true);
-			document.removeEventListener('mousedown', enableAudio, true);
-            document.removeEventListener('touchstart', enableAudio, true);
-        }
+        // let enableAudio = (e) => {
+        //     // console.log('AudioManager.resume');
+        //     AudioManager.firstClick = true;
+        // 	AudioManager.playSoundLog(e.type);
+        //     AudioManager.resume();
+
+        //     // document.removeEventListener('mouseup', enableAudio, true);
+        //     // document.removeEventListener('touchend', enableAudio, true);
+        // 	document.removeEventListener('mousedown', enableAudio, true);
+        //     document.removeEventListener('touchstart', enableAudio, true);
+        // }
 
         // document.addEventListener('mouseup', enableAudio, true);
         // document.addEventListener('touchend', enableAudio, true);
-		document.addEventListener('mousedown', enableAudio, true);
-		document.addEventListener('touchstart', enableAudio, true);
+        // document.addEventListener('mousedown', enableAudio, true);
+        // document.addEventListener('touchstart', enableAudio, true);
     }
 
 

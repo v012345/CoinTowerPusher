@@ -7,19 +7,9 @@ export class Pusher extends Component {
     MainCamera: Camera;
     private isHolding = false;
     start() {
-
-    }
-    onEnable() {
-        input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
-        input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);
-        input.on(Input.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
+        console.log("Pusher start");
     }
 
-    onDisable() {
-        input.off(Input.EventType.TOUCH_START, this.onTouchStart, this);
-        input.off(Input.EventType.TOUCH_END, this.onTouchEnd, this);
-        input.off(Input.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
-    }
     onTouchStart(event: EventTouch) {
         this.isHolding = true;
     }
@@ -28,13 +18,13 @@ export class Pusher extends Component {
         this.isHolding = false;
     }
     update(dt: number) {
-        if (!this.isHolding) return;
+        // if (!this.isHolding) return;
 
-        // 小车向前（假设 Z 轴前进）
-        const deltaZ = new Vec3(0, 0, 5 * dt)
-        this.node.translate(deltaZ);
-        console.log(this.node.position);
-        this.MainCamera.node.translate(deltaZ);
+        // // 小车向前（假设 Z 轴前进）
+        // const deltaZ = new Vec3(0, 0, 5 * dt)
+        // this.node.translate(deltaZ);
+        // console.log(this.node.position);
+        // this.MainCamera.node.translate(deltaZ);
     }
 
     forward() {

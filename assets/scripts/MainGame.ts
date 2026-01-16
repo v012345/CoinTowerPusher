@@ -55,23 +55,23 @@ export class MainGame extends Component {
         //     this.titleNode.children[2].active = false;
         //     GameGlobal.CameraControl.cameraReturn();
         // }
-        // GameGlobal.actor.move();
+        GameGlobal.actor.move();
         // this.joyStickDown();
     }
 
 
     onTouchMove() {
-
+        GameGlobal.actor.move();
     }
 
 
     onTouchEnd() {
-
+        GameGlobal.actor.stop();
     }
 
 
     onTouchCancel() {
-
+        GameGlobal.actor.stop();
     }
 
 
