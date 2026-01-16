@@ -1,6 +1,6 @@
 import { _decorator, Component, instantiate, Node, Prefab, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
-import { CoinTower } from './CoinTower';
+// import { CoinTower } from './CoinTower';
 @ccclass('CoinTowerManager')
 export class CoinTowerManager extends Component {
     // @property(CoinTower)
