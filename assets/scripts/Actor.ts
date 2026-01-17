@@ -2,6 +2,7 @@ import { _decorator, Component, Node, BoxCollider, ITriggerEvent } from 'cc';
 import { GameGlobal } from './GameGlobal';
 import { PathLine } from './Utils/PathLine';
 import { MoveAlongPath } from './Utils/MoveAlongPath';
+import { CoinTower } from './prefabs/CoinTower';
 const { ccclass, property } = _decorator;
 
 @ccclass('Actor')
@@ -16,6 +17,7 @@ export class Actor extends Component {
     isOver: boolean = false;
     speed: number = 0;
     isBackForward: boolean = false;
+    level: number = 1;
     onLoad() {
         GameGlobal.actor = this;
     }
@@ -28,12 +30,17 @@ export class Actor extends Component {
         })
 
         this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
-            // console.log('A 与 B 发生触发');
-            this.isBackForward = true;
-            this.scheduleOnce(() => {
-                this.isBackForward = false;
-            }, 0.2);
+            if (event.otherCollider.node.name == "CoinTowerCollider") {
+                const coinTower = event.otherCollider.node.getParent().getComponent(CoinTower);
+                console.log(coinTower.level)
+                if (coinTower.level > this.level) {
+                    this.isBackForward = true;
+                    this.scheduleOnce(() => {
+                        this.isBackForward = false;
+                    }, 0.2);
+                }
 
+            }
         }, this);
     }
 

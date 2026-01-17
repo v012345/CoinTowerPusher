@@ -1,5 +1,6 @@
 import { _decorator, Component, instantiate, Node, ITriggerEvent, MeshRenderer, Prefab, Collider, Vec3 } from 'cc';
 import { OneLayerOfCoins } from './OneLayerOfCoins';
+import { GameGlobal } from '../GameGlobal';
 const { ccclass, property } = _decorator;
 
 @ccclass('CoinTower')
@@ -12,6 +13,7 @@ export class CoinTower extends Component {
     level: number = 1;
     @property(Prefab)
     oneLayerOfCoins: Prefab;
+
     start() {
         this.buildTower(this.layerNum);
         // const col = this.node.getChildByName("Collider").getComponent(Collider);
@@ -33,8 +35,8 @@ export class CoinTower extends Component {
             if (i % 2 == 0) {
                 coins.setRotationFromEuler(0, 30, 0);
             }
+            this.level = GameGlobal.levelMap[i + 1] || 1;
         }
-
     }
 
 

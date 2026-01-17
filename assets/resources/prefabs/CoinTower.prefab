@@ -1117,7 +1117,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Collider",
+    "_name": "CoinTowerCollider",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
