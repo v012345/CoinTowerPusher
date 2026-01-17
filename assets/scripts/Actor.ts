@@ -15,6 +15,7 @@ export class Actor extends Component {
     moveAlongPath: MoveAlongPath;
     isOver: boolean = false;
     speed: number = 0;
+    isBackForward: boolean = false;
     onLoad() {
         GameGlobal.actor = this;
     }
@@ -27,7 +28,12 @@ export class Actor extends Component {
         })
 
         this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
-            console.log('A 与 B 发生触发');
+            // console.log('A 与 B 发生触发');
+            this.isBackForward = true;
+            this.scheduleOnce(() => {
+                this.isBackForward = false;
+            }, 0.2);
+
         }, this);
     }
 
@@ -40,7 +46,11 @@ export class Actor extends Component {
 
 
     update(deltaTime: number) {
-        this.moveAlongPath.setSpeed(this.speed);
+        if (!this.isBackForward) {
+            this.moveAlongPath.setSpeed(this.speed);
+        } else {
+            this.moveAlongPath.setSpeed(-20);
+        }
     }
     lateUpdate(deltaTime: number): void {
         GameGlobal.CameraControl.cameraFollow(deltaTime);
