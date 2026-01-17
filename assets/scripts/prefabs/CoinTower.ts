@@ -4,6 +4,8 @@ const { ccclass, property } = _decorator;
 
 @ccclass('CoinTower')
 export class CoinTower extends Component {
+    @property(Collider)
+    collider: Collider;
     @property
     layerNum: number = 15;
     @property
@@ -12,9 +14,9 @@ export class CoinTower extends Component {
     oneLayerOfCoins: Prefab;
     start() {
         this.buildTower(this.layerNum);
-        const col = this.node.getChildByName("Collider").getComponent(Collider);
+        // const col = this.node.getChildByName("Collider").getComponent(Collider);
 
-        col.on('onTriggerEnter', (event: ITriggerEvent) => {
+        this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
             console.log('A 与 B 发生触发');
         }, this);
     }
