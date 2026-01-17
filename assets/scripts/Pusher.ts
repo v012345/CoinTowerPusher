@@ -1,37 +1,60 @@
-import { _decorator, Component, Node, input, Input, EventTouch, Vec3, Camera } from 'cc';
+import { _decorator, Component, Node, BoxCollider, ITriggerEvent } from 'cc';
+import { GameGlobal } from './GameGlobal';
+import { PathLine } from './Utils/PathLine';
+import { MoveAlongPath } from './Utils/MoveAlongPath';
 const { ccclass, property } = _decorator;
 
-@ccclass('Pusher')
-export class Pusher extends Component {
-    @property(Camera)
-    MainCamera: Camera;
-    private isHolding = false;
+@ccclass('Actor')
+export class Actor extends Component {
+    @property(Node)
+    normalCameraAnchor: Node;
+    @property(PathLine)
+    path: PathLine;
+    @property(BoxCollider)
+    collider: BoxCollider;
+    moveAlongPath: MoveAlongPath;
+    isOver: boolean = false;
+    speed: number = 0;
+    isBackForward: boolean = false;
+    onLoad() {
+        GameGlobal.actor = this;
+    }
+
     start() {
-        console.log("Pusher start");
+        this.moveAlongPath = this.node.getComponent(MoveAlongPath);
+        this.scheduleOnce(() => {
+            this.moveAlongPath.pathLine = this.path;
+            this.moveAlongPath.startMove();
+        })
+
+        this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
+            // console.log('A 与 B 发生触发');
+            this.isBackForward = true;
+            this.scheduleOnce(() => {
+                this.isBackForward = false;
+            }, 0.2);
+
+        }, this);
     }
 
-    onTouchStart(event: EventTouch) {
-        this.isHolding = true;
+    move() {
+        this.speed = 10;
     }
-
-    onTouchEnd(event: EventTouch) {
-        this.isHolding = false;
-    }
-    update(dt: number) {
-        // if (!this.isHolding) return;
-
-        // // 小车向前（假设 Z 轴前进）
-        // const deltaZ = new Vec3(0, 0, 5 * dt)
-        // this.node.translate(deltaZ);
-        // console.log(this.node.position);
-        // this.MainCamera.node.translate(deltaZ);
-    }
-
-    forward() {
-        console.log("Pusher forward");
+    stop() {
+        this.speed = 0;
     }
 
 
+    update(deltaTime: number) {
+        if (!this.isBackForward) {
+            this.moveAlongPath.setSpeed(this.speed);
+        } else {
+            this.moveAlongPath.setSpeed(-20);
+        }
+    }
+    lateUpdate(deltaTime: number): void {
+        GameGlobal.CameraControl.cameraFollow(deltaTime);
+    }
 }
 
 
