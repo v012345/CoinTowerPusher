@@ -13,13 +13,22 @@ export class CoinTower extends Component {
     level: number = 1;
     @property(Prefab)
     oneLayerOfCoins: Prefab;
+    hasBePushed: boolean = false;
+    coinsNodes: Node[] = [];
 
     start() {
         this.buildTower(this.layerNum);
-        // const col = this.node.getChildByName("Collider").getComponent(Collider);
-
         this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
-            console.log('A 与 B 发生触发');
+
+            if (event.otherCollider.node.name == "TractorGearsCollider") {
+                const actor = event.otherCollider.getComponent('TractorGearsCollider').getPusherScript();
+                if (!this.hasBePushed && actor.level >= this.level) {
+                    this.hasBePushed = true;
+                    this.coinsNodes.forEach(coins => {
+                        coins.getComponent(OneLayerOfCoins).scatter();
+                    });
+                }
+            }
         }, this);
     }
 
@@ -37,6 +46,9 @@ export class CoinTower extends Component {
             }
             this.level = GameGlobal.levelMap[i + 1] || 1;
         }
+        this.coinsNodes = this.node.children.filter(
+            n => n.getComponent(OneLayerOfCoins) !== null
+        );
     }
 
 
