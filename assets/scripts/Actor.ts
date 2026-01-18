@@ -62,6 +62,9 @@ export class Actor extends Component {
     lateUpdate(deltaTime: number): void {
         GameGlobal.CameraControl.cameraFollow(deltaTime);
     }
+    levelUp() {
+        this.level += 1;
+    }
 }
 
 
