@@ -19,6 +19,13 @@ export class Actor extends Component {
         return this._coinNum;
     }
 
+    @property(Label)
+    cargoBedUpCostLabel: Label;
+    @property(Label)
+    gearsUpCostLabel: Label;
+    @property(Label)
+    speedUpCostLabel: Label;
+
 
     @property(Node)
     normalCameraAnchor: Node;
@@ -30,7 +37,9 @@ export class Actor extends Component {
     isOver: boolean = false;
     speed: number = 0;
     isBackForward: boolean = false;
-    level: number = 1;
+    speedLevel = 1;
+    gearsLevel = 1;
+    cargoBedLevel = 1;
     onLoad() {
         GameGlobal.actor = this;
     }
@@ -76,7 +85,7 @@ export class Actor extends Component {
         GameGlobal.CameraControl.cameraFollow(deltaTime);
     }
     levelUp() {
-        this.level += 1;
+        this.gearsLevel += 1;
     }
 }
 

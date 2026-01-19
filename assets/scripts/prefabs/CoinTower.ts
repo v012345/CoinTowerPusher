@@ -22,7 +22,7 @@ export class CoinTower extends Component {
 
             if (event.otherCollider.node.name == "TractorGearsCollider") {
                 const actor = event.otherCollider.getComponent('TractorGearsCollider').getPusherScript();
-                if (!this.hasBePushed && actor.level >= this.level) {
+                if (!this.hasBePushed && actor.gearsLevel >= this.level) {
                     this.hasBePushed = true;
                     this.coinsNodes.forEach(coins => {
                         coins.getComponent(OneLayerOfCoins).scatter();

@@ -41,10 +41,28 @@ export class GameGlobal {
         10: 2,
         11: 2,
         12: 2,
-        13: 2,
-        14: 2,
-        15: 2,
-        16: 2,
+        13: 3,
+        14: 3,
+        15: 3,
+        16: 3,
         17: 3,
+    };
+    public static CargoBedUp: Record<number, number> = {
+        1: 0,
+        2: 100,
+        3: 100,
+        4: 100,
+    };
+    public static GearsUp: Record<number, number> = {
+        1: 0,
+        2: 100,
+        3: 100,
+        4: 100,
+    };
+    public static SpeedUp: Record<number, number> = {
+        1: 0,
+        2: 100,
+        3: 100,
+        4: 100,
     };
 }

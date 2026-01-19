@@ -32,7 +32,7 @@
         "__id__": 203
       },
       {
-        "__id__": 320
+        "__id__": 323
       },
       {
         "__id__": 226
@@ -44,7 +44,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 323
+      "__id__": 326
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -75,7 +75,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 332
+      "__id__": 335
     },
     "_id": "5872dd34-75d4-4166-9ccf-343e4d006f42"
   },
@@ -7587,10 +7587,10 @@
         "__id__": 204
       },
       {
-        "__id__": 311
+        "__id__": 314
       },
       {
-        "__id__": 312
+        "__id__": 315
       }
     ],
     "_active": true,
@@ -7675,6 +7675,15 @@
       },
       {
         "__id__": 221
+      },
+      {
+        "__id__": 311
+      },
+      {
+        "__id__": 312
+      },
+      {
+        "__id__": 313
       }
     ],
     "removedComponents": []
@@ -11349,6 +11358,42 @@
     "_id": "c8L4gbM8xIhI00OGZPZCAb"
   },
   {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 213
+    },
+    "propertyPath": [
+      "cargoBedUpCostLabel"
+    ],
+    "value": {
+      "__id__": 256
+    }
+  },
+  {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 213
+    },
+    "propertyPath": [
+      "gearsUpCostLabel"
+    ],
+    "value": {
+      "__id__": 277
+    }
+  },
+  {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 213
+    },
+    "propertyPath": [
+      "speedUpCostLabel"
+    ],
+    "value": {
+      "__id__": 299
+    }
+  },
+  {
     "__type__": "cc.Node",
     "_name": "CoinTowers",
     "_objFlags": 0,
@@ -11396,14 +11441,14 @@
       "__id__": 203
     },
     "_prefab": {
-      "__id__": 313
+      "__id__": 316
     },
     "__editorExtras__": {}
   },
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 312
+      "__id__": 315
     },
     "asset": {
       "__uuid__": "7ea16be0-44eb-4ecb-8053-56379ecbc3b5",
@@ -11411,7 +11456,7 @@
     },
     "fileId": "48q9e2TFZD07BvJ/mzS4ZA",
     "instance": {
-      "__id__": 314
+      "__id__": 317
     },
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
@@ -11424,16 +11469,16 @@
     "mountedComponents": [],
     "propertyOverrides": [
       {
-        "__id__": 315
-      },
-      {
-        "__id__": 317
-      },
-      {
         "__id__": 318
       },
       {
-        "__id__": 319
+        "__id__": 320
+      },
+      {
+        "__id__": 321
+      },
+      {
+        "__id__": 322
       }
     ],
     "removedComponents": []
@@ -11441,7 +11486,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 316
+      "__id__": 319
     },
     "propertyPath": [
       "_name"
@@ -11457,7 +11502,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 316
+      "__id__": 319
     },
     "propertyPath": [
       "_lpos"
@@ -11472,7 +11517,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 316
+      "__id__": 319
     },
     "propertyPath": [
       "_lrot"
@@ -11488,7 +11533,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 316
+      "__id__": 319
     },
     "propertyPath": [
       "_euler"
@@ -11510,7 +11555,7 @@
     },
     "_children": [
       {
-        "__id__": 321
+        "__id__": 324
       }
     ],
     "_active": true,
@@ -11551,13 +11596,13 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 320
+      "__id__": 323
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 322
+        "__id__": 325
       }
     ],
     "_prefab": null,
@@ -11596,12 +11641,12 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 321
+      "__id__": 324
     },
     "_enabled": true,
     "__prefab": null,
     "coinTowersNode": {
-      "__id__": 311
+      "__id__": 314
     },
     "domeCoinsNode": null,
     "coinTowerPrefab": {
@@ -11622,13 +11667,13 @@
     "instance": null,
     "targetOverrides": [
       {
-        "__id__": 324
-      },
-      {
         "__id__": 327
       },
       {
         "__id__": 330
+      },
+      {
+        "__id__": 333
       }
     ],
     "nestedPrefabInstanceRoots": [
@@ -11636,7 +11681,7 @@
         "__id__": 204
       },
       {
-        "__id__": 312
+        "__id__": 315
       }
     ]
   },
@@ -11646,7 +11691,7 @@
       "__id__": 204
     },
     "sourceInfo": {
-      "__id__": 325
+      "__id__": 328
     },
     "propertyPath": [
       "normalCameraAnchor"
@@ -11655,7 +11700,7 @@
       "__id__": 204
     },
     "targetInfo": {
-      "__id__": 326
+      "__id__": 329
     }
   },
   {
@@ -11676,7 +11721,7 @@
       "__id__": 204
     },
     "sourceInfo": {
-      "__id__": 328
+      "__id__": 331
     },
     "propertyPath": [
       "collider"
@@ -11685,7 +11730,7 @@
       "__id__": 204
     },
     "targetInfo": {
-      "__id__": 329
+      "__id__": 332
     }
   },
   {
@@ -11704,17 +11749,17 @@
   {
     "__type__": "cc.TargetOverrideInfo",
     "source": {
-      "__id__": 322
+      "__id__": 325
     },
     "sourceInfo": null,
     "propertyPath": [
       "domeCoinsNode"
     ],
     "target": {
-      "__id__": 312
+      "__id__": 315
     },
     "targetInfo": {
-      "__id__": 331
+      "__id__": 334
     }
   },
   {
@@ -11726,28 +11771,28 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 333
-    },
-    "shadows": {
-      "__id__": 334
-    },
-    "_skybox": {
-      "__id__": 335
-    },
-    "fog": {
       "__id__": 336
     },
-    "octree": {
+    "shadows": {
       "__id__": 337
     },
-    "skin": {
+    "_skybox": {
       "__id__": 338
     },
-    "lightProbeInfo": {
+    "fog": {
       "__id__": 339
     },
-    "postSettings": {
+    "octree": {
       "__id__": 340
+    },
+    "skin": {
+      "__id__": 341
+    },
+    "lightProbeInfo": {
+      "__id__": 342
+    },
+    "postSettings": {
+      "__id__": 343
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
