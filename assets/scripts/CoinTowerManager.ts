@@ -5,6 +5,8 @@ import { CoinTower } from './prefabs/CoinTower';
 export class CoinTowerManager extends Component {
     @property(Node)
     coinTowersNode: Node;
+    @property(Node)
+    coinDomeNode: Node;
     // @property(CoinTower)
     // CoinTowerRight: CoinTower;
     @property(Prefab)
