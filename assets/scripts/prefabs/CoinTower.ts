@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Node, ITriggerEvent, MeshRenderer, Prefab, Collider, Vec3 } from 'cc';
+import { _decorator, Component, instantiate, Node,tween, ITriggerEvent, MeshRenderer, Prefab, Collider, Vec3 } from 'cc';
 import { OneLayerOfCoins } from './OneLayerOfCoins';
 import { GameGlobal } from '../GameGlobal';
 const { ccclass, property } = _decorator;
@@ -26,6 +26,7 @@ export class CoinTower extends Component {
                     this.hasBePushed = true;
                     this.coinsNodes.forEach(coins => {
                         coins.getComponent(OneLayerOfCoins).scatter();
+                        this.removeBase();
                     });
                 }
             }
@@ -49,6 +50,17 @@ export class CoinTower extends Component {
         this.coinsNodes = this.node.children.filter(
             n => n.getComponent(OneLayerOfCoins) !== null
         );
+    }
+    removeBase(){
+        const base = this.node.getChildByName("Base");
+        if(base){
+            tween(base)
+            .to(0.5,{position:new Vec3(0,-6,0)})
+            .call(()=>{
+                base.destroy();
+            })
+            .start();
+        }
     }
 
 
