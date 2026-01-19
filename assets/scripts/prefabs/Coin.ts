@@ -1,4 +1,5 @@
-import { _decorator, Component, Node, RigidBody, Vec3, PhysicsGroup, CylinderCollider, ICollisionEvent } from 'cc';
+import { _decorator, Component, Node, tween, RigidBody, Vec3, PhysicsGroup, CylinderCollider, ICollisionEvent } from 'cc';
+import { GameGlobal } from '../GameGlobal';
 const { ccclass, property } = _decorator;
 
 @ccclass('Coin')
@@ -38,7 +39,18 @@ export class Coin extends Component {
         }
     }
     flyToCargoBed() {
+        let originalPos = this.node.worldPosition.clone();
+        this.node.setParent(GameGlobal.cargoBed);
+        this.node.worldPosition = originalPos;
+        const start = this.node.position.clone();
+        const end = new Vec3(0, 0, 0);
+        const mid = start.clone().add(end).multiplyScalar(0.5);
+        mid.y += 30; // 控制高度
 
+        tween(this.node)
+            .to(2, { position: mid }, { easing: 'quadOut' })
+            .to(2, { position: end }, { easing: 'quadIn' })
+            .start();
     }
 }
 
