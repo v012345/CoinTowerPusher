@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Collider, ITriggerEvent } from 'cc';
+import { _decorator, Component, Node, Collider, ITriggerEvent, PhysicsGroup } from 'cc';
 import { Coin } from './Coin';
 const { ccclass, property } = _decorator;
 
@@ -27,12 +27,7 @@ export class CoinDome extends Component {
                 //     }
                 let i = 0;
                 this.coins.children.forEach(coin => {
-                    if (i < 120) {
-                        i++;
-                        coin.getComponent(Coin).drop();
-                    }
-
-
+                    coin.getComponent(Coin).drop(PhysicsGroup.DomeCoin);
                 })
                 // this.node.destroy();
             }

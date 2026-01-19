@@ -11,9 +11,9 @@ export class Coin extends Component {
     update(deltaTime: number) {
 
     }
-    drop() {
+    drop(RigidBodyGroup: number) {
         const rb = this.node.addComponent(RigidBody);
-        rb.group = PhysicsGroup.Coin;
+        rb.group = RigidBodyGroup;
         rb.useGravity = true;
         rb.applyForce(new Vec3(0, 20, 0), this.node.getWorldPosition());
 
