@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, BoxCollider, ITriggerEvent } from 'cc';
+import { _decorator, Component, Label, Node, BoxCollider, ITriggerEvent } from 'cc';
 import { GameGlobal } from './GameGlobal';
 import { PathLine } from './Utils/PathLine';
 import { MoveAlongPath } from './Utils/MoveAlongPath';
@@ -7,6 +7,19 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Actor')
 export class Actor extends Component {
+    @property(Label)
+    coinNumLabel: Label;
+    _coinNum: number = 0;
+    public set CoinNum(v: number) {
+        this._coinNum = v;
+        this.coinNumLabel.string = v.toString();
+    }
+
+    public get CoinNum(): number {
+        return this._coinNum;
+    }
+
+
     @property(Node)
     normalCameraAnchor: Node;
     @property(PathLine)

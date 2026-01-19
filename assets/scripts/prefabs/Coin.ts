@@ -53,6 +53,7 @@ export class Coin extends Component {
             .call(() => {
                 // this.onFlyEnd();   // 你自己的函数
                 GameGlobal.TractorScript.arrangeCoin(this.node);
+                GameGlobal.actor.CoinNum += 1;
 
             })
             .start();
