@@ -18,7 +18,7 @@ export class OneLayerOfCoins extends Component {
             rb.useGravity = true;
             rb.applyForce(new Vec3(0, 20, 0), coin.getWorldPosition());
 
-            co/nst collider = coin.addComponent(CylinderCollider);
+            const collider = coin.addComponent(CylinderCollider);
             collider.radius = 1.311;
             collider.height = 0.7;
         });
