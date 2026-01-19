@@ -16,7 +16,7 @@ export class CoinDome extends Component {
             coin.addComponent(Coin)
         })
         this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
-
+            // return;
             if (event.otherCollider.node.name == "TractorGearsCollider") {
                 //     const actor = event.otherCollider.getComponent('TractorGearsCollider').getPusherScript();
                 //     if (!this.hasBePushed && actor.level >= this.level) {
