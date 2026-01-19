@@ -3,6 +3,7 @@ import { GameGlobal } from './GameGlobal';
 import { PathLine } from './Utils/PathLine';
 import { MoveAlongPath } from './Utils/MoveAlongPath';
 import { CoinTower } from './prefabs/CoinTower';
+import { Tractor } from './prefabs/Tractor';
 const { ccclass, property } = _decorator;
 
 @ccclass('Actor')
@@ -26,6 +27,9 @@ export class Actor extends Component {
     @property(Label)
     speedUpCostLabel: Label;
 
+    @property(Node)
+    tractorNode: Node;
+
 
     @property(Node)
     normalCameraAnchor: Node;
@@ -45,6 +49,7 @@ export class Actor extends Component {
     }
 
     start() {
+        this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
         this.moveAlongPath = this.node.getComponent(MoveAlongPath);
         this.scheduleOnce(() => {
             this.moveAlongPath.pathLine = this.path;
@@ -54,8 +59,7 @@ export class Actor extends Component {
         this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
             if (event.otherCollider.node.name == "CoinTowerCollider") {
                 const coinTower = event.otherCollider.node.getParent().getComponent(CoinTower);
-                console.log(coinTower.level)
-                if (coinTower.level > this.level) {
+                if (coinTower.level > this.gearsLevel) {
                     this.isBackForward = true;
                     this.scheduleOnce(() => {
                         this.isBackForward = false;
@@ -86,6 +90,12 @@ export class Actor extends Component {
     }
     levelUp() {
         this.gearsLevel += 1;
+    }
+    LevelUpCargoBed() {
+        this.cargoBedLevel += 1;
+        let TractorScript = this.tractorNode.getComponent(Tractor);
+        this.cargoBedLevel = Math.min(this.cargoBedLevel, TractorScript.cargoBeds.length);
+        this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
     }
 }
 

@@ -40,32 +40,32 @@
         "__id__": 102
       },
       {
-        "__id__": 109
+        "__id__": 104
       },
       {
-        "__id__": 111
+        "__id__": 113
       },
       {
-        "__id__": 118
+        "__id__": 122
       },
       {
-        "__id__": 125
+        "__id__": 131
       },
       {
-        "__id__": 132
+        "__id__": 140
       },
       {
-        "__id__": 141
+        "__id__": 145
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 152
+        "__id__": 161
       }
     ],
     "_prefab": {
-      "__id__": 154
+      "__id__": 163
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -2633,7 +2633,63 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "chekuang",
+    "_name": "cargoBed",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [],
+    "_prefab": {
+      "__id__": 103
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 7.264,
+      "z": -20.996
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "a5KuSK00FEtKgUPuHmbNpv",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "CargoBedLv1",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
@@ -2641,19 +2697,19 @@
     },
     "_children": [
       {
-        "__id__": 103
+        "__id__": 105
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 108
+      "__id__": 112
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -0.09,
-      "y": 6.411,
-      "z": -94.81
+      "x": 0,
+      "y": 3.902,
+      "z": -21.072
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -2677,148 +2733,6 @@
       "z": 0
     },
     "_id": ""
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "柱体.002",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "_parent": {
-      "__id__": 102
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 104
-      }
-    ],
-    "_prefab": {
-      "__id__": 107
-    },
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.MeshRenderer",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 103
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 105
-    },
-    "_materials": [
-      {
-        "__uuid__": "4c9f1c14-817d-4954-b5e5-7e8b22e95340@4cc4f",
-        "__expectedType__": "cc.Material"
-      },
-      {
-        "__uuid__": "4c9f1c14-817d-4954-b5e5-7e8b22e95340@942dc",
-        "__expectedType__": "cc.Material"
-      },
-      {
-        "__uuid__": "4c9f1c14-817d-4954-b5e5-7e8b22e95340@22e2a",
-        "__expectedType__": "cc.Material"
-      }
-    ],
-    "_visFlags": 0,
-    "bakeSettings": {
-      "__id__": 106
-    },
-    "_mesh": {
-      "__uuid__": "4c9f1c14-817d-4954-b5e5-7e8b22e95340@abaae",
-      "__expectedType__": "cc.Mesh"
-    },
-    "_shadowCastingMode": 0,
-    "_shadowReceivingMode": 1,
-    "_shadowBias": 0,
-    "_shadowNormalBias": 0,
-    "_reflectionProbeId": -1,
-    "_reflectionProbeBlendId": -1,
-    "_reflectionProbeBlendWeight": 0,
-    "_enabledGlobalStandardSkinObject": false,
-    "_enableMorph": true,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "35O1uaGaVMU72T6TVHI9+r"
-  },
-  {
-    "__type__": "cc.ModelBakeSettings",
-    "texture": null,
-    "uvParam": {
-      "__type__": "cc.Vec4",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 0
-    },
-    "_bakeable": false,
-    "_castShadow": false,
-    "_receiveShadow": false,
-    "_recieveShadow": false,
-    "_lightmapSize": 64,
-    "_useLightProbe": false,
-    "_bakeToLightProbe": true,
-    "_reflectionProbeType": 0,
-    "_bakeToReflectionProbe": true
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__id__": 0
-    },
-    "fileId": "19wL4gSw1HMbgHrlwv3GY4",
-    "instance": null,
-    "targetOverrides": null,
-    "nestedPrefabInstanceRoots": null
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__id__": 0
-    },
-    "fileId": "f7wRGxhhRJMYTCEEgDhEj6",
-    "instance": null,
-    "targetOverrides": null,
-    "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
@@ -2826,19 +2740,70 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1
+      "__id__": 104
+    },
+    "_children": [
+      {
+        "__id__": 106
+      }
+    ],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 108
+      }
+    ],
+    "_prefab": {
+      "__id__": 111
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "CargoArea",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 105
     },
     "_children": [],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 110
+      "__id__": 107
     },
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 7.396,
-      "z": -16.02
+      "y": 2.992,
+      "z": 0
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -2877,110 +2842,16 @@
     "nestedPrefabInstanceRoots": null
   },
   {
-    "__type__": "cc.Node",
-    "_name": "yiji_chekuang",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [
-      {
-        "__id__": 112
-      }
-    ],
-    "_active": true,
-    "_components": [],
-    "_prefab": {
-      "__id__": 117
-    },
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 3.901,
-      "z": -19.747
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "立方体.002",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "_parent": {
-      "__id__": 111
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 113
-      }
-    ],
-    "_prefab": {
-      "__id__": 116
-    },
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": ""
-  },
-  {
     "__type__": "cc.MeshRenderer",
     "_name": "",
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 112
+      "__id__": 105
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 114
+      "__id__": 109
     },
     "_materials": [
       {
@@ -2990,7 +2861,7 @@
     ],
     "_visFlags": 0,
     "bakeSettings": {
-      "__id__": 115
+      "__id__": 110
     },
     "_mesh": {
       "__uuid__": "a83f5ebe-2173-47ed-9104-7bd05ebd50e6@e6af8",
@@ -3059,7 +2930,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sanji_chekuang",
+    "_name": "CargoBedLv2",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
@@ -3067,204 +2938,70 @@
     },
     "_children": [
       {
-        "__id__": 119
+        "__id__": 114
       }
     ],
     "_active": false,
     "_components": [],
     "_prefab": {
-      "__id__": 124
-    },
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": -0.265,
-      "y": 2.677,
-      "z": -61.331
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "立方体.008",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "_parent": {
-      "__id__": 118
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 120
-      }
-    ],
-    "_prefab": {
-      "__id__": 123
-    },
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.MeshRenderer",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 119
-    },
-    "_enabled": true,
-    "__prefab": {
       "__id__": 121
     },
-    "_materials": [
-      {
-        "__uuid__": "1af10436-9175-4a83-b9bf-60e4626850c1@e4014",
-        "__expectedType__": "cc.Material"
-      },
-      {
-        "__uuid__": "1af10436-9175-4a83-b9bf-60e4626850c1@22e2a",
-        "__expectedType__": "cc.Material"
-      }
-    ],
-    "_visFlags": 0,
-    "bakeSettings": {
-      "__id__": 122
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 4.21,
+      "z": -21.626
     },
-    "_mesh": {
-      "__uuid__": "1af10436-9175-4a83-b9bf-60e4626850c1@769bf",
-      "__expectedType__": "cc.Mesh"
-    },
-    "_shadowCastingMode": 0,
-    "_shadowReceivingMode": 1,
-    "_shadowBias": 0,
-    "_shadowNormalBias": 0,
-    "_reflectionProbeId": -1,
-    "_reflectionProbeBlendId": -1,
-    "_reflectionProbeBlendWeight": 0,
-    "_enabledGlobalStandardSkinObject": false,
-    "_enableMorph": true,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "b2hTw/7IxAOb2VXZCNJjrn"
-  },
-  {
-    "__type__": "cc.ModelBakeSettings",
-    "texture": null,
-    "uvParam": {
-      "__type__": "cc.Vec4",
+    "_lrot": {
+      "__type__": "cc.Quat",
       "x": 0,
       "y": 0,
       "z": 0,
-      "w": 0
+      "w": 1
     },
-    "_bakeable": false,
-    "_castShadow": false,
-    "_receiveShadow": false,
-    "_recieveShadow": false,
-    "_lightmapSize": 64,
-    "_useLightProbe": false,
-    "_bakeToLightProbe": true,
-    "_reflectionProbeType": 0,
-    "_bakeToReflectionProbe": true
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
     },
-    "asset": {
-      "__id__": 0
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
     },
-    "fileId": "37HTce93pLT5J1ToMikKqf",
-    "instance": null,
-    "targetOverrides": null,
-    "nestedPrefabInstanceRoots": null
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__id__": 0
-    },
-    "fileId": "69i/m1J8RKcalfw5ixsrU1",
-    "instance": null,
-    "targetOverrides": null,
-    "nestedPrefabInstanceRoots": null
+    "_id": ""
   },
   {
     "__type__": "cc.Node",
-    "_name": "erji_chekuang",
+    "_name": "CargoBed",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1
+      "__id__": 113
     },
     "_children": [
       {
-        "__id__": 126
+        "__id__": 115
       }
     ],
-    "_active": false,
-    "_components": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 117
+      }
+    ],
     "_prefab": {
-      "__id__": 131
+      "__id__": 120
     },
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 4.209,
-      "z": -35.809
+      "y": 0,
+      "z": 0
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -3291,26 +3028,22 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "立方体.003",
+    "_name": "CargoArea",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 125
+      "__id__": 114
     },
     "_children": [],
     "_active": true,
-    "_components": [
-      {
-        "__id__": 127
-      }
-    ],
+    "_components": [],
     "_prefab": {
-      "__id__": 130
+      "__id__": 116
     },
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": 2.422,
       "z": 0
     },
     "_lrot": {
@@ -3335,6 +3068,19 @@
       "z": 0
     },
     "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "d7t9lTD/BARbRkueD7CndT",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.MeshRenderer",
@@ -3342,11 +3088,11 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 126
+      "__id__": 114
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 128
+      "__id__": 118
     },
     "_materials": [
       {
@@ -3356,7 +3102,7 @@
     ],
     "_visFlags": 0,
     "bakeSettings": {
-      "__id__": 129
+      "__id__": 119
     },
     "_mesh": {
       "__uuid__": "efebf53b-eef1-4dd3-97ad-023bc2205189@fa0d6",
@@ -3425,7 +3171,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "huochetou",
+    "_name": "CargoBedLv3",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
@@ -3433,13 +3179,64 @@
     },
     "_children": [
       {
-        "__id__": 133
+        "__id__": 123
+      }
+    ],
+    "_active": false,
+    "_components": [],
+    "_prefab": {
+      "__id__": 130
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": -0.266,
+      "y": 2.678,
+      "z": -26.438
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "CargoBed",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 122
+    },
+    "_children": [
+      {
+        "__id__": 124
       }
     ],
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 126
+      }
+    ],
     "_prefab": {
-      "__id__": 140
+      "__id__": 129
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -3472,27 +3269,174 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "huochetou",
+    "_name": "CargoArea",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 132
+      "__id__": 123
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [],
+    "_prefab": {
+      "__id__": 125
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0.846,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "c9yTLaR6tOIb+2N+CgYcFX",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
+  },
+  {
+    "__type__": "cc.MeshRenderer",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 123
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 127
+    },
+    "_materials": [
+      {
+        "__uuid__": "1af10436-9175-4a83-b9bf-60e4626850c1@e4014",
+        "__expectedType__": "cc.Material"
+      },
+      {
+        "__uuid__": "1af10436-9175-4a83-b9bf-60e4626850c1@22e2a",
+        "__expectedType__": "cc.Material"
+      }
+    ],
+    "_visFlags": 0,
+    "bakeSettings": {
+      "__id__": 128
+    },
+    "_mesh": {
+      "__uuid__": "1af10436-9175-4a83-b9bf-60e4626850c1@769bf",
+      "__expectedType__": "cc.Mesh"
+    },
+    "_shadowCastingMode": 0,
+    "_shadowReceivingMode": 1,
+    "_shadowBias": 0,
+    "_shadowNormalBias": 0,
+    "_reflectionProbeId": -1,
+    "_reflectionProbeBlendId": -1,
+    "_reflectionProbeBlendWeight": 0,
+    "_enabledGlobalStandardSkinObject": false,
+    "_enableMorph": true,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "b2hTw/7IxAOb2VXZCNJjrn"
+  },
+  {
+    "__type__": "cc.ModelBakeSettings",
+    "texture": null,
+    "uvParam": {
+      "__type__": "cc.Vec4",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 0
+    },
+    "_bakeable": false,
+    "_castShadow": false,
+    "_receiveShadow": false,
+    "_recieveShadow": false,
+    "_lightmapSize": 64,
+    "_useLightProbe": false,
+    "_bakeToLightProbe": true,
+    "_reflectionProbeType": 0,
+    "_bakeToReflectionProbe": true
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "37HTce93pLT5J1ToMikKqf",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "69i/m1J8RKcalfw5ixsrU1",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "CargoBedLv4",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 1
     },
     "_children": [
       {
-        "__id__": 134
+        "__id__": 132
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": {
       "__id__": 139
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
+      "x": -0.09,
+      "y": 6.412,
+      "z": -26.692
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -3519,13 +3463,17 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "polySurface79",
+    "_name": "CargoBed",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 133
+      "__id__": 131
     },
-    "_children": [],
+    "_children": [
+      {
+        "__id__": 133
+      }
+    ],
     "_active": true,
     "_components": [
       {
@@ -3565,16 +3513,214 @@
     "_id": ""
   },
   {
+    "__type__": "cc.Node",
+    "_name": "CargoArea",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 132
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [],
+    "_prefab": {
+      "__id__": 134
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": -1.512,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "81SuLw0z5BJJ7oZHBXS4zc",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
+  },
+  {
     "__type__": "cc.MeshRenderer",
     "_name": "",
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 134
+      "__id__": 132
     },
     "_enabled": true,
     "__prefab": {
       "__id__": 136
+    },
+    "_materials": [
+      {
+        "__uuid__": "4c9f1c14-817d-4954-b5e5-7e8b22e95340@4cc4f",
+        "__expectedType__": "cc.Material"
+      },
+      {
+        "__uuid__": "4c9f1c14-817d-4954-b5e5-7e8b22e95340@942dc",
+        "__expectedType__": "cc.Material"
+      },
+      {
+        "__uuid__": "4c9f1c14-817d-4954-b5e5-7e8b22e95340@22e2a",
+        "__expectedType__": "cc.Material"
+      }
+    ],
+    "_visFlags": 0,
+    "bakeSettings": {
+      "__id__": 137
+    },
+    "_mesh": {
+      "__uuid__": "4c9f1c14-817d-4954-b5e5-7e8b22e95340@abaae",
+      "__expectedType__": "cc.Mesh"
+    },
+    "_shadowCastingMode": 0,
+    "_shadowReceivingMode": 1,
+    "_shadowBias": 0,
+    "_shadowNormalBias": 0,
+    "_reflectionProbeId": -1,
+    "_reflectionProbeBlendId": -1,
+    "_reflectionProbeBlendWeight": 0,
+    "_enabledGlobalStandardSkinObject": false,
+    "_enableMorph": true,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "35O1uaGaVMU72T6TVHI9+r"
+  },
+  {
+    "__type__": "cc.ModelBakeSettings",
+    "texture": null,
+    "uvParam": {
+      "__type__": "cc.Vec4",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 0
+    },
+    "_bakeable": false,
+    "_castShadow": false,
+    "_receiveShadow": false,
+    "_recieveShadow": false,
+    "_lightmapSize": 64,
+    "_useLightProbe": false,
+    "_bakeToLightProbe": true,
+    "_reflectionProbeType": 0,
+    "_bakeToReflectionProbe": true
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "19wL4gSw1HMbgHrlwv3GY4",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "f7wRGxhhRJMYTCEEgDhEj6",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Cab",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 141
+      }
+    ],
+    "_prefab": {
+      "__id__": 144
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.MeshRenderer",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 140
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 142
     },
     "_materials": [
       {
@@ -3584,7 +3730,7 @@
     ],
     "_visFlags": 0,
     "bakeSettings": {
-      "__id__": 137
+      "__id__": 143
     },
     "_mesh": {
       "__uuid__": "5ec5326a-ba22-468c-a07f-8ac2a264fc73@b1359",
@@ -3639,46 +3785,20 @@
     "nestedPrefabInstanceRoots": null
   },
   {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__id__": 0
-    },
-    "fileId": "876mJNmfRPjawL7+fLYuX6",
-    "instance": null,
-    "targetOverrides": null,
-    "nestedPrefabInstanceRoots": null
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__id__": 0
-    },
-    "fileId": "71hzSfVnRCJYh95dKJlZtN",
-    "instance": null,
-    "targetOverrides": null,
-    "nestedPrefabInstanceRoots": null
-  },
-  {
     "__type__": "cc.Node",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
     "_prefab": {
-      "__id__": 142
+      "__id__": 146
     },
     "__editorExtras__": {}
   },
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 141
+      "__id__": 145
     },
     "asset": {
       "__uuid__": "e950388f-3bca-4d4c-9c9b-4183fc674757@f9b89",
@@ -3686,7 +3806,7 @@
     },
     "fileId": "28oqFhKbJWh5dfVq2xe0MT",
     "instance": {
-      "__id__": 143
+      "__id__": 147
     },
     "targetOverrides": null
   },
@@ -3700,22 +3820,31 @@
     "mountedComponents": [],
     "propertyOverrides": [
       {
-        "__id__": 144
-      },
-      {
-        "__id__": 146
-      },
-      {
-        "__id__": 147
-      },
-      {
         "__id__": 148
       },
       {
-        "__id__": 149
+        "__id__": 150
       },
       {
-        "__id__": 150
+        "__id__": 151
+      },
+      {
+        "__id__": 152
+      },
+      {
+        "__id__": 153
+      },
+      {
+        "__id__": 154
+      },
+      {
+        "__id__": 156
+      },
+      {
+        "__id__": 158
+      },
+      {
+        "__id__": 160
       }
     ],
     "removedComponents": []
@@ -3723,12 +3852,12 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 145
+      "__id__": 149
     },
     "propertyPath": [
       "_name"
     ],
-    "value": "DaShu"
+    "value": "Driver"
   },
   {
     "__type__": "cc.TargetInfo",
@@ -3739,7 +3868,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 145
+      "__id__": 149
     },
     "propertyPath": [
       "_lpos"
@@ -3754,7 +3883,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 145
+      "__id__": 149
     },
     "propertyPath": [
       "_lrot"
@@ -3770,7 +3899,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 145
+      "__id__": 149
     },
     "propertyPath": [
       "_euler"
@@ -3785,7 +3914,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 145
+      "__id__": 149
     },
     "propertyPath": [
       "_lscale"
@@ -3800,7 +3929,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 151
+      "__id__": 155
     },
     "propertyPath": [
       "_shadowCastingMode"
@@ -3814,6 +3943,48 @@
     ]
   },
   {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 157
+    },
+    "propertyPath": [
+      "_active"
+    ],
+    "value": true
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "ccTJG7yopQqZOWbB3o9uD+"
+    ]
+  },
+  {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 159
+    },
+    "propertyPath": [
+      "_name"
+    ],
+    "value": "Driver"
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "33EJuEfpZdKLimIHRKNdRB"
+    ]
+  },
+  {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 157
+    },
+    "propertyPath": [
+      "_name"
+    ],
+    "value": "Driver"
+  },
+  {
     "__type__": "5eec2ZPFa1GjpYqdFTeqtSt",
     "_name": "",
     "_objFlags": 0,
@@ -3823,11 +3994,25 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 153
+      "__id__": 162
     },
     "cargoBed": {
-      "__id__": 109
+      "__id__": 102
     },
+    "cargoBeds": [
+      {
+        "__id__": 104
+      },
+      {
+        "__id__": 113
+      },
+      {
+        "__id__": 122
+      },
+      {
+        "__id__": 131
+      }
+    ],
     "_id": ""
   },
   {
@@ -3847,7 +4032,7 @@
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": [
       {
-        "__id__": 141
+        "__id__": 145
       }
     ]
   }
