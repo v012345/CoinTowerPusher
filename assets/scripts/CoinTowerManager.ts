@@ -23,7 +23,7 @@ export class CoinTowerManager extends Component {
     spawnCoinTowers() {
         // 左右两边 x 的坐标
         [12.5, -12.5].forEach(x => {
-            for (let i = 0; i < 17; i++) {
+            for (let i = 0; i < 0; i++) {
                 const coinTowernode = instantiate(this.coinTowerPrefab);
                 const coinTower = coinTowernode.getComponent(CoinTower);
                 coinTower.layerNum = 15 + i

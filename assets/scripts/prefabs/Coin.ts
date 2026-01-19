@@ -24,9 +24,9 @@ export class Coin extends Component {
     }
     onCollisionEnter(event: ICollisionEvent) {
         const other = event.otherCollider;
-        console.log(other)
+        // console.log(other)
         if (other.node.name == "Ground") {
-            console.log('Coin landed on the ground');
+            // console.log('Coin landed on the ground');
             const collider = this.node.getComponent(CylinderCollider);
             collider.on('onCollisionEnter', this.onCollisionEnter, this);
             const rb = this.node.getComponent(RigidBody);
