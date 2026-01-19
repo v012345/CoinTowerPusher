@@ -8,6 +8,9 @@ export class Tractor extends Component {
     cargoBed: Node = null;
     @property([Node])
     cargoBeds: Node[] = [];
+    cargoBedLevel: number = 1;
+    coinsInCargoBed: Node[] = [];
+    whereToPutNextCoin: Vec3 = new Vec3(-5, 0.3, -3.5);
     start() {
         GameGlobal.cargoBed = this.cargoBed;
         GameGlobal.Tractor = this.node;
@@ -18,11 +21,23 @@ export class Tractor extends Component {
 
     }
     arrangeCoin(coin: Node) {
-        coin.position = new Vec3(1, 1, 1);
-        coin.eulerAngles = Vec3.ZERO;
+        this.coinsInCargoBed.push(coin);
+
+        coin.position = this.whereToPutNextCoin;
+        this.whereToPutNextCoin.x += 0.5;
+        if (this.whereToPutNextCoin.x > 5) {
+            this.whereToPutNextCoin.x = -5;
+            this.whereToPutNextCoin.z += 0.5;
+            if (this.whereToPutNextCoin.z > 3.5) {
+                this.whereToPutNextCoin.z = -3.5;
+                this.whereToPutNextCoin.y += 1;
+            }
+        }
+        coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
     }
     LevelUpCargoBed(lv: number) {
         lv = lv - 1;
+        this.cargoBedLevel = lv;
         this.cargoBeds.forEach((bed, index) => {
             bed.active = index == lv;
             if (bed.active) {
