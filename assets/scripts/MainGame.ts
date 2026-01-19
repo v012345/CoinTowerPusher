@@ -5,6 +5,7 @@ import { Language } from './Utils/Language';
 import { PlayableSDK } from './Utils/PlayableSDK';
 import { WaterPlane } from './Utils/WaterPlane';
 import { Utils } from './Utils/Utils';
+import { UIAdjust, UIAdjustType } from './Utils/UIAdjust';
 const { ccclass, property } = _decorator;
 
 declare var window: any;
@@ -86,35 +87,48 @@ export class MainGame extends Component {
 
 
     resize() {
-        let viewScale: number, realHeight: number, realWidth: number;
-        let ratio = screen.windowSize.width / screen.windowSize.height;
-
-        if (screen.windowSize.height > screen.windowSize.width && screen.windowSize.width / screen.windowSize.height < 1) {
+        if (screen.windowSize.height > screen.windowSize.width) {
+            let ratio = screen.windowSize.height / screen.windowSize.width;
+            let isRect = ratio >= 1 && ratio <= 1.77;
             view.setResolutionPolicy(ResolutionPolicy.FIXED_WIDTH);
-            //竖屏
 
-            viewScale = screen.windowSize.width / view.getDesignResolutionSize().width;
-            realHeight = screen.windowSize.height / viewScale;
-            realWidth = view.getDesignResolutionSize().width;
-            this._isPortrait = true;
+            GameGlobal.viewScale = screen.windowSize.width / view.getDesignResolutionSize().width;
+            GameGlobal.realHeight = screen.windowSize.height / GameGlobal.viewScale;
+            GameGlobal.realWidth = view.getDesignResolutionSize().width;
+            console.log('resize 竖屏', GameGlobal.viewScale, GameGlobal.realWidth, GameGlobal.realHeight, screen.windowSize.width, screen.windowSize.height, ratio);
+
+            // GameGlobal.isShu = true;
+
+            this.node.getComponentsInChildren(UIAdjust).forEach(v => {
+                if (isRect) {
+                    v.type = UIAdjustType.方块竖屏;
+                } else {
+                    v.type = UIAdjustType.竖屏;
+                }
+                v.updateImpl();
+            })
+
         } else {
+            let ratio = screen.windowSize.width / screen.windowSize.height;
+            let isRect = ratio >= 1 && ratio <= 1.77;
             view.setResolutionPolicy(ResolutionPolicy.FIXED_HEIGHT);
-            //横屏
 
-            viewScale = screen.windowSize.height / view.getDesignResolutionSize().height;
-            realHeight = view.getDesignResolutionSize().height;
-            realWidth = screen.windowSize.width / viewScale;
-            this._isPortrait = false;
+            GameGlobal.viewScale = screen.windowSize.height / view.getDesignResolutionSize().height;
+            GameGlobal.realHeight = view.getDesignResolutionSize().height;
+            GameGlobal.realWidth = screen.windowSize.width / GameGlobal.viewScale;
+            console.log('resize 横屏', GameGlobal.viewScale, GameGlobal.realWidth, GameGlobal.realHeight, screen.windowSize.width, screen.windowSize.height, ratio);
+            // GameGlobal.isShu = false;
+
+            this.node.getComponentsInChildren(UIAdjust).forEach(v => {
+                if (isRect) {
+                    v.type = UIAdjustType.方块横屏;
+                } else {
+                    v.type = UIAdjustType.横屏;
+                }
+                // v.updateImpl();
+            })
         }
-        this._isIpad = Utils.isIpad(this._isPortrait, ratio);
-
-        let minSize = Math.min(realHeight, realWidth);
-        // this.poSuiNode.getComponent(UITransform).setContentSize(size(minSize, minSize));
-
         GameGlobal.CameraControl.cameraOnLoad();
-        // this.water.reinit();
-        this.resizeLogo();
-        this.resizeTitle();
     }
     private resizeTitle() {
         // let widget = this.titleNode.getComponent(Widget);
