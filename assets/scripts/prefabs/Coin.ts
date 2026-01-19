@@ -50,6 +50,11 @@ export class Coin extends Component {
         tween(this.node)
             .to(2, { position: mid }, { easing: 'quadOut' })
             .to(2, { position: end }, { easing: 'quadIn' })
+            .call(() => {
+                // this.onFlyEnd();   // 你自己的函数
+                GameGlobal.TractorScript.arrangeCoin(this.node);
+
+            })
             .start();
     }
 }

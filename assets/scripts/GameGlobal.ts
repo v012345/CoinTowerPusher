@@ -2,6 +2,7 @@ import { _decorator, Camera, Node } from 'cc';
 import { MainGame } from "./MainGame";
 import { CameraControl } from './CameraControl';
 import { Actor } from './Actor';
+import { Tractor } from './prefabs/Tractor';
 // import { CoinNumber } from './Utils/CoinNumber';
 // import { Train } from './Train';
 // import { Factory } from './Factory';
@@ -22,6 +23,8 @@ export class GameGlobal {
     // public static factory: Factory;
     // public static failNum: number = 0;
     public static cargoBed: Node;
+    public static Tractor: Node;
+    public static TractorScript: Tractor;
     public static levelMap: Record<number, number> = {
         1: 1,
         2: 1,
