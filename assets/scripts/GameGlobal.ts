@@ -21,6 +21,7 @@ export class GameGlobal {
     // public static train: Train;
     // public static factory: Factory;
     // public static failNum: number = 0;
+    public static cargoBed: Node;
     public static levelMap: Record<number, number> = {
         1: 1,
         2: 1,

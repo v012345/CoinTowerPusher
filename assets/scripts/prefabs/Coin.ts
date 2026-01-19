@@ -31,6 +31,8 @@ export class Coin extends Component {
             const rb = this.node.getComponent(RigidBody);
             rb.group = PhysicsGroup.DroppedCoin;
             this.scheduleOnce(() => {
+                this.node.getComponent(CylinderCollider)?.destroy();
+                this.node.getComponent(RigidBody)?.destroy();
                 this.flyToCargoBed();
             }, 0.5);
         }
