@@ -4,6 +4,7 @@ import { PathLine } from './Utils/PathLine';
 import { MoveAlongPath } from './Utils/MoveAlongPath';
 import { CoinTower } from './prefabs/CoinTower';
 import { Tractor } from './prefabs/Tractor';
+import { LevelupBtn } from './ui/LevelupBtn';
 const { ccclass, property } = _decorator;
 
 @ccclass('Actor')
@@ -26,6 +27,8 @@ export class Actor extends Component {
     gearsUpCostLabel: Label;
     @property(Label)
     speedUpCostLabel: Label;
+    @property(Node)
+    cargoBedUpButton: Node;
 
     @property(Node)
     tractorNode: Node;
@@ -41,15 +44,18 @@ export class Actor extends Component {
     isOver: boolean = false;
     speed: number = 0;
     isBackForward: boolean = false;
-    speedLevel = 1;
-    gearsLevel = 1;
-    cargoBedLevel = 1;
+    speedLevel = 0;
+    gearsLevel = 0;
+    cargoBedLevel = 0;
+    capacity = 0
+
     onLoad() {
         GameGlobal.actor = this;
     }
 
     start() {
-        this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
+        this.LevelUpCargoBed();
+        this.LevelUpGears();
         this.moveAlongPath = this.node.getComponent(MoveAlongPath);
         this.scheduleOnce(() => {
             this.moveAlongPath.pathLine = this.path;
@@ -84,18 +90,38 @@ export class Actor extends Component {
         } else {
             this.moveAlongPath.setSpeed(-20);
         }
+        if (this.CoinNum < this.capacity) {
+            let coin = GameGlobal.CoinsPool.pop();
+            if (coin) {
+                this.CoinNum++;
+                coin.flyToCargoBed();
+            }
+
+        }
     }
     lateUpdate(deltaTime: number): void {
         GameGlobal.CameraControl.cameraFollow(deltaTime);
     }
-    levelUp() {
+
+    LevelUpGears() {
         this.gearsLevel += 1;
     }
     LevelUpCargoBed() {
-        this.cargoBedLevel += 1;
+        let nextLv = this.cargoBedLevel + 1;
         let TractorScript = this.tractorNode.getComponent(Tractor);
-        this.cargoBedLevel = Math.min(this.cargoBedLevel, TractorScript.cargoBeds.length);
-        this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
+        if (nextLv <= TractorScript.cargoBeds.length) {
+            if (this.CoinNum >= GameGlobal.CargoBedUp[nextLv][0]) {
+                this.CoinNum -= GameGlobal.CargoBedUp[nextLv][0];
+                this.capacity = GameGlobal.CargoBedUp[nextLv][1];
+                this.cargoBedLevel += 1;
+                this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
+                if (GameGlobal.CargoBedUp[this.cargoBedLevel + 1]) {
+                    this.cargoBedUpCostLabel.string = GameGlobal.CargoBedUp[this.cargoBedLevel + 1][0].toString();
+                } else {
+                    this.cargoBedUpButton.getComponent(LevelupBtn).showMaxLevel();
+                }
+            }
+        }
     }
 }
 

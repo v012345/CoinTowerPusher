@@ -34,7 +34,8 @@ export class Coin extends Component {
             this.scheduleOnce(() => {
                 this.node.getComponent(CylinderCollider)?.destroy();
                 this.node.getComponent(RigidBody)?.destroy();
-                this.flyToCargoBed();
+                // this.flyToCargoBed();
+                GameGlobal.CoinsPool.push(this);
             }, 0.5);
         }
     }
@@ -53,8 +54,6 @@ export class Coin extends Component {
             .call(() => {
                 // this.onFlyEnd();   // 你自己的函数
                 GameGlobal.TractorScript.arrangeCoin(this.node);
-                GameGlobal.actor.CoinNum += 1;
-
             })
             .start();
     }

@@ -3,6 +3,7 @@ import { MainGame } from "./MainGame";
 import { CameraControl } from './CameraControl';
 import { Actor } from './Actor';
 import { Tractor } from './prefabs/Tractor';
+import { Coin } from './prefabs/Coin';
 // import { CoinNumber } from './Utils/CoinNumber';
 // import { Train } from './Train';
 // import { Factory } from './Factory';
@@ -26,6 +27,7 @@ export class GameGlobal {
     // public static factory: Factory;
     // public static failNum: number = 0;
     public static cargoBed: Node;
+    public static CoinsPool: Array<Coin> = [];
     public static Tractor: Node;
     public static TractorScript: Tractor;
     public static levelMap: Record<number, number> = {
@@ -47,11 +49,11 @@ export class GameGlobal {
         16: 3,
         17: 3,
     };
-    public static CargoBedUp: Record<number, number> = {
-        1: 0,
-        2: 100,
-        3: 100,
-        4: 100,
+    public static CargoBedUp: Record<number, Array<number>> = {
+        1: [0, 500], // level: [cost, capacity]
+        2: [200, 1000],
+        3: [300, 3000],
+        4: [400, 5000],
     };
     public static GearsUp: Record<number, number> = {
         1: 0,
