@@ -5,6 +5,7 @@ import { MoveAlongPath } from './Utils/MoveAlongPath';
 import { CoinTower } from './prefabs/CoinTower';
 import { Tractor } from './prefabs/Tractor';
 import { LevelupBtn } from './ui/LevelupBtn';
+import { GameEvent } from './managers/EventManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Actor')
@@ -82,6 +83,7 @@ export class Actor extends Component {
     }
 
     move() {
+        GameEvent.emit("TractorMove");
         this.speed = this.currentSpeed;
     }
     stop() {
