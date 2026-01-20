@@ -25,7 +25,6 @@ export class CoinDome extends Component {
                 //             coins.getComponent(OneLayerOfCoins).scatter();
                 //         });
                 //     }
-                let i = 0;
                 this.coins.children.forEach(coin => {
                     coin.getComponent(Coin).drop(PhysicsGroup.DomeCoin);
                 })
