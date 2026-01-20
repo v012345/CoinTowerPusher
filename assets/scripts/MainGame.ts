@@ -101,7 +101,7 @@ export class MainGame extends Component {
 
             this.node.getComponentsInChildren(UIAdjust).forEach(v => {
                 if (isRect) {
-                    v.type = UIAdjustType.方块竖屏;
+                    v.type = UIAdjustType.竖屏;
                 } else {
                     v.type = UIAdjustType.竖屏;
                 }
@@ -121,7 +121,7 @@ export class MainGame extends Component {
 
             this.node.getComponentsInChildren(UIAdjust).forEach(v => {
                 if (isRect) {
-                    v.type = UIAdjustType.方块横屏;
+                    v.type = UIAdjustType.横屏;
                 } else {
                     v.type = UIAdjustType.横屏;
                 }

@@ -8699,8 +8699,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 256.6,
-      "y": 149,
+      "x": -256.6,
+      "y": -229,
       "z": 0
     },
     "_lrot": {
@@ -8712,8 +8712,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 0.4,
-      "y": 0.4,
+      "x": 0.6,
+      "y": 0.6,
       "z": 1
     },
     "_mobility": 0,
@@ -9447,7 +9447,7 @@
     "_enabled": true,
     "__prefab": null,
     "type": "竖屏",
-    "saveAttr": "{\"横屏\":{\"position\":{\"x\":-219.9,\"y\":-188.5,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":true,\"isAbsoluteLeft\":true,\"leftPx\":60,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":50,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true},\"竖屏\":{\"position\":{\"x\":256.6,\"y\":149,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":true,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"leftPx\":522.141,\"isAlignBottom\":false,\"isAbsoluteBottom\":true,\"bottomPx\":358.094,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true,\"rightPx\":50,\"topPx\":130}}",
+    "saveAttr": "{\"横屏\":{\"position\":{\"x\":256.6,\"y\":170,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":false,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"leftPx\":519.834,\"isAlignBottom\":false,\"isAbsoluteBottom\":true,\"bottomPx\":363.62,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true,\"rightPx\":50,\"topPx\":120.1,\"topPencent\":0.14},\"竖屏\":{\"position\":{\"x\":-256.6,\"y\":-229,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":true,\"isAbsoluteLeft\":true,\"leftPx\":50,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":50,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true,\"rightPx\":540.207,\"topPx\":501.53999999999996}}",
     "_id": "25kHB/2+pLBbKDgYsHQEkq"
   },
   {
@@ -9460,23 +9460,23 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_alignFlags": 33,
+    "_alignFlags": 12,
     "_target": {
       "__id__": 226
     },
-    "_left": 522.141,
-    "_right": 50,
-    "_top": 130,
-    "_bottom": 358.094,
+    "_left": 50,
+    "_right": 563.2,
+    "_top": 0.14,
+    "_bottom": 50,
     "_horizontalCenter": -0.30541666666666667,
-    "_verticalCenter": 0,
+    "_verticalCenter": -229,
     "_isAbsLeft": true,
     "_isAbsRight": true,
     "_isAbsTop": true,
     "_isAbsBottom": true,
     "_isAbsHorizontalCenter": true,
     "_isAbsVerticalCenter": true,
-    "_originalWidth": 123.43333333333332,
+    "_originalWidth": 267,
     "_originalHeight": 405,
     "_alignMode": 2,
     "_lockFlags": 0,
@@ -9543,8 +9543,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 256.6,
-      "y": -40,
+      "x": 0,
+      "y": -229,
       "z": 0
     },
     "_lrot": {
@@ -9556,8 +9556,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 0.4,
-      "y": 0.4,
+      "x": 0.6,
+      "y": 0.6,
       "z": 1
     },
     "_mobility": 0,
@@ -10291,7 +10291,7 @@
     "_enabled": true,
     "__prefab": null,
     "type": "竖屏",
-    "saveAttr": "{\"横屏\":{\"position\":{\"x\":0,\"y\":-188.5,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":50,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":0},\"竖屏\":{\"position\":{\"x\":256.6,\"y\":-40,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":false,\"isAbsoluteBottom\":true,\"bottomPx\":117.69999999999999,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"rightPx\":50,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true,\"topPx\":328.6}}",
+    "saveAttr": "{\"横屏\":{\"position\":{\"x\":256.6,\"y\":0,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":false,\"isAbsoluteBottom\":true,\"bottomPx\":50,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":0,\"rightPx\":50},\"竖屏\":{\"position\":{\"x\":0,\"y\":-229,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":50,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"rightPx\":349.49299999999994,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"topPx\":328.6,\"horizonalCenterPx\":0}}",
     "_id": "a1VJrPaolFTIJJu+RK+NOt"
   },
   {
@@ -10304,16 +10304,16 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_alignFlags": 34,
+    "_alignFlags": 20,
     "_target": {
       "__id__": 226
     },
     "_left": 240.4258333333333,
-    "_right": 50,
+    "_right": 306.6,
     "_top": 197.3,
-    "_bottom": 117.69999999999999,
-    "_horizontalCenter": 279.9,
-    "_verticalCenter": -40,
+    "_bottom": 50,
+    "_horizontalCenter": 0,
+    "_verticalCenter": -229,
     "_isAbsLeft": true,
     "_isAbsRight": true,
     "_isAbsTop": true,
@@ -10400,8 +10400,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 0.4,
-      "y": 0.4,
+      "x": 0.6,
+      "y": 0.6,
       "z": 1
     },
     "_mobility": 0,
@@ -11134,8 +11134,8 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "type": "横屏",
-    "saveAttr": "{\"横屏\":{\"position\":{\"x\":256.6,\"y\":-229,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":50,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"rightPx\":50,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true}}",
+    "type": "竖屏",
+    "saveAttr": "{\"横屏\":{\"position\":{\"x\":256.6,\"y\":-170,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":false,\"isAbsoluteBottom\":true,\"bottomPx\":50,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"rightPx\":50,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true},\"竖屏\":{\"position\":{\"x\":256.6,\"y\":-229,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":50,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"rightPx\":50,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true}}",
     "_id": "3arg0ZwYZA77HY6LnUNNeC"
   },
   {
@@ -11157,7 +11157,7 @@
     "_top": 320.624,
     "_bottom": 50,
     "_horizontalCenter": 0,
-    "_verticalCenter": 0,
+    "_verticalCenter": -229,
     "_isAbsLeft": true,
     "_isAbsRight": true,
     "_isAbsTop": true,
