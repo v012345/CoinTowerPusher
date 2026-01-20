@@ -12035,7 +12035,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "EventyManger",
+    "_name": "EventManger",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
