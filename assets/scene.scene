@@ -12019,6 +12019,15 @@
     "handNode": {
       "__id__": 306
     },
+    "speedUpBtn": {
+      "__id__": 283
+    },
+    "sawBladeUpBtn": {
+      "__id__": 260
+    },
+    "cargoBedUpBtn": {
+      "__id__": 237
+    },
     "_id": "36h70z4xtB26IYpkR6k/J0"
   },
   {

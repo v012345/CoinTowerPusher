@@ -8,6 +8,12 @@ export class GuideManager extends Component {
     tipNode: Node;
     @property(Node)
     handNode: Node;
+    @property(Node)
+    speedUpBtn: Node;
+    @property(Node)
+    sawBladeUpBtn: Node;
+    @property(Node)
+    cargoBedUpBtn: Node;
     start() {
 
     }
