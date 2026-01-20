@@ -74,6 +74,7 @@ export class Actor extends Component {
                 if (coinTower.level > this.gearsLevel) {
                     this.isBackForward = true;
                     this.scheduleOnce(() => {
+                        GameEvent.emit("TractorMoveBack");
                         this.isBackForward = false;
                     }, 0.2);
                 }

@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, Button } from 'cc';
 import { GameEvent } from './EventManager';
 const { ccclass, property } = _decorator;
 
@@ -17,6 +17,14 @@ export class GuideManager extends Component {
     cargoBedUpBtn: Node;
     start() {
         GameEvent.on('TractorMove', this.hasLearnedMove, this);
+        // GameEvent.on('TractorMoveBack', this.toLearnSawBladeUp, this);
+    }
+    toLearnSawBladeUp() {
+        let btn = this.cargoBedUpBtn.getComponent(Button);
+        btn.interactable = false; // 禁用
+        btn = this.speedUpBtn.getComponent(Button);
+        btn.interactable = false; // 禁用
+
     }
 
     hasLearnedMove() {
