@@ -8,6 +8,9 @@ export class Tractor extends Component {
     cargoBed: Node = null;
     @property([Node])
     cargoBeds: Node[] = [];
+    @property([Node])
+    sawBlades: Node[] = [];
+    sawBladeLevel: number = 1;
     cargoBedLevel: number = 1;
     coinsInCargoBed: Node[] = [];
     whereToPutNextCoin: Vec3 = new Vec3(-5, 0.3, -3.5);
@@ -34,6 +37,13 @@ export class Tractor extends Component {
             }
         }
         coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
+    }
+    levelUpSawBlade(lv: number) {
+        lv = lv - 1;
+        this.sawBladeLevel = lv;
+        this.sawBlades.forEach((blade, index) => {
+            blade.active = index == lv;
+        });
     }
     LevelUpCargoBed(lv: number) {
         lv = lv - 1;

@@ -29,7 +29,10 @@ export class Actor extends Component {
     speedUpCostLabel: Label;
     @property(Node)
     cargoBedUpButton: Node;
-
+    @property(Node)
+    sawBaladeUpButton: Node;
+    @property(Node)
+    speedUpButton: Node;
     @property(Node)
     tractorNode: Node;
 
@@ -106,7 +109,21 @@ export class Actor extends Component {
     }
 
     LevelUpGears() {
-        this.gearsLevel += 1;
+
+        let nextLv = this.gearsLevel + 1;
+        let TractorScript = this.tractorNode.getComponent(Tractor);
+        if (nextLv <= TractorScript.sawBlades.length) {
+            if (this.CoinNum >= GameGlobal.GearsUp[nextLv]) {
+                this.CoinNum -= GameGlobal.GearsUp[nextLv];
+                this.gearsLevel += 1;
+                TractorScript.levelUpSawBlade(this.gearsLevel);
+                if (GameGlobal.GearsUp[this.gearsLevel + 1]) {
+                    this.gearsUpCostLabel.string = GameGlobal.GearsUp[this.gearsLevel + 1].toString();
+                } else {
+                    this.sawBaladeUpButton.getComponent(LevelupBtn).showMaxLevel();
+                }
+            }
+        }
     }
     LevelUpCargoBed() {
         let nextLv = this.cargoBedLevel + 1;
