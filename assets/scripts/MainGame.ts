@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, Camera, screen, view, ResolutionPolicy, Widget, v3, input, Input } from 'cc';
 import { GameGlobal } from './GameGlobal';
-import { AudioManager } from './Utils/AudioManager';
+// import { AudioManager } from './Utils/AudioManager';
 import { Language } from './Utils/Language';
 import { PlayableSDK } from './Utils/PlayableSDK';
 import { WaterPlane } from './Utils/WaterPlane';
@@ -37,10 +37,18 @@ export class MainGame extends Component {
         input.on(Input.EventType.TOUCH_CANCEL, this.onTouchCancel, this);
 
         view.on("canvas-resize", this.resize, this);
-        this.scheduleOnce(this.resize);
+        this.scheduleOnce(this.resize, 0.3);
 
 
         PlayableSDK.onInteracted();
+        this.scheduleOnce(() => {
+
+            //@ts-ignore
+            if (window.setLoadingProgress) {
+                //@ts-ignore
+                window.setLoadingProgress(100);
+            }
+        })
 
     }
 

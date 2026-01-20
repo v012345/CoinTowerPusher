@@ -1,5 +1,5 @@
 import { _decorator, Component, AudioSource, assert, director, sys, input, Input, EventTouch } from 'cc';
-import { AudioManager } from './AudioManager';
+// import { AudioManager } from './AudioManager';
 import { PlayableSDK } from './PlayableSDK';
 const { ccclass, property } = _decorator;
 
@@ -18,7 +18,7 @@ export class GameRoot extends Component {
         PlayableSDK.gameReady();
 
         // init AudioManager
-        AudioManager.init(this._audioSource, this.node);
+        // AudioManager.init(this._audioSource, this.node);
 
         // let enableAudio = (e) => {
         //     // console.log('AudioManager.resume');
