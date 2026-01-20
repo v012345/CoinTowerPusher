@@ -14,6 +14,8 @@ export class Tractor extends Component {
     cargoBedLevel: number = 1;
     coinsInCargoBed: Node[] = [];
     whereToPutNextCoin: Vec3 = new Vec3(-5, 0.3, -3.5);
+    cargoBedX = 5
+    cargoBedZ = 3.5
     blades: Node[] = [];
     start() {
         GameGlobal.cargoBed = this.cargoBed;
@@ -31,15 +33,30 @@ export class Tractor extends Component {
 
         coin.position = this.whereToPutNextCoin;
         this.whereToPutNextCoin.x += 0.5;
-        if (this.whereToPutNextCoin.x > 5) {
-            this.whereToPutNextCoin.x = -5;
+        if (this.whereToPutNextCoin.x > this.cargoBedX) {
+            this.whereToPutNextCoin.x = -this.cargoBedX;
             this.whereToPutNextCoin.z += 0.5;
-            if (this.whereToPutNextCoin.z > 3.5) {
-                this.whereToPutNextCoin.z = -3.5;
+            if (this.whereToPutNextCoin.z > this.cargoBedZ) {
+                this.whereToPutNextCoin.z = -this.cargoBedZ;
                 this.whereToPutNextCoin.y += 1;
             }
         }
         coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
+    }
+    reArrangeAllCoins() {
+        this.coinsInCargoBed.forEach(coin => {
+            coin.position = this.whereToPutNextCoin;
+            this.whereToPutNextCoin.x += 0.5;
+            if (this.whereToPutNextCoin.x > this.cargoBedX) {
+                this.whereToPutNextCoin.x = -this.cargoBedX;
+                this.whereToPutNextCoin.z += 0.5;
+                if (this.whereToPutNextCoin.z > this.cargoBedZ) {
+                    this.whereToPutNextCoin.z = -this.cargoBedZ;
+                    this.whereToPutNextCoin.y += 1;
+                }
+            }
+            coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
+        });
     }
     levelUpSawBlade(lv: number) {
         lv = lv - 1;
@@ -58,6 +75,10 @@ export class Tractor extends Component {
         this.cargoBeds.forEach((bed, index) => {
             bed.active = index == lv;
             if (bed.active) {
+                this.whereToPutNextCoin = GameGlobal.FirstCoinPosInCargo[lv + 1]
+                this.cargoBedX = -this.whereToPutNextCoin.x
+                this.cargoBedZ = -this.whereToPutNextCoin.z
+                this.reArrangeAllCoins()
                 this.cargoBed.worldPosition = bed.getChildByName("CargoBed").getChildByName("CargoArea").worldPosition;
             }
         });

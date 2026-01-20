@@ -1,4 +1,4 @@
-import { _decorator, Camera, Node } from 'cc';
+import { _decorator, Camera, Node, Vec3 } from 'cc';
 import { MainGame } from "./MainGame";
 import { CameraControl } from './CameraControl';
 import { Actor } from './Actor';
@@ -67,4 +67,10 @@ export class GameGlobal {
         3: [200, 20],
         4: [300, 25],
     };
+    public static FirstCoinPosInCargo: Record<number, Vec3> = {
+        1: new Vec3(-5, 0.3, -2.5),
+        2: new Vec3(-5, 0.3, -3.5),
+        3: new Vec3(-3, 0.3, -7.5),
+        4: new Vec3(-4.5, 0.3, -9),
+    }
 }
