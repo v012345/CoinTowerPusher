@@ -14,6 +14,7 @@ export class Tractor extends Component {
     cargoBedLevel: number = 1;
     coinsInCargoBed: Node[] = [];
     whereToPutNextCoin: Vec3 = new Vec3(-5, 0.3, -3.5);
+    blades: Node[] = [];
     start() {
         GameGlobal.cargoBed = this.cargoBed;
         GameGlobal.Tractor = this.node;
@@ -21,7 +22,9 @@ export class Tractor extends Component {
     }
 
     update(deltaTime: number) {
-
+        this.blades.forEach(blade => {
+            blade.eulerAngles = new Vec3(blade.eulerAngles.x, blade.eulerAngles.y + 2, blade.eulerAngles.z);
+        });
     }
     arrangeCoin(coin: Node) {
         this.coinsInCargoBed.push(coin);
@@ -42,7 +45,11 @@ export class Tractor extends Component {
         lv = lv - 1;
         this.sawBladeLevel = lv;
         this.sawBlades.forEach((blade, index) => {
+
             blade.active = index == lv;
+            if (blade.active) {
+                this.blades = blade.children.filter(n => n.name == 'SawBlade');
+            }
         });
     }
     LevelUpCargoBed(lv: number) {

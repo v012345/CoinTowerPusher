@@ -420,6 +420,8 @@
       "__id__": 0
     },
     "fileId": "37pA1EOb9B4aaR2pic62Wx",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -3839,6 +3841,7 @@
         "__id__": 127
       }
     ],
+    "sawBlades": [],
     "_id": ""
   },
   {
