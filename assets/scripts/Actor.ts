@@ -91,12 +91,14 @@ export class Actor extends Component {
             this.moveAlongPath.setSpeed(-20);
         }
         if (this.CoinNum < this.capacity) {
-            let coin = GameGlobal.CoinsPool.pop();
-            if (coin) {
-                this.CoinNum++;
-                coin.flyToCargoBed();
+            let recieveNum = Math.min(this.capacity - this.CoinNum, 20);
+            for (let i = 0; i < recieveNum; i++) {
+                let coin = GameGlobal.CoinsPool.pop();
+                if (coin) {
+                    this.CoinNum++;
+                    coin.flyToCargoBed();
+                }
             }
-
         }
     }
     lateUpdate(deltaTime: number): void {
