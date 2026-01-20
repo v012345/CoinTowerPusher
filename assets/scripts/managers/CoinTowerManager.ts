@@ -1,6 +1,6 @@
 import { _decorator, Component, instantiate, Node, math, Prefab, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
-import { CoinTower } from './prefabs/CoinTower';
+import { CoinTower } from '../prefabs/CoinTower';
 @ccclass('CoinTowerManager')
 export class CoinTowerManager extends Component {
     @property(Node)
@@ -34,7 +34,6 @@ export class CoinTowerManager extends Component {
             let arcLength = 2 * coinRadius * i;
             let theta = arcLength / domeRadius;
             let layerRadius = domeRadius * Math.sin(theta);
-            console.log(layerRadius);
             let layerCircumference = 2 * Math.PI * layerRadius;
             // 本层硬币数量
             let coinNum = Math.floor(layerCircumference / (coinRadius * 2));
@@ -48,24 +47,11 @@ export class CoinTowerManager extends Component {
                 let coin = instantiate(this.coinPrefab);
                 coin.setParent(this.domeCoinsNode);
                 coin.setPosition(polar);
-                coin.lookAt(this.domeCoinsNode.position);
-                let v = new Vec3();
-                coin.worldRotation.getEulerAngles(v)
-                Vec3.add(v, v, new Vec3(90, 0, math.randomRangeInt(0, 61)));
-                coin.setRotationFromEuler(v);
-                // coin.rotate(new Vec3(90, 0, 0));
+                coin.lookAt(this.domeCoinsNode.worldPosition);
+                coin.eulerAngles = new Vec3(coin.eulerAngles.x + 90, coin.eulerAngles.y, coin.eulerAngles.z);
+                coin.rotate(new Vec3(0, 1, 0), Math.random() * 360);
             }
-
-
         }
-
-
-        // 北半球顶点坐标, y 轴向上
-        // const polar = new Vec3(0, domeRadius, 0);
-        // let coin = instantiate(this.coinPrefab);
-        // coin.setParent(this.domeCoinsNode);
-        // coin.setPosition(polar);
-
 
     }
     spawnCoinTowers() {
