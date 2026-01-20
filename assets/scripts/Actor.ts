@@ -48,6 +48,7 @@ export class Actor extends Component {
     speed: number = 0;
     isBackForward: boolean = false;
     speedLevel = 0;
+    currentSpeed = 0;
     gearsLevel = 0;
     cargoBedLevel = 0;
     capacity = 0
@@ -59,6 +60,7 @@ export class Actor extends Component {
     start() {
         this.LevelUpCargoBed();
         this.LevelUpGears();
+        this.levelUpSpeed();
         this.moveAlongPath = this.node.getComponent(MoveAlongPath);
         this.scheduleOnce(() => {
             this.moveAlongPath.pathLine = this.path;
@@ -80,7 +82,7 @@ export class Actor extends Component {
     }
 
     move() {
-        this.speed = 10;
+        this.speed = this.currentSpeed;
     }
     stop() {
         this.speed = 0;
@@ -106,6 +108,22 @@ export class Actor extends Component {
     }
     lateUpdate(deltaTime: number): void {
         GameGlobal.CameraControl.cameraFollow(deltaTime);
+    }
+    levelUpSpeed() {
+        let nextLv = this.speedLevel + 1;
+        if (GameGlobal.SpeedUp[nextLv]) {
+            if (this.CoinNum >= GameGlobal.SpeedUp[nextLv][0]) {
+                this.CoinNum -= GameGlobal.SpeedUp[nextLv][0];
+                this.speedLevel += 1;
+                this.currentSpeed = GameGlobal.SpeedUp[this.speedLevel][1];
+                if (GameGlobal.SpeedUp[this.speedLevel + 1]) {
+
+                    this.speedUpCostLabel.string = GameGlobal.SpeedUp[this.speedLevel + 1][0].toString();
+                } else {
+                    this.speedUpButton.getComponent(LevelupBtn).showMaxLevel();
+                }
+            }
+        }
     }
 
     LevelUpGears() {

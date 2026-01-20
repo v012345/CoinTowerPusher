@@ -61,10 +61,10 @@ export class GameGlobal {
         3: 200,
         4: 300,
     };
-    public static SpeedUp: Record<number, number> = {
-        1: 0,
-        2: 100,
-        3: 100,
-        4: 100,
+    public static SpeedUp: Record<number, Array<number>> = {
+        1: [0, 10],
+        2: [100, 15],
+        3: [200, 20],
+        4: [300, 25],
     };
 }
