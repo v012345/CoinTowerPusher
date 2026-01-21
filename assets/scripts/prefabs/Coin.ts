@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, tween, RigidBody, Vec3, PhysicsGroup, CylinderCollider, ICollisionEvent } from 'cc';
+import { _decorator, Component, Node, tween, RigidBody, v3, Vec3, PhysicsGroup, CylinderCollider, ICollisionEvent } from 'cc';
 import { GameGlobal } from '../GameGlobal';
 const { ccclass, property } = _decorator;
 
@@ -43,25 +43,45 @@ export class Coin extends Component {
             }, 0.5);
         }
     }
+
     flyToCargoBed() {
-        let originalPos = this.node.worldPosition.clone();
+        const originalWorldPos = this.node.worldPosition.clone();
+
         this.node.setParent(GameGlobal.cargoBed);
         this.node.setScale(new Vec3(2.6, 2.6, 2.6));
-        this.node.worldPosition = originalPos;
-        const start = this.node.position.clone();
-        const end = new Vec3(0, 0, 0);
-        const mid = start.clone().add(end).multiplyScalar(0.5);
-        mid.y += 25; // 控制高度
-        this.node.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
+        this.node.worldPosition = originalWorldPos;
+        const start = this.node.position.clone();   // P0
+        const end = new Vec3(0, 0, 0);               // P2
 
-        tween(this.node)
-            .to(1, { position: mid, scale: new Vec3(1.8, 1.8, 1.8), }, { easing: 'quadOut' })
-            .to(1, { position: end, scale: new Vec3(1.0, 1.0, 1.0), }, { easing: 'quadIn' })
-            .call(() => {
-                // this.onFlyEnd();   // 你自己的函数
-                GameGlobal.TractorScript.arrangeCoin(this.node);
-            })
-            .start();
+        // 控制点（P1）
+        const control = start.clone().add(end).multiplyScalar(0.5);
+        control.y += Math.random() * 10 + 15;
+        this.node.eulerAngles = new Vec3(
+            Math.random() * 360,
+            Math.random() * 360,
+            Math.random() * 360
+        );
+        tween(this.node).to(0.5, {}, {
+            onUpdate: (_, ratio) => {
+                this.bezierCurve(ratio, start, control, end, this.node.position);
+
+                // scale 从 2.6 -> 1
+                const startScale = 2.6;
+                const endScale = 1.0;
+                const scaleValue = startScale + (endScale - startScale) * ratio;
+
+                this.node.setScale(new Vec3(scaleValue, scaleValue, scaleValue));
+            }
+        }).call(() => {
+            GameGlobal.TractorScript.arrangeCoin(this.node);
+        }).start();
+
+    }
+
+    bezierCurve(t: number, p1: Vec3, cp: Vec3, p2: Vec3, out: Vec3) {
+        out.x = (1 - t) * (1 - t) * p1.x + 2 * t * (1 - t) * cp.x + t * t * p2.x;
+        out.y = (1 - t) * (1 - t) * p1.y + 2 * t * (1 - t) * cp.y + t * t * p2.y;
+        out.z = (1 - t) * (1 - t) * p1.z + 2 * t * (1 - t) * cp.z + t * t * p2.z;
     }
 }
 
