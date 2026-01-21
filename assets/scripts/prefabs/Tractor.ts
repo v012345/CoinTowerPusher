@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Vec3 } from 'cc';
 import { GameGlobal } from '../GameGlobal';
+import { Utils } from '../Utils/Utils';
 const { ccclass, property } = _decorator;
 
 @ccclass('Tractor')
@@ -32,30 +33,32 @@ export class Tractor extends Component {
         this.coinsInCargoBed.push(coin);
 
         coin.position = this.whereToPutNextCoin;
-        this.whereToPutNextCoin.x += 0.5;
+        this.whereToPutNextCoin.x += 2;
         if (this.whereToPutNextCoin.x > this.cargoBedX) {
             this.whereToPutNextCoin.x = -this.cargoBedX;
-            this.whereToPutNextCoin.z += 0.5;
+            this.whereToPutNextCoin.z += 2;
             if (this.whereToPutNextCoin.z > this.cargoBedZ) {
                 this.whereToPutNextCoin.z = -this.cargoBedZ;
-                this.whereToPutNextCoin.y += 1;
+                this.whereToPutNextCoin.y += 0.15;
             }
         }
-        coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
+        // coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
+        coin.eulerAngles = new Vec3();
+        Utils.jellyEffect(coin, 1)
     }
     reArrangeAllCoins() {
         this.coinsInCargoBed.forEach(coin => {
             coin.position = this.whereToPutNextCoin;
-            this.whereToPutNextCoin.x += 0.5;
+            this.whereToPutNextCoin.x += 2;
             if (this.whereToPutNextCoin.x > this.cargoBedX) {
                 this.whereToPutNextCoin.x = -this.cargoBedX;
-                this.whereToPutNextCoin.z += 0.5;
+                this.whereToPutNextCoin.z += 2;
                 if (this.whereToPutNextCoin.z > this.cargoBedZ) {
                     this.whereToPutNextCoin.z = -this.cargoBedZ;
-                    this.whereToPutNextCoin.y += 1;
+                    this.whereToPutNextCoin.y += 0.15;
                 }
             }
-            coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
+            // coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
         });
     }
     levelUpSawBlade(lv: number) {

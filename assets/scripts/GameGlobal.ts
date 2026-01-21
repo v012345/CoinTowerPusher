@@ -70,7 +70,7 @@ export class GameGlobal {
     public static FirstCoinPosInCargo: Record<number, Vec3> = {
         1: new Vec3(-5, 0.3, -2.5),
         2: new Vec3(-5, 0.3, -3.5),
-        3: new Vec3(-3, 0.3, -7.5),
+        3: new Vec3(-3, 0.3, -7),
         4: new Vec3(-4.5, 0.3, -9),
     }
 }
