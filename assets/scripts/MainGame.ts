@@ -136,7 +136,7 @@ export class MainGame extends Component {
                 // v.updateImpl();
             })
         }
-        GameGlobal.CameraControl.cameraOnLoad();
+        // GameGlobal.CameraControl.cameraOnLoad();
     }
     private resizeTitle() {
         // let widget = this.titleNode.getComponent(Widget);

@@ -8,6 +8,7 @@ import { LevelupBtn } from './ui/LevelupBtn';
 import { GameEvent } from './managers/EventManager';
 const { ccclass, property } = _decorator;
 
+
 @ccclass('Actor')
 export class Actor extends Component {
     @property(Label)
@@ -110,7 +111,7 @@ export class Actor extends Component {
         }
     }
     lateUpdate(deltaTime: number): void {
-        GameGlobal.CameraControl.cameraFollow(deltaTime);
+
     }
     levelUpSpeed() {
         let nextLv = this.speedLevel + 1;

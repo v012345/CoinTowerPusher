@@ -1,54 +1,59 @@
-import { _decorator, Component, Node, Vec3, screen, tween, Camera, Quat, Tween } from 'cc';
+import { _decorator, Component, Node, Vec3, Enum, screen, tween, Camera, Quat, Tween } from 'cc';
 import { GameGlobal } from './GameGlobal';
+import { CameraFollow } from './components/CameraFollow';
 const { ccclass, property } = _decorator;
-
+enum CameraUpdatePhase {
+    Update = 0,
+    LateUpdate = 1,
+}
 @ccclass('CameraControl')
 export class CameraControl extends Component {
+    _oldUpdate: any;
+    _oldLateUpdate: any;
+    _hackedComponent: Component;
+    _objectPos: Vec3 = new Vec3();
+    _objectRotation: Vec3 = new Vec3();
+    _targetPos: Vec3 = new Vec3();
 
+    @property(Node)
+    followObject_: Node;
 
-    _eulerHeng = new Vec3(60, 0, 0);
-    @property
-    public set eulerHeng(v: Vec3) {
-        this._eulerHeng = v;
-        this.cameraOnLoad();
-    }
-    public get eulerHeng(): Vec3 {
-        return this._eulerHeng
-    }
-    _eulerShu = new Vec3(60, 0, 0);
-    offsetPos = new Vec3(0, 0, 0);
-    _hengPos = new Vec3(0, 24.678, -27.455);
-    @property
-    public set eulerShu(v: Vec3) {
-        this._eulerShu = v;
-        this.cameraOnLoad();
-    }
-    public get eulerShu(): Vec3 {
-        return this._eulerShu
-    }
-
-
-    @property
-    public set hengPos(v: Vec3) {
-        this._hengPos = v;
-        this.cameraOnLoad();
-    }
-
-    public get hengPos(): Vec3 {
-        return this._hengPos
-    }
-    @property
-    public set shuPos(v: Vec3) {
-        this._shuPos = v;
-        this.cameraOnLoad();
+    public set followObject(v: Node) {
+        let cameraFollow = v.getComponent(CameraFollow)
+        if (cameraFollow) {
+            cameraFollow.destroy()
+        }
+        cameraFollow = v.addComponent(CameraFollow);
+        this.followObject_ = v;
+        this._oldUpdate = (cameraFollow as any).update;
+        this._oldLateUpdate = (cameraFollow as any).lateUpdate;
+        (cameraFollow as any).update = (dt: number) => {
+            if (this.updatePhase == CameraUpdatePhase.Update) {
+                this._cameraFollow(dt);
+            }
+            this._oldUpdate.call(this._hackedComponent, dt);
+        }
+        (cameraFollow as any).lateUpdate = (dt: number) => {
+            if (this.updatePhase == CameraUpdatePhase.LateUpdate) {
+                this._cameraFollow(dt);
+            }
+            this._oldLateUpdate.call(this._hackedComponent, dt);
+        }
     }
 
-    public get shuPos(): Vec3 {
-        return this._shuPos
+    public get followObject(): Node {
+        return this.followObject_
     }
 
 
-    _shuPos = new Vec3(0, 35.678, -44.455);
+    @property({
+        type: Enum(CameraUpdatePhase),
+        displayName: 'Use Which to Update Camera'
+    })
+    updatePhase: CameraUpdatePhase = CameraUpdatePhase.Update;
+
+    @property(Vec3)
+    offset = new Vec3(0, 208.576676, -145.237413);
 
     onLoad() {
         GameGlobal.CameraControl = this;
@@ -56,64 +61,22 @@ export class CameraControl extends Component {
 
 
     start() {
-
-
-    }
-
-    isShu() {
-        if (screen.windowSize.height > screen.windowSize.width && screen.windowSize.width / screen.windowSize.height < 1) {
-            //竖屏
-            return true;
-        } else {
-            //横屏
-            return false;
+        if (this.followObject_) {
+            this.followObject = this.followObject_
+            this._cameraFollow(-1)
         }
     }
-    cameraOnLoad() {
-        if (this.isShu()) {
-            //竖屏
-            this.offsetPos.set(this.shuPos);
-        } else {
-            //横屏
-            this.offsetPos.set(this.hengPos);
+
+    _cameraFollow(deltaTime: number) {
+        this._objectPos = this.followObject.worldPosition.clone();
+        this.followObject.worldRotation.getEulerAngles(this._objectRotation);
+        Vec3.add(this._targetPos, this._objectPos, this.offset);
+        if (deltaTime >= 0) {
+            Vec3.lerp(this._targetPos, this.node.position, this._targetPos, deltaTime * 4);
         }
-        let actorPos = GameGlobal.actor.normalCameraAnchor.worldPosition.clone();
-
-        let actorRotation = new Vec3();
-        GameGlobal.actor.normalCameraAnchor.worldRotation.getEulerAngles(actorRotation);
-
-        let offsetPosRotated = new Vec3();
-        Vec3.rotateY(offsetPosRotated, this.offsetPos, Vec3.ZERO, actorRotation.y * Math.PI / 180);
-
-        let targetPos = new Vec3();
-        Vec3.add(targetPos, actorPos, offsetPosRotated);
-        this.node.setPosition(targetPos);
-
-
-        this.node.lookAt(actorPos);
+        this.node.setPosition(this._targetPos);
+        this.node.lookAt(this._objectPos);
     }
-
-
-    cameraFollow(deltaTime: number) {
-        //摄像头跟随Node位置
-        let actorPos = GameGlobal.actor.normalCameraAnchor.worldPosition.clone();
-
-        //摄像头跟随Node旋转角度
-        let actorRotation = new Vec3();
-        GameGlobal.actor.normalCameraAnchor.worldRotation.getEulerAngles(actorRotation);
-
-        let offsetPosRotated = new Vec3();
-        Vec3.rotateY(offsetPosRotated, this.offsetPos, Vec3.ZERO, actorRotation.y * Math.PI / 180);
-
-        let targetPos = new Vec3();
-        Vec3.add(targetPos, actorPos, offsetPosRotated);
-        let pos = this.node.position.clone();
-        Vec3.lerp(pos, pos, targetPos, deltaTime * 4);
-        this.node.setPosition(pos);
-
-        this.node.lookAt(actorPos);
-    }
-
 
     cameraShock() {
         let pos = this.node.position.clone();
