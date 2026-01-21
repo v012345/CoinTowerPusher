@@ -16,9 +16,9 @@ export class Coin extends Component {
         rb.group = RigidBodyGroup;
         // rb.mass = 0.1;
         rb.useGravity = true;
-
+        let f = this.node.position.clone().subtract(new Vec3(0, Math.random() * 3 + 2, 0)).normalize()
         // rb.applyForce(new Vec3(20,20,20), this.node.getWorldPosition());
-        // rb.applyImpulse(new Vec3(0, -20, 0));
+        rb.applyImpulse(f.multiplyScalar(Math.random() * 5 + 3));
         rb.applyForce(new Vec3(0, Math.random() * 25 - 5, 0), this.node.getWorldPosition());
         // this.scheduleOnce(() => { rb.applyImpulse(new Vec3(0, -2, 0)); }, 0.5)
         const collider = this.node.addComponent(CylinderCollider);
