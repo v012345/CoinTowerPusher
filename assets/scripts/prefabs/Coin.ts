@@ -46,6 +46,7 @@ export class Coin extends Component {
     flyToCargoBed() {
         let originalPos = this.node.worldPosition.clone();
         this.node.setParent(GameGlobal.cargoBed);
+        this.node.setScale(new Vec3(2.6, 2.6, 2.6));
         this.node.worldPosition = originalPos;
         const start = this.node.position.clone();
         const end = new Vec3(0, 0, 0);
@@ -54,8 +55,8 @@ export class Coin extends Component {
         this.node.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
 
         tween(this.node)
-            .to(1, { position: mid }, { easing: 'quadOut' })
-            .to(1, { position: end }, { easing: 'quadIn' })
+            .to(1, { position: mid, scale: new Vec3(1.8, 1.8, 1.8), }, { easing: 'quadOut' })
+            .to(1, { position: end, scale: new Vec3(1.0, 1.0, 1.0), }, { easing: 'quadIn' })
             .call(() => {
                 // this.onFlyEnd();   // 你自己的函数
                 GameGlobal.TractorScript.arrangeCoin(this.node);

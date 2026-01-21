@@ -108,6 +108,8 @@ export class Actor extends Component {
                     coin.flyToCargoBed();
                 }
             }
+        } else {
+            GameEvent.emit("CargoBedIsFull");
         }
     }
     lateUpdate(deltaTime: number): void {

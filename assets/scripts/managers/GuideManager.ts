@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Button } from 'cc';
+import { _decorator, Component, Node, Button, tween, Animation } from 'cc';
 import { GameEvent } from './EventManager';
 const { ccclass, property } = _decorator;
 
@@ -15,9 +15,19 @@ export class GuideManager extends Component {
     sawBladeUpBtn: Node;
     @property(Node)
     cargoBedUpBtn: Node;
+    @property(Animation)
+    cargoBedIsFull: Animation;
     start() {
         GameEvent.on('TractorMove', this.hasLearnedMove, this);
+        GameEvent.on('CargoBedIsFull', this.showCargoBedIsFullTip, this);
         // GameEvent.on('TractorMoveBack', this.toLearnSawBladeUp, this);
+    }
+    showCargoBedIsFullTip() {
+        GameEvent.off("CargoBedIsFull", this.showCargoBedIsFullTip, this);
+        this.cargoBedIsFull.play()
+        tween(this.node).delay(3).call(() => {
+            GameEvent.on('CargoBedIsFull', this.showCargoBedIsFullTip, this);
+        }).start();
     }
     toLearnSawBladeUp() {
         let btn = this.cargoBedUpBtn.getComponent(Button);
