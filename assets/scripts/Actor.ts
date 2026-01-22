@@ -35,11 +35,11 @@ export class Actor extends Component implements IActor {
     isOver: boolean = false;
     speed: number = 0;
     isBackForward: boolean = false;
-    speedLevel = 0;
+    speedLevel = 1;
     currentSpeed = 0;
-    gearsLevel = 0;
-    cargoBedLevel = 0;
-    capacity = 0
+    gearsLevel = 1;
+    cargoBedLevel = 1;
+    capacity = 0;
 
     onLoad() {
         GameGlobal.actor = this;
@@ -47,9 +47,12 @@ export class Actor extends Component implements IActor {
     }
 
     start() {
-        this.LevelUpCargoBed();
-        this.LevelUpGears();
-        this.levelUpSpeed();
+        let TractorScript = this.tractorNode.getComponent(Tractor);
+        this.currentSpeed = GameGlobal.SpeedUp[this.speedLevel][1];
+        TractorScript.levelUpSawBlade(this.gearsLevel);
+        this.capacity = GameGlobal.CargoBedUp[this.cargoBedLevel][1];
+        this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
+
         GameEvent.on("CargoBedUpgrade", this.LevelUpCargoBed, this);
         GameEvent.on("SawBladeUpgrade", this.LevelUpGears, this);
         GameEvent.on("SpeedUpgrade", this.levelUpSpeed, this);
@@ -108,53 +111,25 @@ export class Actor extends Component implements IActor {
     }
     levelUpSpeed() {
         let nextLv = this.speedLevel + 1;
-        if (GameGlobal.SpeedUp[nextLv]) {
-            if (Player.getMoney() >= GameGlobal.SpeedUp[nextLv][0]) {
-                Player.addMoney(-GameGlobal.SpeedUp[nextLv][0]);
-                this.speedLevel += 1;
-                this.currentSpeed = GameGlobal.SpeedUp[this.speedLevel][1];
-                if (GameGlobal.SpeedUp[this.speedLevel + 1]) {
-                    this.speedUpCostLabel.string = GameGlobal.SpeedUp[this.speedLevel + 1][0].toString();
-                } else {
-                    this.speedUpButton.getComponent(LevelupBtn).showMaxLevel();
-                }
-            }
-        }
+        Player.addMoney(-GameGlobal.SpeedUp[nextLv][0]);
+        this.speedLevel += 1;
+        this.currentSpeed = GameGlobal.SpeedUp[this.speedLevel][1];
     }
 
     LevelUpGears() {
-
         let nextLv = this.gearsLevel + 1;
         let TractorScript = this.tractorNode.getComponent(Tractor);
-        if (nextLv <= TractorScript.sawBlades.length) {
-            if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
-                Player.addMoney(-GameGlobal.GearsUp[nextLv]);
-                this.gearsLevel += 1;
-                TractorScript.levelUpSawBlade(this.gearsLevel);
-                if (GameGlobal.GearsUp[this.gearsLevel + 1]) {
-                    this.gearsUpCostLabel.string = GameGlobal.GearsUp[this.gearsLevel + 1].toString();
-                } else {
-                    this.sawBaladeUpButton.getComponent(LevelupBtn).showMaxLevel();
-                }
-            }
-        }
+        Player.addMoney(-GameGlobal.GearsUp[nextLv]);
+        this.gearsLevel += 1;
+        TractorScript.levelUpSawBlade(this.gearsLevel);
     }
     LevelUpCargoBed() {
         let nextLv = this.cargoBedLevel + 1;
-        let TractorScript = this.tractorNode.getComponent(Tractor);
-        if (nextLv <= TractorScript.cargoBeds.length) {
-            if (Player.getMoney() >= GameGlobal.CargoBedUp[nextLv][0]) {
-                Player.addMoney(-GameGlobal.CargoBedUp[nextLv][0]);
-                this.capacity = GameGlobal.CargoBedUp[nextLv][1];
-                this.cargoBedLevel += 1;
-                this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
-                if (GameGlobal.CargoBedUp[this.cargoBedLevel + 1]) {
-                    this.cargoBedUpCostLabel.string = GameGlobal.CargoBedUp[this.cargoBedLevel + 1][0].toString();
-                } else {
-                    this.cargoBedUpButton.getComponent(LevelupBtn).showMaxLevel();
-                }
-            }
-        }
+        Player.addMoney(-GameGlobal.CargoBedUp[nextLv][0]);
+        this.capacity = GameGlobal.CargoBedUp[nextLv][1];
+        this.cargoBedLevel += 1;
+        this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
+
     }
 }
 

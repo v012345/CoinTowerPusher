@@ -6,6 +6,7 @@ import { PlayableSDK } from './PASDK/PlayableSDK';
 import { Utils } from './Utils/Utils';
 import { UIAdjust, UIAdjustType } from './Utils/UIAdjust';
 import { LeadActor } from './LeadActor';
+import { Vendor } from './Vendor';
 const { ccclass, property } = _decorator;
 
 declare var window: any;
@@ -35,7 +36,9 @@ export class MainGame extends Component {
         input.on(Input.EventType.TOUCH_MOVE, this.onTouchMove, this);
         input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);
         input.on(Input.EventType.TOUCH_CANCEL, this.onTouchCancel, this);
-
+        this.scheduleOnce(() => {
+            Vendor.initStore();
+        })
         view.on("canvas-resize", this.resize, this);
         this.scheduleOnce(this.resize, 0.3);
 

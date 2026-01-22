@@ -9668,6 +9668,7 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "ReceiveEvent": "ShowCargoBedPrice",
     "_id": "a3ICLIiqZNtZKJgYr6v38p"
   },
   {
@@ -10512,6 +10513,7 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "ReceiveEvent": "ShowSawBladePrice",
     "_id": "01rs+iF61JH62F7jQ4zvKp"
   },
   {
@@ -11356,6 +11358,7 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "ReceiveEvent": "ShowSpeedPrice",
     "_id": "b9R2azIJlKpr9n2oVoXe+o"
   },
   {
