@@ -38,7 +38,7 @@ export class MainGame extends Component {
 
         view.on("canvas-resize", this.resize, this);
         this.scheduleOnce(this.resize, 0.3);
-
+        AudioManager.musicPlay("MainBGM", true);
         this.scheduleOnce(() => {
 
             //@ts-ignore
