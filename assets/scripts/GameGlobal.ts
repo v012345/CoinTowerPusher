@@ -73,4 +73,10 @@ export class GameGlobal {
         3: new Vec3(-3, 0.3, -7),
         4: new Vec3(-4.5, 0.3, -9),
     }
+    public static CoinSize: Record<number, Array<number>> = {
+        1: [3, 1, 4],
+        2: [3, 1, 3],
+        3: [3, 1, 3],
+        4: [3, 1, 3],
+    }
 }

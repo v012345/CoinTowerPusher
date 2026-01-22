@@ -15,8 +15,11 @@ export class Tractor extends Component {
     cargoBedLevel: number = 1;
     coinsInCargoBed: Node[] = [];
     whereToPutNextCoin: Vec3 = new Vec3(-5, 0.3, -3.5);
-    cargoBedX = 5
-    cargoBedZ = 3.5
+    cargoBedX = 5;
+    cargoBedZ = 3.5;
+    coinSizeX = 2;
+    coinSizeY = 2;
+    coinSizeZ = 2;
     blades: Node[] = [];
     start() {
         GameGlobal.cargoBed = this.cargoBed;
@@ -31,33 +34,27 @@ export class Tractor extends Component {
     }
     arrangeCoin(coin: Node) {
         this.coinsInCargoBed.push(coin);
+        this.loadCoin(coin);
 
-        coin.position = this.whereToPutNextCoin;
-        this.whereToPutNextCoin.x += 2;
-        if (this.whereToPutNextCoin.x > this.cargoBedX) {
-            this.whereToPutNextCoin.x = -this.cargoBedX;
-            this.whereToPutNextCoin.z += 2;
-            if (this.whereToPutNextCoin.z > this.cargoBedZ) {
-                this.whereToPutNextCoin.z = -this.cargoBedZ;
-                this.whereToPutNextCoin.y += 0.15;
-            }
-        }
         // coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
         coin.eulerAngles = new Vec3();
         Utils.jellyEffect(coin, 1)
     }
+    loadCoin(coin: Node) {
+        coin.position = this.whereToPutNextCoin;
+        this.whereToPutNextCoin.x += this.coinSizeX;
+        if (this.whereToPutNextCoin.x > this.cargoBedX) {
+            this.whereToPutNextCoin.x = -this.cargoBedX;
+            this.whereToPutNextCoin.z += this.coinSizeZ;
+            if (this.whereToPutNextCoin.z > this.cargoBedZ) {
+                this.whereToPutNextCoin.z = -this.cargoBedZ;
+                this.whereToPutNextCoin.y += this.coinSizeY;
+            }
+        }
+    }
     reArrangeAllCoins() {
         this.coinsInCargoBed.forEach(coin => {
-            coin.position = this.whereToPutNextCoin;
-            this.whereToPutNextCoin.x += 2;
-            if (this.whereToPutNextCoin.x > this.cargoBedX) {
-                this.whereToPutNextCoin.x = -this.cargoBedX;
-                this.whereToPutNextCoin.z += 2;
-                if (this.whereToPutNextCoin.z > this.cargoBedZ) {
-                    this.whereToPutNextCoin.z = -this.cargoBedZ;
-                    this.whereToPutNextCoin.y += 0.15;
-                }
-            }
+            this.loadCoin(coin);
             // coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
         });
     }
@@ -81,6 +78,9 @@ export class Tractor extends Component {
                 this.whereToPutNextCoin = GameGlobal.FirstCoinPosInCargo[lv + 1]
                 this.cargoBedX = -this.whereToPutNextCoin.x
                 this.cargoBedZ = -this.whereToPutNextCoin.z
+                this.coinSizeX = GameGlobal.CoinSize[lv + 1][0];
+                this.coinSizeY = GameGlobal.CoinSize[lv + 1][1];
+                this.coinSizeZ = GameGlobal.CoinSize[lv + 1][2];
                 this.reArrangeAllCoins()
                 this.cargoBed.worldPosition = bed.getChildByName("CargoBed").getChildByName("CargoArea").worldPosition;
             }
