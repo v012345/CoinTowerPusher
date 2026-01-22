@@ -12,17 +12,6 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Actor')
 export class Actor extends Component implements IActor {
-    @property(Label)
-    coinNumLabel: Label;
-    _coinNum: number = 0;
-    public set CoinNum(v: number) {
-        this._coinNum = v;
-        this.coinNumLabel.string = v.toString();
-    }
-
-    public get CoinNum(): number {
-        return this._coinNum;
-    }
 
     @property(Label)
     cargoBedUpCostLabel: Label;
@@ -101,12 +90,12 @@ export class Actor extends Component implements IActor {
         } else {
             this.moveAlongPath.setSpeed(-20);
         }
-        if (this.CoinNum < this.capacity) {
-            let recieveNum = Math.min(this.capacity - this.CoinNum, 20);
+        if (Player.getMoney() < this.capacity) {
+            let recieveNum = Math.min(this.capacity - Player.getMoney(), 20);
             for (let i = 0; i < recieveNum; i++) {
                 let coin = GameGlobal.CoinsPool.pop();
                 if (coin) {
-                    this.CoinNum++;
+                    Player.addMoney(1);
                     coin.flyToCargoBed();
                 }
             }
@@ -120,8 +109,8 @@ export class Actor extends Component implements IActor {
     levelUpSpeed() {
         let nextLv = this.speedLevel + 1;
         if (GameGlobal.SpeedUp[nextLv]) {
-            if (this.CoinNum >= GameGlobal.SpeedUp[nextLv][0]) {
-                this.CoinNum -= GameGlobal.SpeedUp[nextLv][0];
+            if (Player.getMoney() >= GameGlobal.SpeedUp[nextLv][0]) {
+                Player.addMoney(-GameGlobal.SpeedUp[nextLv][0]);
                 this.speedLevel += 1;
                 this.currentSpeed = GameGlobal.SpeedUp[this.speedLevel][1];
                 if (GameGlobal.SpeedUp[this.speedLevel + 1]) {
@@ -138,8 +127,8 @@ export class Actor extends Component implements IActor {
         let nextLv = this.gearsLevel + 1;
         let TractorScript = this.tractorNode.getComponent(Tractor);
         if (nextLv <= TractorScript.sawBlades.length) {
-            if (this.CoinNum >= GameGlobal.GearsUp[nextLv]) {
-                this.CoinNum -= GameGlobal.GearsUp[nextLv];
+            if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
+                Player.addMoney(-GameGlobal.GearsUp[nextLv]);
                 this.gearsLevel += 1;
                 TractorScript.levelUpSawBlade(this.gearsLevel);
                 if (GameGlobal.GearsUp[this.gearsLevel + 1]) {
@@ -154,8 +143,8 @@ export class Actor extends Component implements IActor {
         let nextLv = this.cargoBedLevel + 1;
         let TractorScript = this.tractorNode.getComponent(Tractor);
         if (nextLv <= TractorScript.cargoBeds.length) {
-            if (this.CoinNum >= GameGlobal.CargoBedUp[nextLv][0]) {
-                this.CoinNum -= GameGlobal.CargoBedUp[nextLv][0];
+            if (Player.getMoney() >= GameGlobal.CargoBedUp[nextLv][0]) {
+                Player.addMoney(-GameGlobal.CargoBedUp[nextLv][0]);
                 this.capacity = GameGlobal.CargoBedUp[nextLv][1];
                 this.cargoBedLevel += 1;
                 this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);

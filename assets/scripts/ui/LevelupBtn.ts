@@ -33,7 +33,7 @@ export class LevelupBtn extends Component {
         let nextLv = GameGlobal.actor.cargoBedLevel + 1;
         let TractorScript = GameGlobal.actor.tractorNode.getComponent(Tractor);
         if (nextLv <= TractorScript.cargoBeds.length) {
-            if (GameGlobal.actor.CoinNum >= GameGlobal.CargoBedUp[nextLv][0]) {
+            if (Player.getMoney() >= GameGlobal.CargoBedUp[nextLv][0]) {
                 GameEvent.emit("CargoBedUpgrade");
                 AudioManager.audioPlay("Click", false);
                 return
@@ -45,7 +45,7 @@ export class LevelupBtn extends Component {
         let nextLv = GameGlobal.actor.gearsLevel + 1;
         let TractorScript = GameGlobal.actor.tractorNode.getComponent(Tractor);
         if (nextLv <= TractorScript.sawBlades.length) {
-            if (GameGlobal.actor.CoinNum >= GameGlobal.GearsUp[nextLv]) {
+            if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
                 GameEvent.emit("SawBladeUpgrade");
                 AudioManager.audioPlay("Click", false);
                 return
@@ -56,7 +56,7 @@ export class LevelupBtn extends Component {
     speedUpgrade() {
         let nextLv = GameGlobal.actor.speedLevel + 1;
         if (GameGlobal.SpeedUp[nextLv]) {
-            if (GameGlobal.actor.CoinNum >= GameGlobal.SpeedUp[nextLv][0]) {
+            if (Player.getMoney() >= GameGlobal.SpeedUp[nextLv][0]) {
                 GameEvent.emit("SpeedUpgrade");
                 AudioManager.audioPlay("Click", false);
                 return

@@ -1,18 +1,9 @@
 import { GameGlobal } from "./GameGlobal";
+import { Player } from "./Player";
 
 export class Vendor {
     private static _instance: Vendor;
 
-    private money = 0;
-
-    static getMoney() {
-        // return this.I.money;
-        return GameGlobal.actor.CoinNum;
-    }
-
-    static setMoney(v: number) {
-        return this.I.money = v;
-    }
     getPrice(itemId: number): number {
         return 0;
     }

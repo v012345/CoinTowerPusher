@@ -1,5 +1,6 @@
 import { GameGlobal } from "./GameGlobal";
 import { LeadActor } from "./LeadActor";
+import { GameEvent } from "./managers/EventManager";
 
 export class Player {
     private static _instance: Player;
@@ -7,12 +8,16 @@ export class Player {
     private money = 0;
 
     static getMoney() {
-        // return this.I.money;
-        return GameGlobal.actor.CoinNum;
+        return this.I.money;
     }
 
     static setMoney(v: number) {
-        return this.I.money = v;
+        this.I.money = v;
+        GameEvent.emit("BalanceChanged", v);
+    }
+    static addMoney(v: number) {
+        this.I.money += v;
+        GameEvent.emit("BalanceChanged", this.I.money);
     }
     static setLeadAcotor(Actor: IActor) {
         LeadActor.Actor = Actor;
