@@ -123,7 +123,6 @@ export class Actor extends Component {
                 this.speedLevel += 1;
                 this.currentSpeed = GameGlobal.SpeedUp[this.speedLevel][1];
                 if (GameGlobal.SpeedUp[this.speedLevel + 1]) {
-
                     this.speedUpCostLabel.string = GameGlobal.SpeedUp[this.speedLevel + 1][0].toString();
                 } else {
                     this.speedUpButton.getComponent(LevelupBtn).showMaxLevel();

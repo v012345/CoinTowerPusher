@@ -1,4 +1,5 @@
 import { _decorator, Component, Node } from 'cc';
+import { AudioManager } from '../PASDK/AudioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('LevelupBtn')
@@ -14,6 +15,14 @@ export class LevelupBtn extends Component {
         this.node.getChildByName("max").active = true;
         this.node.getChildByName("coin").active = false;
         this.node.getChildByName("cost").active = false;
+    }
+    clicked() {
+        // // GameGlobal.mainGame.uiLay.getComponentInChildren('LevelupUI').show();
+        // if (this.node.getChildByName("max").active) {
+        //     AudioManager.audioPlay("Reject", false);
+        // } else {
+        //     AudioManager.audioPlay("Click", false);
+        // }
     }
 }
 
