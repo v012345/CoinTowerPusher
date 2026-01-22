@@ -13,18 +13,6 @@ const { ccclass, property } = _decorator;
 @ccclass('Actor')
 export class Actor extends Component implements IActor {
 
-    @property(Label)
-    cargoBedUpCostLabel: Label;
-    @property(Label)
-    gearsUpCostLabel: Label;
-    @property(Label)
-    speedUpCostLabel: Label;
-    @property(Node)
-    cargoBedUpButton: Node;
-    @property(Node)
-    sawBaladeUpButton: Node;
-    @property(Node)
-    speedUpButton: Node;
     @property(Node)
     tractorNode: Node;
     @property(PathLine)
