@@ -4,6 +4,7 @@ import { GameGlobal } from "./GameGlobal";
 export class LeadActor {
     private static _instance: LeadActor;
     static Actor: IActor;
+    static Script: any;
 
 
     private static get I(): LeadActor {

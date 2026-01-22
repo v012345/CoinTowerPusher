@@ -21,6 +21,7 @@ export class Player {
     }
     static setLeadAcotor(Actor: IActor) {
         LeadActor.Actor = Actor;
+        LeadActor.Script = Actor;
     }
 
     private static get I(): Player {
