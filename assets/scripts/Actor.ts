@@ -37,10 +37,6 @@ export class Actor extends Component {
     speedUpButton: Node;
     @property(Node)
     tractorNode: Node;
-
-
-    @property(Node)
-    normalCameraAnchor: Node;
     @property(PathLine)
     path: PathLine;
     @property(BoxCollider)
