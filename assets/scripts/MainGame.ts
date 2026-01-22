@@ -1,8 +1,8 @@
 import { _decorator, Component, Node, Camera, screen, view, ResolutionPolicy, Widget, v3, input, Input } from 'cc';
 import { GameGlobal } from './GameGlobal';
-// import { AudioManager } from './Utils/AudioManager';
-import { Language } from './Utils/Language';
-import { PlayableSDK } from './Utils/PlayableSDK';
+import { AudioManager } from "./PASDK/AudioManager";
+import { Language } from './PASDK/Language';
+import { PlayableSDK } from './PASDK/PlayableSDK';
 import { WaterPlane } from './Utils/WaterPlane';
 import { Utils } from './Utils/Utils';
 import { UIAdjust, UIAdjustType } from './Utils/UIAdjust';
