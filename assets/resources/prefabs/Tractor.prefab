@@ -58,11 +58,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 157
+        "__id__": 158
       }
     ],
     "_prefab": {
-      "__id__": 159
+      "__id__": 160
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -3487,6 +3487,8 @@
       "__id__": 0
     },
     "fileId": "f7wRGxhhRJMYTCEEgDhEj6",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -3673,7 +3675,11 @@
         "__id__": 156
       }
     ],
-    "removedComponents": []
+    "removedComponents": [
+      {
+        "__id__": 157
+      }
+    ]
   },
   {
     "__type__": "CCPropertyOverrideInfo",
@@ -3811,6 +3817,12 @@
     "value": "Driver"
   },
   {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "39uWlxKKZZZrwTlOqReafz"
+    ]
+  },
+  {
     "__type__": "5eec2ZPFa1GjpYqdFTeqtSt",
     "_name": "",
     "_objFlags": 0,
@@ -3820,7 +3832,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 158
+      "__id__": 159
     },
     "cargoBed": {
       "__id__": 98
