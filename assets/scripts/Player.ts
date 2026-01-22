@@ -14,8 +14,8 @@ export class Player {
     static setMoney(v: number) {
         return this.I.money = v;
     }
-    static setLeadAcotor(node: Node) {
-        LeadActor.ActorNode = node;
+    static setLeadAcotor(Actor: IActor) {
+        LeadActor.Actor = Actor;
     }
 
     private static get I(): Player {

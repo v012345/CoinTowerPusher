@@ -5,6 +5,7 @@ import { Language } from './PASDK/Language';
 import { PlayableSDK } from './PASDK/PlayableSDK';
 import { Utils } from './Utils/Utils';
 import { UIAdjust, UIAdjustType } from './Utils/UIAdjust';
+import { LeadActor } from './LeadActor';
 const { ccclass, property } = _decorator;
 
 declare var window: any;
@@ -29,6 +30,7 @@ export class MainGame extends Component {
 
 
     start() {
+        AudioManager.musicPlay("MainBGM", true);
         input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
         input.on(Input.EventType.TOUCH_MOVE, this.onTouchMove, this);
         input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);
@@ -36,7 +38,7 @@ export class MainGame extends Component {
 
         view.on("canvas-resize", this.resize, this);
         this.scheduleOnce(this.resize, 0.3);
-        AudioManager.musicPlay("MainBGM", true);
+
         this.scheduleOnce(() => {
 
             //@ts-ignore
@@ -50,33 +52,22 @@ export class MainGame extends Component {
 
 
     onTouchStart() {
-        // if (this.isGameOver || !GameGlobal.actor.isControl) return;
-        // if (this.isFirst1) {
-        //     this.isFirst1 = false;
-        //     this.setGuide1Visible(false);
-        // }
-        // if (this.isFirst2) {
-        //     this.isFirst2 = false;
-        //     this.titleNode.children[2].active = false;
-        //     GameGlobal.CameraControl.cameraReturn();
-        // }
-        GameGlobal.actor.move();
-        // this.joyStickDown();
+        LeadActor.move();
     }
 
 
     onTouchMove() {
-        GameGlobal.actor.move();
+        LeadActor.move();
     }
 
 
     onTouchEnd() {
-        GameGlobal.actor.stop();
+        LeadActor.stop();
     }
 
 
     onTouchCancel() {
-        GameGlobal.actor.stop();
+        LeadActor.stop();
     }
 
 

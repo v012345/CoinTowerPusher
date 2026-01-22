@@ -6,11 +6,12 @@ import { CoinTower } from './prefabs/CoinTower';
 import { Tractor } from './prefabs/Tractor';
 import { LevelupBtn } from './ui/LevelupBtn';
 import { GameEvent } from './managers/EventManager';
+import { Player } from './Player';
 const { ccclass, property } = _decorator;
 
 
 @ccclass('Actor')
-export class Actor extends Component {
+export class Actor extends Component implements IActor {
     @property(Label)
     coinNumLabel: Label;
     _coinNum: number = 0;
@@ -53,6 +54,7 @@ export class Actor extends Component {
 
     onLoad() {
         GameGlobal.actor = this;
+        Player.setLeadAcotor(this);
     }
 
     start() {
