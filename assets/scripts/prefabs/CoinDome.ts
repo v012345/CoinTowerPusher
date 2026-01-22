@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Collider, ITriggerEvent, PhysicsGroup } from 'cc';
 import { Coin } from './Coin';
+import { AudioManager } from '../PASDK/AudioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('CoinDome')
@@ -25,6 +26,7 @@ export class CoinDome extends Component {
                 //             coins.getComponent(OneLayerOfCoins).scatter();
                 //         });
                 //     }
+                AudioManager.audioPlay("loadCoin", false);
                 this.coins.children.forEach(coin => {
                     coin.getComponent(Coin).drop(PhysicsGroup.DomeCoin);
                 })

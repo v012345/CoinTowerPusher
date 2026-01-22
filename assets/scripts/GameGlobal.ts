@@ -57,9 +57,9 @@ export class GameGlobal {
     };
     public static GearsUp: Record<number, number> = {
         1: 0,
-        2: 1,
-        3: 2,
-        4: 3,
+        2: 10,
+        3: 20,
+        4: 30,
     };
     public static SpeedUp: Record<number, Array<number>> = {
         1: [0, 10],

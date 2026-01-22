@@ -63,6 +63,9 @@ export class Actor extends Component {
         this.LevelUpCargoBed();
         this.LevelUpGears();
         this.levelUpSpeed();
+        GameEvent.on("CargoBedUpgrade", this.LevelUpCargoBed, this);
+        GameEvent.on("SawBladeUpgrade", this.LevelUpGears, this);
+        GameEvent.on("SpeedUpgrade", this.levelUpSpeed, this);
         this.moveAlongPath = this.node.getComponent(MoveAlongPath);
         this.scheduleOnce(() => {
             this.moveAlongPath.pathLine = this.path;
@@ -73,9 +76,9 @@ export class Actor extends Component {
             if (event.otherCollider.node.name == "CoinTowerCollider") {
                 const coinTower = event.otherCollider.node.getParent().getComponent(CoinTower);
                 if (coinTower.level > this.gearsLevel) {
+                    GameEvent.emit("TractorMoveBack");
                     this.isBackForward = true;
                     this.scheduleOnce(() => {
-                        GameEvent.emit("TractorMoveBack");
                         this.isBackForward = false;
                     }, 0.2);
                 }
@@ -89,6 +92,7 @@ export class Actor extends Component {
         this.speed = this.currentSpeed;
     }
     stop() {
+        GameEvent.emit("TractorStop");
         this.speed = 0;
     }
 

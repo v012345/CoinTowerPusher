@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Button, tween, Animation } from 'cc';
 import { GameEvent } from './EventManager';
+import { AudioManager } from '../PASDK/AudioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('GuideManager')
@@ -19,11 +20,21 @@ export class GuideManager extends Component {
     cargoBedIsFull: Animation;
     start() {
         GameEvent.on('TractorMove', this.hasLearnedMove, this);
+        GameEvent.on('TractorMove', () => {
+            AudioManager.audioPlay("Train", true);
+        }, this);
+        GameEvent.on('TractorStop', () => {
+            AudioManager.audioStop("Train");
+        }, this);
         GameEvent.on('CargoBedIsFull', this.showCargoBedIsFullTip, this);
-        // GameEvent.on('TractorMoveBack', this.toLearnSawBladeUp, this);
+        GameEvent.on('TractorMoveBack', () => {
+            AudioManager.audioStop("Collide");
+            AudioManager.audioPlay("Collide", false);
+        }, this);
     }
     showCargoBedIsFullTip() {
         GameEvent.off("CargoBedIsFull", this.showCargoBedIsFullTip, this);
+        AudioManager.audioPlay("Reject", false);
         this.cargoBedIsFull.play()
         tween(this.node).delay(3).call(() => {
             GameEvent.on('CargoBedIsFull', this.showCargoBedIsFullTip, this);

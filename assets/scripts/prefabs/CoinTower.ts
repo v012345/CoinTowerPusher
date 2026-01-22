@@ -1,6 +1,7 @@
-import { _decorator, Component, instantiate, Node,tween, ITriggerEvent, MeshRenderer, Prefab, Collider, Vec3 } from 'cc';
+import { _decorator, Component, instantiate, Node, tween, ITriggerEvent, MeshRenderer, Prefab, Collider, Vec3 } from 'cc';
 import { OneLayerOfCoins } from './OneLayerOfCoins';
 import { GameGlobal } from '../GameGlobal';
+import { AudioManager } from '../PASDK/AudioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('CoinTower')
@@ -23,6 +24,7 @@ export class CoinTower extends Component {
             if (event.otherCollider.node.name == "TractorGearsCollider") {
                 const actor = event.otherCollider.getComponent('TractorGearsCollider').getPusherScript();
                 if (!this.hasBePushed && actor.gearsLevel >= this.level) {
+                    AudioManager.audioPlay("loadCoin", false);
                     this.hasBePushed = true;
                     this.coinsNodes.forEach(coins => {
                         coins.getComponent(OneLayerOfCoins).scatter();
@@ -51,15 +53,15 @@ export class CoinTower extends Component {
             n => n.getComponent(OneLayerOfCoins) !== null
         );
     }
-    removeBase(){
+    removeBase() {
         const base = this.node.getChildByName("Base");
-        if(base){
+        if (base) {
             tween(base)
-            .to(0.5,{position:new Vec3(0,-6,0)})
-            .call(()=>{
-                base.destroy();
-            })
-            .start();
+                .to(0.5, { position: new Vec3(0, -6, 0) })
+                .call(() => {
+                    base.destroy();
+                })
+                .start();
         }
     }
 
