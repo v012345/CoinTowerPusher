@@ -3,7 +3,6 @@ import { GameGlobal } from './GameGlobal';
 import { AudioManager } from "./PASDK/AudioManager";
 import { Language } from './PASDK/Language';
 import { PlayableSDK } from './PASDK/PlayableSDK';
-import { WaterPlane } from './Utils/WaterPlane';
 import { Utils } from './Utils/Utils';
 import { UIAdjust, UIAdjustType } from './Utils/UIAdjust';
 const { ccclass, property } = _decorator;
@@ -18,7 +17,7 @@ export class MainGame extends Component {
     private _isPortrait: boolean = false;
     private _isIpad: boolean = false;
     titleNode: Node;
-    water: WaterPlane;
+
     @property(Node)
     logo: Node;
     onLoad() {
@@ -26,7 +25,6 @@ export class MainGame extends Component {
         GameGlobal.mainCamera = this.camera;
         GameGlobal.effectLay = this.effectLay;
         GameGlobal.uiLay = this.node;
-        // this.water = this.waterLay.getComponent(WaterPlane);
     }
 
 

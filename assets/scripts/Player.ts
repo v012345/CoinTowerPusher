@@ -1,4 +1,5 @@
 import { GameGlobal } from "./GameGlobal";
+import { LeadActor } from "./LeadActor";
 
 export class Player {
     private static _instance: Player;
@@ -12,6 +13,9 @@ export class Player {
 
     static setMoney(v: number) {
         return this.I.money = v;
+    }
+    static setLeadAcotor(node: Node) {
+        LeadActor.ActorNode = node;
     }
 
     private static get I(): Player {
