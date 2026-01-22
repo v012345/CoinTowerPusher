@@ -1,6 +1,5 @@
 import { _decorator, Component, Node, Vec3, Enum, screen, tween, Camera, Quat, Tween } from 'cc';
-import { GameGlobal } from './GameGlobal';
-import { CameraFollow } from './components/CameraFollow';
+import { CameraFollow } from './CameraFollow';
 const { ccclass, property } = _decorator;
 enum CameraUpdatePhase {
     Update = 0,
@@ -56,7 +55,7 @@ export class CameraControl extends Component {
     offset = new Vec3(0, 208.576676, -145.237413);
 
     onLoad() {
-        GameGlobal.CameraControl = this;
+
     }
 
 

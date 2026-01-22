@@ -1,6 +1,5 @@
 import { _decorator, Camera, Node, Vec3 } from 'cc';
 import { MainGame } from "./MainGame";
-import { CameraControl } from './CameraControl';
 import { Actor } from './Actor';
 import { Tractor } from './prefabs/Tractor';
 import { Coin } from './prefabs/Coin';
@@ -16,7 +15,6 @@ export class GameGlobal {
     static viewScale: number = 1;
     public static mainGame: MainGame;
     public static mainCamera: Camera;
-    public static CameraControl: CameraControl;
     public static cameraMoving: boolean = false;
     public static effectLay: Node;
     public static uiLay: Node;
