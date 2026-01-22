@@ -39,8 +39,6 @@ export class MainGame extends Component {
         view.on("canvas-resize", this.resize, this);
         this.scheduleOnce(this.resize, 0.3);
 
-
-        PlayableSDK.onInteracted();
         this.scheduleOnce(() => {
 
             //@ts-ignore
