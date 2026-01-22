@@ -1,6 +1,5 @@
-import { _decorator, Component, Node, Vec3 } from 'cc';
+import { _decorator, Component, Node, Vec3, tween, v3 } from 'cc';
 import { GameGlobal } from '../GameGlobal';
-import { Utils } from '../Utils/Utils';
 const { ccclass, property } = _decorator;
 
 @ccclass('Tractor')
@@ -38,7 +37,26 @@ export class Tractor extends Component {
 
         // coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
         coin.eulerAngles = new Vec3();
-        Utils.jellyEffect(coin, 1)
+        this.jellyEffect(coin, 1);
+    }
+    jellyEffect(node: Node, t: number) {
+        // let uiOpacity = node.getComponent(UIOpacity);
+        // if (!uiOpacity) uiOpacity = node.addComponent(UIOpacity);
+        // uiOpacity.opacity = 0;
+        node.setScale(Vec3.ZERO);
+
+        tween(node)
+            .to(0.15, { scale: v3(1 * t, 1 * t, 1 * t) })
+            .to(.06, { scale: v3(1.4 * t, 0.53 * t, 1 * t) })
+            .to(.12, { scale: v3(0.8 * t, 1.2 * t, 1 * t) })
+            .to(.07, { scale: v3(1.2 * t, 0.7 * t, 1 * t) })
+            .to(.07, { scale: v3(.85 * t, 1.1 * t, 1 * t) })
+            .to(.07, { scale: v3(1 * t, 1 * t, 1 * t) })
+            .start();
+
+        // tween(uiOpacity)
+        //     .to(.06, { opacity: 255 })
+        //     .start();
     }
     loadCoin(coin: Node) {
         coin.position = this.whereToPutNextCoin;

@@ -1,9 +1,6 @@
 import { _decorator, Component, Node, Camera, screen, view, ResolutionPolicy, Widget, v3, input, Input } from 'cc';
 import { GameGlobal } from './GameGlobal';
 import { AudioManager } from "./PASDK/AudioManager";
-import { Language } from './PASDK/Language';
-import { PlayableSDK } from './PASDK/PlayableSDK';
-import { Utils } from './Utils/Utils';
 import { UIAdjust, UIAdjustType } from './Utils/UIAdjust';
 import { LeadActor } from './LeadActor';
 import { Vendor } from './Vendor';
@@ -16,8 +13,6 @@ export class MainGame extends Component {
     effectLay: Node;
     @property(Camera)
     camera: Camera;
-    private _isPortrait: boolean = false;
-    private _isIpad: boolean = false;
     titleNode: Node;
 
     @property(Node)
@@ -94,8 +89,6 @@ export class MainGame extends Component {
             GameGlobal.realHeight = screen.windowSize.height / GameGlobal.viewScale;
             GameGlobal.realWidth = view.getDesignResolutionSize().width;
             console.log('resize 竖屏', GameGlobal.viewScale, GameGlobal.realWidth, GameGlobal.realHeight, screen.windowSize.width, screen.windowSize.height, ratio);
-
-            // GameGlobal.isShu = true;
 
             this.node.getComponentsInChildren(UIAdjust).forEach(v => {
                 if (isRect) {
