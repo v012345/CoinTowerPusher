@@ -32,7 +32,7 @@ export class Coin extends Component {
         if (other.node.name == "Ground") {
             // console.log('Coin landed on the ground');
             const collider = this.node.getComponent(CylinderCollider);
-            collider.on('onCollisionEnter', this.onCollisionEnter, this);
+            collider.off('onCollisionEnter', this.onCollisionEnter, this);
             const rb = this.node.getComponent(RigidBody);
             rb.group = PhysicsGroup.DroppedCoin;
             this.scheduleOnce(() => {

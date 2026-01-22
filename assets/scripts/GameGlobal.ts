@@ -50,22 +50,22 @@ export class GameGlobal {
         17: 3,
     };
     public static CargoBedUp: Record<number, Array<number>> = {
-        1: [0, 500], // level: [cost, capacity]
-        2: [200, 1000],
-        3: [300, 3000],
-        4: [400, 5000],
+        1: [0, 80], // level: [cost, capacity]
+        2: [1, 160],
+        3: [2, 320],
+        4: [3, 740],
     };
     public static GearsUp: Record<number, number> = {
         1: 0,
-        2: 100,
-        3: 200,
-        4: 300,
+        2: 1,
+        3: 2,
+        4: 3,
     };
     public static SpeedUp: Record<number, Array<number>> = {
         1: [0, 10],
-        2: [100, 15],
-        3: [200, 20],
-        4: [300, 25],
+        2: [1, 15],
+        3: [2, 20],
+        4: [3, 25],
     };
     public static FirstCoinPosInCargo: Record<number, Vec3> = {
         1: new Vec3(-5, 0.3, -2.5),

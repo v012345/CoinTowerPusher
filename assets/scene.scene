@@ -8193,7 +8193,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 237.9,
-      "y": 301.8,
+      "y": 301.80000000000007,
       "z": 0
     },
     "_lrot": {
@@ -8327,7 +8327,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 360,
-      "y": 360,
+      "y": 360.00000000000006,
       "z": 0
     },
     "_lrot": {
@@ -8412,7 +8412,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 360,
+    "_orthoHeight": 360.00000000000006,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -8524,7 +8524,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 720,
-      "height": 720
+      "height": 720.0000000000001
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8868,7 +8868,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": -250,
-      "y": -249,
+      "y": -249.00000000000006,
       "z": 0
     },
     "_lrot": {
@@ -9659,7 +9659,7 @@
     "_enabled": true,
     "__prefab": null,
     "type": "横屏",
-    "saveAttr": "{\"横屏\":{\"position\":{\"x\":-250,\"y\":-249,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":-250},\"竖屏\":{\"position\":{\"x\":-250,\"y\":-208.5,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":-250}}",
+    "saveAttr": "{\"横屏\":{\"position\":{\"x\":-250,\"y\":-249.00000000000006,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":-250},\"竖屏\":{\"position\":{\"x\":-250,\"y\":-208.5,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":-250}}",
     "_id": "ad8wfcg/RLf61ekSOylppv"
   },
   {
@@ -9712,7 +9712,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -249,
+      "y": -249.00000000000006,
       "z": 0
     },
     "_lrot": {
@@ -10503,7 +10503,7 @@
     "_enabled": true,
     "__prefab": null,
     "type": "横屏",
-    "saveAttr": "{\"横屏\":{\"position\":{\"x\":0,\"y\":-249,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":0},\"竖屏\":{\"position\":{\"x\":0,\"y\":-208.5,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":0}}",
+    "saveAttr": "{\"横屏\":{\"position\":{\"x\":0,\"y\":-249.00000000000006,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":0},\"竖屏\":{\"position\":{\"x\":0,\"y\":-208.5,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":0}}",
     "_id": "38nR1IZABNtZ1aIMLYlqZD"
   },
   {
@@ -10556,7 +10556,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 250,
-      "y": -249,
+      "y": -249.00000000000006,
       "z": 0
     },
     "_lrot": {
@@ -11347,7 +11347,7 @@
     "_enabled": true,
     "__prefab": null,
     "type": "横屏",
-    "saveAttr": "{\"横屏\":{\"position\":{\"x\":250,\"y\":-249,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":250},\"竖屏\":{\"position\":{\"x\":250,\"y\":-208.5,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":250}}",
+    "saveAttr": "{\"横屏\":{\"position\":{\"x\":250,\"y\":-249.00000000000006,\"z\":0},\"scale\":{\"x\":0.4,\"y\":0.4,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":250},\"竖屏\":{\"position\":{\"x\":250,\"y\":-208.5,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":false,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":true,\"isAbsoluteBottom\":true,\"bottomPx\":30,\"isAlignRight\":false,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":true,\"isAbsoluteHorizonalCenter\":true,\"horizonalCenterPx\":250}}",
     "_id": "2cCB8+KJFIMYaAjy1lTAoe"
   },
   {
@@ -11666,7 +11666,7 @@
     "_enabled": true,
     "__prefab": null,
     "type": "竖屏",
-    "saveAttr": "{\"横屏\":{\"position\":{\"x\":237.9,\"y\":301.8,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":true,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":false,\"isAbsoluteBottom\":true,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true,\"rightPx\":30,\"topPx\":30,\"topPencent\":0.30422000000000027},\"竖屏\":{\"position\":{\"x\":237.9,\"y\":301.8,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":true,\"isAbsoluteTop\":true,\"topPx\":30,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":false,\"isAbsoluteBottom\":true,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"rightPx\":30,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true}}",
+    "saveAttr": "{\"横屏\":{\"position\":{\"x\":237.9,\"y\":301.8,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":true,\"isAbsoluteTop\":true,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":false,\"isAbsoluteBottom\":true,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true,\"rightPx\":30,\"topPx\":30,\"topPencent\":0.30422000000000027},\"竖屏\":{\"position\":{\"x\":237.9,\"y\":301.80000000000007,\"z\":0},\"scale\":{\"x\":0.6,\"y\":0.6,\"z\":1},\"isAlignTop\":true,\"isAbsoluteTop\":true,\"topPx\":30,\"isAlignLeft\":false,\"isAbsoluteLeft\":true,\"isAlignBottom\":false,\"isAbsoluteBottom\":true,\"isAlignRight\":true,\"isAbsoluteRight\":true,\"rightPx\":30,\"isAlignHorizontalCenter\":false,\"isAbsoluteHorizonalCenter\":true}}",
     "_id": "71/1q2cARLY6G+o7Fyudu8"
   },
   {
