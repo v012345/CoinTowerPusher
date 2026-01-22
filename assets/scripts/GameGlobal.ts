@@ -49,8 +49,20 @@ export class GameGlobal {
         16: 3,
         17: 3,
     };
+    public static ItemPrice: Record<number, number> = {
+        1: 5, // id price
+        2: 10,
+        3: 15,
+        4: 20,
+        5: 30,
+        6: 50,
+        7: 80,
+        8: 120,
+        9: 200,
+        10: 300,
+    };
     public static CargoBedUp: Record<number, Array<number>> = {
-        1: [0, 80], // level: [cost, capacity]
+        1: [0, 80], // level: [item_id, capacity]
         2: [1, 160],
         3: [2, 320],
         4: [3, 740],
