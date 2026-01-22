@@ -36,6 +36,7 @@ export class LevelupBtn extends Component {
             if (Player.getMoney() >= GameGlobal.CargoBedUp[nextLv][0]) {
                 GameEvent.emit("CargoBedUpgrade");
                 AudioManager.audioPlay("Click", false);
+                Player.addMoney(-GameGlobal.CargoBedUp[nextLv][0]);
                 if (GameGlobal.CargoBedUp[GameGlobal.actor.cargoBedLevel + 1]) {
                     this.setDisplayPrice(GameGlobal.CargoBedUp[GameGlobal.actor.cargoBedLevel + 1][0]);
                 } else { this.showMaxLevel(); }
@@ -53,6 +54,7 @@ export class LevelupBtn extends Component {
             if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
                 GameEvent.emit("SawBladeUpgrade");
                 AudioManager.audioPlay("Click", false);
+                Player.addMoney(-GameGlobal.GearsUp[nextLv]);
                 if (GameGlobal.GearsUp[GameGlobal.actor.gearsLevel + 1]) {
                     this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.actor.gearsLevel + 1]);
                 } else { this.showMaxLevel(); }
@@ -69,6 +71,7 @@ export class LevelupBtn extends Component {
             if (Player.getMoney() >= GameGlobal.SpeedUp[nextLv][0]) {
                 GameEvent.emit("SpeedUpgrade");
                 AudioManager.audioPlay("Click", false);
+                Player.addMoney(-GameGlobal.SpeedUp[nextLv][0]);
                 if (GameGlobal.SpeedUp[GameGlobal.actor.speedLevel + 1]) {
                     this.setDisplayPrice(GameGlobal.SpeedUp[GameGlobal.actor.speedLevel + 1][0]);
                 } else { this.showMaxLevel(); }

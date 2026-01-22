@@ -110,24 +110,18 @@ export class Actor extends Component implements IActor {
 
     }
     levelUpSpeed() {
-        let nextLv = this.speedLevel + 1;
-        Player.addMoney(-GameGlobal.SpeedUp[nextLv][0]);
-        this.speedLevel += 1;
+        this.speedLevel++;
         this.currentSpeed = GameGlobal.SpeedUp[this.speedLevel][1];
     }
 
     LevelUpGears() {
-        let nextLv = this.gearsLevel + 1;
+        this.gearsLevel++;
         let TractorScript = this.tractorNode.getComponent(Tractor);
-        Player.addMoney(-GameGlobal.GearsUp[nextLv]);
-        this.gearsLevel += 1;
         TractorScript.levelUpSawBlade(this.gearsLevel);
     }
     LevelUpCargoBed() {
-        let nextLv = this.cargoBedLevel + 1;
-        Player.addMoney(-GameGlobal.CargoBedUp[nextLv][0]);
-        this.capacity = GameGlobal.CargoBedUp[nextLv][1];
-        this.cargoBedLevel += 1;
+        this.cargoBedLevel++;
+        this.capacity = GameGlobal.CargoBedUp[this.cargoBedLevel][1];
         this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
 
     }
