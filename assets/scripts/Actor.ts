@@ -7,6 +7,7 @@ import { Tractor } from './prefabs/Tractor';
 import { LevelupBtn } from './ui/LevelupBtn';
 import { GameEvent } from './managers/EventManager';
 import { Player } from './Player';
+import { EventEnum } from './Event/EventEnum';
 const { ccclass, property } = _decorator;
 
 
@@ -54,8 +55,9 @@ export class Actor extends Component implements IActor {
         this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
             if (event.otherCollider.node.name == "CoinTowerCollider") {
                 const coinTower = event.otherCollider.node.getParent().getComponent(CoinTower);
+                GameEvent.emit(EventEnum.CollideCoinTower);
                 if (coinTower.level > this.gearsLevel) {
-                    GameEvent.emit("TractorMoveBack");
+                    GameEvent.emit(EventEnum.TractorMoveBack);
                     this.isBackForward = true;
                     this.scheduleOnce(() => {
                         this.isBackForward = false;

@@ -1,5 +1,5 @@
 
-export class Event {
+export class EventEnum {
     static CargoBedUpgrade = "CargoBedUpgrade"; // Upgrade cargo bed event
     static SawBladeUpgrade = "SawBladeUpgrade"; // Upgrade saw blade event
     static SpeedUpgrade = "SpeedUpgrade"; // Upgrade speed event
@@ -8,5 +8,6 @@ export class Event {
     static TractorMoveBack = "TractorMoveBack"; // Tractor move back event
     static CargoBedIsFull = "CargoBedIsFull"; // Cargo bed is full event
     static BalanceChanged = "BalanceChanged"; // Balance changed event
+    static CollideCoinTower = "CollideCoinTower"; // Collide with coin tower event  
 
 }

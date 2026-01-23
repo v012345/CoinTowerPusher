@@ -1,5 +1,7 @@
-import { _decorator, Component, Node, Vec3, tween, v3 } from 'cc';
+import { _decorator, Component, Node, Vec3, tween, v3, ParticleSystem } from 'cc';
 import { GameGlobal } from '../GameGlobal';
+import { GameEvent } from '../managers/EventManager';
+import { EventEnum } from '../Event/EventEnum';
 const { ccclass, property } = _decorator;
 
 @ccclass('Tractor')
@@ -24,6 +26,19 @@ export class Tractor extends Component {
         GameGlobal.cargoBed = this.cargoBed;
         GameGlobal.Tractor = this.node;
         GameGlobal.TractorScript = this;
+
+        GameEvent.on(EventEnum.CollideCoinTower, () => {
+            this.sawBlades.forEach((blade, index) => {
+                if (blade.active) {
+                    let effectNodes = blade.children.filter(n => n.name == 'collideEffect');
+                    effectNodes.forEach(effectNode => {
+                        effectNode.children.forEach(effect => {
+                            effect.getComponent(ParticleSystem).play();
+                        });
+                    });
+                }
+            });
+        }, this);
     }
 
     update(deltaTime: number) {
@@ -76,6 +91,7 @@ export class Tractor extends Component {
             // coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
         });
     }
+
     levelUpSawBlade(lv: number) {
         lv = lv - 1;
         this.sawBladeLevel = lv;
