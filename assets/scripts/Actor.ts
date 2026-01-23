@@ -1,4 +1,4 @@
-import { _decorator, Component, Label, Node, BoxCollider, ITriggerEvent } from 'cc';
+import { _decorator, Component, Label, Node, BoxCollider, ITriggerEvent, ParticleSystem } from 'cc';
 import { GameGlobal } from './GameGlobal';
 import { PathLine } from './Utils/PathLine';
 import { MoveAlongPath } from './Utils/MoveAlongPath';
@@ -12,7 +12,8 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Actor')
 export class Actor extends Component implements IActor {
-
+    @property(ParticleSystem)
+    speedupEffect: ParticleSystem;
     @property(Node)
     tractorNode: Node;
     @property(PathLine)
@@ -100,6 +101,7 @@ export class Actor extends Component implements IActor {
     levelUpSpeed() {
         this.speedLevel++;
         this.currentSpeed = GameGlobal.SpeedUp[this.speedLevel][1];
+        this.speedupEffect.play();
     }
 
     LevelUpGears() {
