@@ -25,8 +25,14 @@ export class GuideManager extends Component {
     @property(Node)
     uiLayer: Node;
     cargoBedLevel: number = -1;
+    isGuiding: boolean = false;
+    stopTime: number = 0;
     start() {
         GameEvent.on('TractorMove', this.hasLearnedMove, this);
+        GameEvent.on('TractorMove', this.updateStopTime, this);
+        GameEvent.on(EventEnum.HeartBeat, () => {
+            this.stopTime += 1;
+        });
         GameEvent.on('TractorMove', () => {
             AudioManager.audioPlay("Train", true);
         }, this);
@@ -39,6 +45,17 @@ export class GuideManager extends Component {
             AudioManager.audioPlay("Collide", false);
         }, this);
         GameEvent.on(EventEnum.SawBladeNeedUpgrade, this.toLearnSawBladeUp, this);
+        let c = this.handNode.getParent();
+        this.schedule(() => {
+            if (this.isGuiding) return;
+            if (this.stopTime < 7) return;
+            this.handNode.setParent(c);
+            this.tipNode.active = true;
+            this.handNode.active = true;
+            this.handNode.setPosition(0, 0, 0);
+            GameEvent.off('TractorMove', this.hasLearnedMove, this);
+            GameEvent.on('TractorMove', this.hasLearnedMove, this);
+        }, 2);
     }
     showCargoBedIsFullTip() {
         // GameEvent.off("CargoBedIsFull", this.showCargoBedIsFullTip, this);
@@ -55,6 +72,7 @@ export class GuideManager extends Component {
     toLearnSawBladeUp() {
         let nextLv = GameGlobal.actor.gearsLevel + 1;
         let TractorScript = GameGlobal.actor.tractorNode.getComponent(Tractor);
+        this.isGuiding = true;
         if (nextLv <= TractorScript.sawBlades.length) {
             if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
                 let button_pos = this.sawBladeUpBtn.worldPosition.clone();
@@ -63,7 +81,7 @@ export class GuideManager extends Component {
                 this.handNode.setPosition(pos_nodeSpace);
                 // this.handNode.setPosition(this.sawBladeUpBtn.getPosition());
                 this.handNode.active = true;
-                let cb = () => { this.handNode.active = false; GameEvent.off('SawBladeUpgrade', cb, this); };
+                let cb = () => { this.handNode.active = false; this.isGuiding = false; GameEvent.off('SawBladeUpgrade', cb, this); };
                 GameEvent.on('SawBladeUpgrade', cb, this);
             } else {
                 let button_pos = this.cargoBedUpBtn.worldPosition.clone();
@@ -81,7 +99,7 @@ export class GuideManager extends Component {
                     this.handNode.setPosition(pos_nodeSpace);
                     // this.handNode.setPosition(this.sawBladeUpBtn.getPosition());
                     this.handNode.active = true;
-                    let cb1 = () => { this.handNode.active = false; GameEvent.off(EventEnum.SawBladeUpgrade, cb1, this); };
+                    let cb1 = () => { this.handNode.active = false; this.isGuiding = false; GameEvent.off(EventEnum.SawBladeUpgrade, cb1, this); };
                     GameEvent.on(EventEnum.SawBladeUpgrade, cb1, this);
 
 
@@ -98,8 +116,12 @@ export class GuideManager extends Component {
 
     }
 
+    updateStopTime() {
+        this.stopTime = 0;
+    }
+
     hasLearnedMove() {
-        this.tipNode.destroy();
+        this.tipNode.active = false;
         this.handNode.active = false;
         GameEvent.off('TractorMove', this.hasLearnedMove, this);
     }

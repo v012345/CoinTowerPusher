@@ -80,6 +80,9 @@ export class Actor extends Component implements IActor {
 
 
     update(deltaTime: number) {
+        if (this.speed != 0) {
+            GameEvent.emit("TractorMove");
+        }
         if (!this.isBackForward) {
             this.moveAlongPath.setSpeed(this.speed);
         } else {
