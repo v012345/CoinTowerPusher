@@ -75,11 +75,15 @@ export class Tractor extends Component {
     }
     loadCoin(coin: Node) {
         coin.position = this.whereToPutNextCoin;
+        console.log(coin.position);
+        coin.position.x += this.coinSizeX / 2;
+        coin.position.z += this.coinSizeZ / 2;
+        console.log(coin.position);
         this.whereToPutNextCoin.x += this.coinSizeX;
-        if (this.whereToPutNextCoin.x > this.cargoBedX) {
+        if (this.whereToPutNextCoin.x + this.coinSizeX > this.cargoBedX) {
             this.whereToPutNextCoin.x = -this.cargoBedX;
             this.whereToPutNextCoin.z += this.coinSizeZ;
-            if (this.whereToPutNextCoin.z > this.cargoBedZ) {
+            if (this.whereToPutNextCoin.z + this.coinSizeZ > this.cargoBedZ) {
                 this.whereToPutNextCoin.z = -this.cargoBedZ;
                 this.whereToPutNextCoin.y += this.coinSizeY;
             }

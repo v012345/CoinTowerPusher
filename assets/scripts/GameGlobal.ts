@@ -60,33 +60,33 @@ export class GameGlobal {
         10: 300,
     };
     public static CargoBedUp: Record<number, Array<number>> = {
-        1: [0, 80], // level: [item_id, capacity]
-        2: [1, 160],
-        3: [2, 320],
-        4: [3, 740],
+        1: [0, 36], // level: [item_id, capacity]
+        2: [30, 81],
+        3: [50, 150],
+        4: [100, 740],
     };
     public static GearsUp: Record<number, number> = {
         1: 0,
-        2: 10,
-        3: 20,
-        4: 30,
+        2: 30,
+        3: 50,
+        4: 100,
     };
     public static SpeedUp: Record<number, Array<number>> = {
         1: [0, 10],
-        2: [1, 15],
-        3: [2, 20],
-        4: [3, 25],
+        2: [30, 15],
+        3: [50, 20],
+        4: [100, 25],
     };
     public static FirstCoinPosInCargo: Record<number, Vec3> = {
-        1: new Vec3(-5, 0.3, -2.5),
-        2: new Vec3(-5, 0.3, -3.5),
-        3: new Vec3(-3, 0.3, -7),
+        1: new Vec3(-6, 0.3, -4),
+        2: new Vec3(-6, 0.3, -6),
+        3: new Vec3(-4, 0.3, -7.5),
         4: new Vec3(-4.5, 0.3, -9),
     }
     public static CoinSize: Record<number, Array<number>> = {
-        1: [3, 1, 4],
-        2: [3, 1, 3],
-        3: [3, 1, 3],
+        1: [4, 1, 4],
+        2: [4, 1, 4],
+        3: [4, 1, 3],
         4: [3, 1, 3],
     }
 }
