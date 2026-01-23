@@ -4,6 +4,8 @@ import { AudioManager } from "./PASDK/AudioManager";
 import { UIAdjust, UIAdjustType } from './Utils/UIAdjust';
 import { LeadActor } from './LeadActor';
 import { Vendor } from './Vendor';
+import { EventEnum } from './Event/EventEnum';
+import { GameEvent } from './managers/EventManager';
 const { ccclass, property } = _decorator;
 
 declare var window: any;
@@ -27,6 +29,9 @@ export class MainGame extends Component {
 
     start() {
         AudioManager.musicPlay("MainBGM", true);
+        this.schedule(() => {
+            GameEvent.emit(EventEnum.HeartBeat);
+        }, 1.0); // 1 秒一次
         input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
         input.on(Input.EventType.TOUCH_MOVE, this.onTouchMove, this);
         input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);

@@ -9,5 +9,6 @@ export class EventEnum {
     static CargoBedIsFull = "CargoBedIsFull"; // Cargo bed is full event
     static BalanceChanged = "BalanceChanged"; // Balance changed event
     static CollideCoinTower = "CollideCoinTower"; // Collide with coin tower event  
+    static HeartBeat = "HeartBeat"; // Heartbeat event
 
 }
