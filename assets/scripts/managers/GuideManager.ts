@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, Button, tween, Animation } from 'cc';
 import { GameEvent } from './EventManager';
 import { AudioManager } from '../PASDK/AudioManager';
+import { GameGlobal } from '../GameGlobal';
 const { ccclass, property } = _decorator;
 
 @ccclass('GuideManager')
@@ -18,6 +19,7 @@ export class GuideManager extends Component {
     cargoBedUpBtn: Node;
     @property(Animation)
     cargoBedIsFull: Animation;
+    cargoBedLevel: number = -1;
     start() {
         GameEvent.on('TractorMove', this.hasLearnedMove, this);
         GameEvent.on('TractorMove', () => {
@@ -33,12 +35,16 @@ export class GuideManager extends Component {
         }, this);
     }
     showCargoBedIsFullTip() {
-        GameEvent.off("CargoBedIsFull", this.showCargoBedIsFullTip, this);
-        AudioManager.audioPlay("Reject", false);
-        this.cargoBedIsFull.play()
-        tween(this.node).delay(3).call(() => {
-            GameEvent.on('CargoBedIsFull', this.showCargoBedIsFullTip, this);
-        }).start();
+        // GameEvent.off("CargoBedIsFull", this.showCargoBedIsFullTip, this);
+        if (this.cargoBedLevel != GameGlobal.TractorScript.cargoBedLevel) {
+            AudioManager.audioPlay("Reject", false);
+            this.cargoBedIsFull.play()
+            this.cargoBedLevel = GameGlobal.TractorScript.cargoBedLevel;
+        }
+
+        // tween(this.node).delay(3).call(() => {
+        //     GameEvent.on('CargoBedIsFull', this.showCargoBedIsFullTip, this);
+        // }).start();
     }
     toLearnSawBladeUp() {
         let btn = this.cargoBedUpBtn.getComponent(Button);
