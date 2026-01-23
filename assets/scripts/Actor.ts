@@ -84,8 +84,8 @@ export class Actor extends Component implements IActor {
         } else {
             this.moveAlongPath.setSpeed(-20);
         }
-        if (Player.getMoney() < this.capacity) {
-            let recieveNum = Math.min(this.capacity - Player.getMoney(), 20);
+        if (Player.getMoney() < this.capacity && !GameGlobal.TractorScript.isUpgrading) {
+            let recieveNum = Math.min(this.capacity - Player.getMoney(), 1);
             for (let i = 0; i < recieveNum; i++) {
                 let coin = GameGlobal.CoinsPool.pop();
                 if (coin) {

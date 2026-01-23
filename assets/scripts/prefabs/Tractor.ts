@@ -21,6 +21,7 @@ export class Tractor extends Component {
     coinSizeX = 2;
     coinSizeY = 2;
     coinSizeZ = 2;
+    isUpgrading: boolean = false;
     blades: Node[] = [];
     start() {
         GameGlobal.cargoBed = this.cargoBed;
@@ -95,6 +96,10 @@ export class Tractor extends Component {
     }
 
     levelUpSawBlade(lv: number) {
+        this.isUpgrading = true;
+        this.scheduleOnce(() => {
+            this.isUpgrading = false;
+        }, 2);
         lv = lv - 1;
         this.sawBladeLevel = lv;
         this.sawBlades.forEach((blade, index) => {
