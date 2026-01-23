@@ -63,7 +63,7 @@ export class GameGlobal {
         1: [0, 36], // level: [item_id, capacity]
         2: [30, 81],
         3: [50, 150],
-        4: [100, 200],
+        4: [100, 300],
     };
     public static GearsUp: Record<number, number> = {
         1: 0,
