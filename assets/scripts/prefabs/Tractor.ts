@@ -2,6 +2,7 @@ import { _decorator, Component, Node, Vec3, tween, v3, ParticleSystem } from 'cc
 import { GameGlobal } from '../GameGlobal';
 import { GameEvent } from '../managers/EventManager';
 import { EventEnum } from '../Event/EventEnum';
+import { AudioManager } from '../PASDK/AudioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Tractor')
@@ -75,6 +76,7 @@ export class Tractor extends Component {
         //     .start();
     }
     loadCoin(coin: Node) {
+        AudioManager.audioPlay("loadCoin", false);
         coin.position = this.whereToPutNextCoin;
         coin.position.x += this.coinSizeX / 2;
         coin.position.z += this.coinSizeZ / 2;

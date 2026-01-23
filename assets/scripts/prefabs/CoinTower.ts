@@ -24,7 +24,8 @@ export class CoinTower extends Component {
             if (event.otherCollider.node.name == "TractorGearsCollider") {
                 const actor = event.otherCollider.getComponent('TractorGearsCollider').getPusherScript();
                 if (!this.hasBePushed && actor.gearsLevel >= this.level) {
-                    AudioManager.audioPlay("loadCoin", false);
+                    AudioManager.audioStop("TowerCollapse");
+                    AudioManager.audioPlay("TowerCollapse", false);
                     this.hasBePushed = true;
                     this.coinsNodes.forEach(coins => {
                         coins.getComponent(OneLayerOfCoins).scatter();

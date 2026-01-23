@@ -26,7 +26,7 @@ export class CoinDome extends Component {
                 //             coins.getComponent(OneLayerOfCoins).scatter();
                 //         });
                 //     }
-                AudioManager.audioPlay("loadCoin", false);
+                AudioManager.audioPlay("DomeCollapse", false);
                 this.coins.children.forEach(coin => {
                     coin.getComponent(Coin).drop(PhysicsGroup.DomeCoin);
                 })
