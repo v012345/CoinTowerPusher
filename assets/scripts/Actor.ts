@@ -43,9 +43,9 @@ export class Actor extends Component implements IActor {
         this.capacity = GameGlobal.CargoBedUp[this.cargoBedLevel][1];
         this.tractorNode.getComponent(Tractor).LevelUpCargoBed(this.cargoBedLevel);
 
-        GameEvent.on("CargoBedUpgrade", this.LevelUpCargoBed, this);
-        GameEvent.on("SawBladeUpgrade", this.LevelUpGears, this);
-        GameEvent.on("SpeedUpgrade", this.levelUpSpeed, this);
+        GameEvent.on(EventEnum.CargoBedUpgrade, this.LevelUpCargoBed, this);
+        GameEvent.on(EventEnum.SawBladeUpgrade, this.LevelUpGears, this);
+        GameEvent.on(EventEnum.SpeedUpgrade, this.levelUpSpeed, this);
         this.moveAlongPath = this.node.getComponent(MoveAlongPath);
         this.scheduleOnce(() => {
             this.moveAlongPath.pathLine = this.path;
@@ -58,6 +58,7 @@ export class Actor extends Component implements IActor {
                 GameEvent.emit(EventEnum.CollideCoinTower);
                 if (coinTower.level > this.gearsLevel) {
                     GameEvent.emit(EventEnum.TractorMoveBack);
+                    GameEvent.emit(EventEnum.SawBladeNeedUpgrade);
                     this.isBackForward = true;
                     this.scheduleOnce(() => {
                         this.isBackForward = false;

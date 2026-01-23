@@ -10,5 +10,6 @@ export class EventEnum {
     static BalanceChanged = "BalanceChanged"; // Balance changed event
     static CollideCoinTower = "CollideCoinTower"; // Collide with coin tower event  
     static HeartBeat = "HeartBeat"; // Heartbeat event
+    static SawBladeNeedUpgrade = "SawBaladeNeedUpgrade"; // Saw blade needs upgrade event  
 
 }

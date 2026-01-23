@@ -1,7 +1,10 @@
-import { _decorator, Component, Node, Button, tween, Animation } from 'cc';
+import { _decorator, Component, Node, Button, tween, Animation, UITransform, Vec3 } from 'cc';
 import { GameEvent } from './EventManager';
 import { AudioManager } from '../PASDK/AudioManager';
 import { GameGlobal } from '../GameGlobal';
+import { EventEnum } from '../Event/EventEnum';
+import { Tractor } from '../prefabs/Tractor';
+import { Player } from '../Player';
 const { ccclass, property } = _decorator;
 
 @ccclass('GuideManager')
@@ -19,6 +22,8 @@ export class GuideManager extends Component {
     cargoBedUpBtn: Node;
     @property(Animation)
     cargoBedIsFull: Animation;
+    @property(Node)
+    uiLayer: Node;
     cargoBedLevel: number = -1;
     start() {
         GameEvent.on('TractorMove', this.hasLearnedMove, this);
@@ -33,6 +38,7 @@ export class GuideManager extends Component {
             AudioManager.audioStop("Collide");
             AudioManager.audioPlay("Collide", false);
         }, this);
+        GameEvent.on(EventEnum.SawBladeNeedUpgrade, this.toLearnSawBladeUp, this);
     }
     showCargoBedIsFullTip() {
         // GameEvent.off("CargoBedIsFull", this.showCargoBedIsFullTip, this);
@@ -47,10 +53,48 @@ export class GuideManager extends Component {
         // }).start();
     }
     toLearnSawBladeUp() {
-        let btn = this.cargoBedUpBtn.getComponent(Button);
-        btn.interactable = false; // 禁用
-        btn = this.speedUpBtn.getComponent(Button);
-        btn.interactable = false; // 禁用
+        let nextLv = GameGlobal.actor.gearsLevel + 1;
+        let TractorScript = GameGlobal.actor.tractorNode.getComponent(Tractor);
+        if (nextLv <= TractorScript.sawBlades.length) {
+            if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
+                let button_pos = this.sawBladeUpBtn.worldPosition.clone();
+                let uiTransform = this.uiLayer.getComponent(UITransform);
+                let pos_nodeSpace = uiTransform.convertToNodeSpaceAR(new Vec3(button_pos.x, button_pos.y, 0));
+                this.handNode.setPosition(pos_nodeSpace);
+                // this.handNode.setPosition(this.sawBladeUpBtn.getPosition());
+                this.handNode.active = true;
+                let cb = () => { this.handNode.active = false; GameEvent.off('SawBladeUpgrade', cb, this); };
+                GameEvent.on('SawBladeUpgrade', cb, this);
+            } else {
+                let button_pos = this.cargoBedUpBtn.worldPosition.clone();
+                let uiTransform = this.uiLayer.getComponent(UITransform);
+                let pos_nodeSpace = uiTransform.convertToNodeSpaceAR(new Vec3(button_pos.x, button_pos.y, 0));
+                this.handNode.setPosition(pos_nodeSpace);
+                // this.handNode.setPosition(this.sawBladeUpBtn.getPosition());
+                this.handNode.active = true;
+                let cb = () => {
+                    this.handNode.active = false;
+                    GameEvent.off(EventEnum.CargoBedUpgrade, cb, this);
+                    let button_pos = this.sawBladeUpBtn.worldPosition.clone();
+                    let uiTransform = this.uiLayer.getComponent(UITransform);
+                    let pos_nodeSpace = uiTransform.convertToNodeSpaceAR(new Vec3(button_pos.x, button_pos.y, 0));
+                    this.handNode.setPosition(pos_nodeSpace);
+                    // this.handNode.setPosition(this.sawBladeUpBtn.getPosition());
+                    this.handNode.active = true;
+                    let cb1 = () => { this.handNode.active = false; GameEvent.off(EventEnum.SawBladeUpgrade, cb1, this); };
+                    GameEvent.on(EventEnum.SawBladeUpgrade, cb1, this);
+
+
+
+                };
+                GameEvent.on(EventEnum.CargoBedUpgrade, cb, this);
+            }
+        }
+        // // AudioManager.audioPlay("Reject", false);
+        // let btn = this.cargoBedUpBtn.getComponent(Button);
+        // btn.interactable = false; // 禁用
+        // btn = this.speedUpBtn.getComponent(Button);
+        // btn.interactable = false; // 禁用
 
     }
 
