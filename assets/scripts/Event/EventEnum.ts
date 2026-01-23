@@ -11,5 +11,5 @@ export class EventEnum {
     static CollideCoinTower = "CollideCoinTower"; // Collide with coin tower event  
     static HeartBeat = "HeartBeat"; // Heartbeat event
     static SawBladeNeedUpgrade = "SawBaladeNeedUpgrade"; // Saw blade needs upgrade event  
-
+    static GameOver = "GameOver"; // Game over event
 }

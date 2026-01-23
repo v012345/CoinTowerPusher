@@ -56,6 +56,7 @@ export class GuideManager extends Component {
             GameEvent.off('TractorMove', this.hasLearnedMove, this);
             GameEvent.on('TractorMove', this.hasLearnedMove, this);
         }, 2);
+        
     }
     showCargoBedIsFullTip() {
         // GameEvent.off("CargoBedIsFull", this.showCargoBedIsFullTip, this);
