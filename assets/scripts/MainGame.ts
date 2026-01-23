@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Camera, screen, view, ResolutionPolicy, Widget, v3, input, Input } from 'cc';
+import { _decorator, Component, Node, tween, Camera, UIOpacity, screen, view, Vec3, ResolutionPolicy, UITransform, Widget, v3, input, Input } from 'cc';
 import { GameGlobal } from './GameGlobal';
 import { AudioManager } from "./PASDK/AudioManager";
 import { UIAdjust, UIAdjustType } from './Utils/UIAdjust';
@@ -16,7 +16,8 @@ export class MainGame extends Component {
     @property(Camera)
     camera: Camera;
     titleNode: Node;
-
+    @property(Node)
+    JoyStickNode: Node;
     @property(Node)
     logo: Node;
     onLoad() {
@@ -54,8 +55,20 @@ export class MainGame extends Component {
     }
 
 
-    onTouchStart() {
+    onTouchStart(event: any) {
         LeadActor.move();
+
+        let pos_touch = event.getUILocation();    // 触摸点坐标@UI世界坐标系
+        let uiTransform = this.node.getComponent(UITransform);
+        let pos_nodeSpace = uiTransform.convertToNodeSpaceAR(new Vec3(pos_touch.x, pos_touch.y, 0));
+        this.JoyStickNode.setPosition(pos_nodeSpace);
+        this.JoyStickNode.getComponent(UIOpacity).opacity = 255;
+        const uiOpacity = this.JoyStickNode.getComponent(UIOpacity);
+        uiOpacity.opacity = 255;
+
+        tween(uiOpacity)
+            .to(0.2, { opacity: 0 })
+            .start();
     }
 
 
