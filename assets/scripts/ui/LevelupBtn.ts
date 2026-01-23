@@ -10,6 +10,8 @@ const { ccclass, property } = _decorator;
 export class LevelupBtn extends Component {
     @property(String)
     ReceiveEvent: string = "";
+    isShowMax: boolean = false;
+    price: number = 0;
     start() {
         GameEvent.on(this.ReceiveEvent, (cost: number) => {
             this.setDisplayPrice(cost);
@@ -17,13 +19,18 @@ export class LevelupBtn extends Component {
     }
 
     setDisplayPrice(cost: number) {
+        this.price = cost;
         this.node.getChildByName("cost").getComponent('cc.Label').string = cost.toString();
     }
 
     update(deltaTime: number) {
+        if (this.isShowMax) return;
+        let playerMoney = Player.getMoney();
+        this.node.getComponent('cc.Sprite').grayscale = playerMoney < this.price;
 
     }
     showMaxLevel() {
+        this.isShowMax = true;
         this.node.getChildByName("max").active = true;
         this.node.getChildByName("coin").active = false;
         this.node.getChildByName("cost").active = false;
