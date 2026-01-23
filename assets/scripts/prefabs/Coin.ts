@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, tween, RigidBody, v3, Vec3, PhysicsGroup, CylinderCollider, ICollisionEvent } from 'cc';
+import { _decorator, Component, Node, tween, PhysicsSystem, RigidBody, v3, Vec3, PhysicsGroup, CylinderCollider, ICollisionEvent } from 'cc';
 import { GameGlobal } from '../GameGlobal';
 const { ccclass, property } = _decorator;
 
@@ -14,8 +14,10 @@ export class Coin extends Component {
     drop(RigidBodyGroup: number) {
         const rb = this.node.addComponent(RigidBody);
         rb.group = RigidBodyGroup;
-        // rb.mass = 0.1;
+        rb.mass = 0.3;
+        // PhysicsSystem.instance.gravity = new Vec3(0, -30, 0);
         rb.useGravity = true;
+        // rb.gravityScale = 100;   // 重力放大 2 倍
         let f = this.node.position.clone().subtract(new Vec3(0, Math.random() * 3 + 2, 0)).normalize()
         // rb.applyForce(new Vec3(20,20,20), this.node.getWorldPosition());
         rb.applyImpulse(f.multiplyScalar(Math.random() * 5 + 3));
