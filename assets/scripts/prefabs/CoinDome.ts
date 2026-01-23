@@ -1,6 +1,8 @@
-import { _decorator, Component, Node, Collider, ITriggerEvent, PhysicsGroup } from 'cc';
+import { _decorator, Component, Node, Collider, ITriggerEvent, PhysicsGroup, Game } from 'cc';
 import { Coin } from './Coin';
 import { AudioManager } from '../PASDK/AudioManager';
+import { GameEvent } from '../managers/EventManager';
+import { EventEnum } from '../Event/EventEnum';
 const { ccclass, property } = _decorator;
 
 @ccclass('CoinDome')
@@ -27,6 +29,7 @@ export class CoinDome extends Component {
                 //         });
                 //     }
                 AudioManager.audioPlay("DomeCollapse", false);
+                GameEvent.emit(EventEnum.DomeCollapse);
                 this.coins.children.forEach(coin => {
                     coin.getComponent(Coin).drop(PhysicsGroup.DomeCoin);
                 })

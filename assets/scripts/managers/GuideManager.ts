@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Button, tween, Animation, UITransform, Vec3 } from 'cc';
+import { _decorator, Component, Node, Button, tween, Animation, UITransform, Vec3, Game } from 'cc';
 import { GameEvent } from './EventManager';
 import { AudioManager } from '../PASDK/AudioManager';
 import { GameGlobal } from '../GameGlobal';
@@ -28,11 +28,18 @@ export class GuideManager extends Component {
     isGuiding: boolean = false;
     stopTime: number = 0;
     start() {
+        let cb = () => {
+            this.stopTime += 1;
+        }
+        GameEvent.on(EventEnum.HeartBeat, cb, this);
+        GameEvent.on(EventEnum.DomeCollapse, () => {
+            GameEvent.off('TractorMove', this.hasLearnedMove, this);
+            GameEvent.off('TractorMove', this.updateStopTime, this);
+            GameEvent.off(EventEnum.HeartBeat, cb, this);
+        }, this);
         GameEvent.on('TractorMove', this.hasLearnedMove, this);
         GameEvent.on('TractorMove', this.updateStopTime, this);
-        GameEvent.on(EventEnum.HeartBeat, () => {
-            this.stopTime += 1;
-        });
+
         GameEvent.on('TractorMove', () => {
             AudioManager.audioPlay("Train", true);
         }, this);
@@ -48,7 +55,7 @@ export class GuideManager extends Component {
         let c = this.handNode.getParent();
         this.schedule(() => {
             if (this.isGuiding) return;
-            if (this.stopTime < 7) return;
+            if (this.stopTime < 4) return;
             this.handNode.setParent(c);
             this.tipNode.active = true;
             this.handNode.active = true;
@@ -56,7 +63,7 @@ export class GuideManager extends Component {
             GameEvent.off('TractorMove', this.hasLearnedMove, this);
             GameEvent.on('TractorMove', this.hasLearnedMove, this);
         }, 2);
-        
+
     }
     showCargoBedIsFullTip() {
         // GameEvent.off("CargoBedIsFull", this.showCargoBedIsFullTip, this);

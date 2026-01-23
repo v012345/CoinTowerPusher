@@ -12,4 +12,5 @@ export class EventEnum {
     static HeartBeat = "HeartBeat"; // Heartbeat event
     static SawBladeNeedUpgrade = "SawBaladeNeedUpgrade"; // Saw blade needs upgrade event  
     static GameOver = "GameOver"; // Game over event
+    static DomeCollapse = "DomeCollapse"; // Dome collapse event
 }
