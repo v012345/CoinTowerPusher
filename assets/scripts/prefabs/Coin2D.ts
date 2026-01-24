@@ -44,16 +44,16 @@ export class Coin2D extends Component {
     }
     flyToCoinNode(index: number, from: Node, toWhere: Node) {
         console.log(index)
-        const petNode = GameGlobal.mainCamera.getComponent(Camera).convertToUINode(from.getWorldPosition(), GameGlobal.uiLay)
-        const RelayPoint = this.Vec3Lerp(petNode, this.getUIPositionInCanvas(toWhere, GameGlobal.uiLay), 0.1)
+        const petNode = GameGlobal.MainCamera.getComponent(Camera).convertToUINode(from.getWorldPosition(), GameGlobal.UILayer)
+        const RelayPoint = this.Vec3Lerp(petNode, this.getUIPositionInCanvas(toWhere, GameGlobal.UILayer), 0.1)
         const flyPos: Vec3[] = [RelayPoint.clone().add(new Vec3(-50, 50, 0)), RelayPoint.clone().add(new Vec3(0, 50, 0)), RelayPoint.clone().add(new Vec3(50, 50, 0))]
         // let coin2d = GameGlobal.uiManager.getCoin2DFromPool();
-        this.node.setParent(GameGlobal.uiLay)
+        this.node.setParent(GameGlobal.UILayer)
         this.node.setSiblingIndex(0)
 
         let uiPos
-        const camera = GameGlobal.mainCamera.getComponent(Camera)
-        const canve = GameGlobal.uiLay;
+        const camera = GameGlobal.MainCamera.getComponent(Camera)
+        const canve = GameGlobal.UILayer;
         uiPos = camera.convertToUINode(this.node.getWorldPosition(), canve)
         this.node.scale = new Vec3(0.4, 0.4, 0.4);
         this.node.setPosition(petNode)

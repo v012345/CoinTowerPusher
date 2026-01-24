@@ -13,43 +13,23 @@ const { ccclass, property } = _decorator;
 declare var window: any;
 @ccclass('MainGame')
 export class MainGame extends Component {
-    @property(Node)
-    effectLay: Node;
     @property(Camera)
-    camera: Camera;
-    titleNode: Node;
+    mainCamera: Camera;
     @property(Node)
     JoyStickNode: Node;
-    @property(Node)
-    logo: Node;
-    @property(Prefab)
-    coin2d: Prefab;
     onLoad() {
-        GameGlobal.mainGame = this;
-        GameGlobal.mainCamera = this.camera;
-        GameGlobal.effectLay = this.effectLay;
-        GameGlobal.uiLay = this.node;
-
+        GameGlobal.MainCamera = this.mainCamera;
+        GameGlobal.UILayer = this.node;
     }
 
 
     start() {
         AudioManager.musicPlay("MainBGM", true);
-        this.schedule(() => {
-            GameEvent.emit(EventEnum.HeartBeat);
-        }, 1.0); // 1 秒一次
-        input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
-        input.on(Input.EventType.TOUCH_MOVE, this.onTouchMove, this);
-        input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);
-        input.on(Input.EventType.TOUCH_CANCEL, this.onTouchCancel, this);
-        this.scheduleOnce(() => {
-            Vendor.initStore();
-        })
+        this.schedule(() => { GameEvent.emit(EventEnum.HeartBeat); }, 1.0);
         view.on("canvas-resize", this.resize, this);
         this.scheduleOnce(this.resize, 0.3);
 
         this.scheduleOnce(() => {
-
             //@ts-ignore
             if (window.setLoadingProgress) {
                 //@ts-ignore
@@ -57,23 +37,27 @@ export class MainGame extends Component {
             }
         })
 
+        input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
+        input.on(Input.EventType.TOUCH_MOVE, this.onTouchMove, this);
+        input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);
+        input.on(Input.EventType.TOUCH_CANCEL, this.onTouchCancel, this);
+
     }
 
 
     onTouchStart(event: any) {
         LeadActor.move();
+        this.showJoyStick(event);
+    }
 
-        let pos_touch = event.getUILocation();    // 触摸点坐标@UI世界坐标系
+    showJoyStick(event: any) {
+        let touchPos = event.getUILocation();
         let uiTransform = this.node.getComponent(UITransform);
-        let pos_nodeSpace = uiTransform.convertToNodeSpaceAR(new Vec3(pos_touch.x, pos_touch.y, 0));
-        this.JoyStickNode.setPosition(pos_nodeSpace);
-        this.JoyStickNode.getComponent(UIOpacity).opacity = 255;
-        const uiOpacity = this.JoyStickNode.getComponent(UIOpacity);
+        let joyStickPos = uiTransform.convertToNodeSpaceAR(new Vec3(touchPos.x, touchPos.y, 0));
+        this.JoyStickNode.setPosition(joyStickPos);
+        let uiOpacity = this.JoyStickNode.getComponent(UIOpacity);
         uiOpacity.opacity = 255;
-
-        tween(uiOpacity)
-            .to(0.2, { opacity: 0 })
-            .start();
+        tween(uiOpacity).to(0.2, { opacity: 0 }).start();
     }
 
 
@@ -101,7 +85,7 @@ export class MainGame extends Component {
 
 
 
-
+    // 先不关了, 不是我写的
     resize() {
         if (screen.windowSize.height > screen.windowSize.width) {
             let ratio = screen.windowSize.height / screen.windowSize.width;

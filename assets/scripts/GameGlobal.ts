@@ -14,10 +14,10 @@ export class GameGlobal {
     static realHeight = 720;
     static viewScale: number = 1;
     public static mainGame: MainGame;
-    public static mainCamera: Camera;
+    public static MainCamera: Camera;
     public static cameraMoving: boolean = false;
     public static effectLay: Node;
-    public static uiLay: Node;
+    public static UILayer: Node;
     // public static coinNumber: CoinNumber;
     // public static coin: number = 0;
     public static actor: Actor;
