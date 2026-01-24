@@ -14,7 +14,7 @@ export class GearsBtn extends Component {
     isBreathing: boolean = false;
     isTouching: boolean = false;
     start() {
-
+        this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.Tractor.sawBladeLevel + 1]);
     }
     onLoad() {
         this.node.on(Node.EventType.TOUCH_START, this.onTouchStart, this);
@@ -84,16 +84,17 @@ export class GearsBtn extends Component {
     }
 
     sawBladeUpgrade() {
-        let nextLv = GameGlobal.actor.gearsLevel + 1;
-        let Tractor = GameGlobal.actor.tractorNode.getComponent(Tractor);
-        if (nextLv <= Tractor.sawBlades.length) {
+        let nextLv = GameGlobal.Tractor.sawBladeLevel + 1;
+        if (GameGlobal.GearsUp[nextLv]) {
             if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
-                GameEvent.emit("SawBladeUpgrade");
                 AudioManager.audioPlay("Click", false);
                 Player.addMoney(-GameGlobal.GearsUp[nextLv]);
-                if (GameGlobal.GearsUp[GameGlobal.actor.gearsLevel + 1]) {
-                    this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.actor.gearsLevel + 1]);
+                GameGlobal.Tractor.unloadCoins(GameGlobal.GearsUp[nextLv], this.node, () => { });
+                GameEvent.emit("SawBladeUpgrade");
+                if (GameGlobal.GearsUp[nextLv + 1]) {
+                    this.setDisplayPrice(GameGlobal.GearsUp[nextLv + 1]);
                 } else { this.showMaxLevel(); }
+
                 return
             }
         } else {

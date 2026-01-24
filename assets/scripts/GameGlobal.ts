@@ -20,7 +20,6 @@ export class GameGlobal {
     public static UILayer: Node;
     // public static coinNumber: CoinNumber;
     // public static coin: number = 0;
-    public static actor: Actor;
     // public static train: Train;
     // public static factory: Factory;
     // public static failNum: number = 0;

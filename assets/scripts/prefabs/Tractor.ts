@@ -27,10 +27,8 @@ export class Tractor extends Component implements IActor {
     isOver: boolean = false;
     speed: number = 0;
     isBackForward: boolean = false;
-    speedLevel = 1;
-    currentSpeed = 1;
-    gearsLevel = 1;
-    capacity = 0;
+
+
 
     @property(Node)
     cargoBed: Node = null;
@@ -40,12 +38,12 @@ export class Tractor extends Component implements IActor {
     sawBlades: Node[] = [];
     @property(Prefab)
     coin2d: Prefab = null;
-    @property(Node)
-    oneButton: Node = null;
     sawBladeLevel: number = 1;
     cargoBedLevel: number = 1;
+    speedLevel: number = 1;
     coinsInCargoBed: Node[] = [];
     whereToPutNextCoin: Vec3 = new Vec3(-5, 0.3, -3.5);
+    firstCoinPosInCargo: Vec3 = new Vec3(-5, 0.3, -3.5);
     cargoBedX = 5;
     cargoBedZ = 3.5;
     coinSizeX = 2;
@@ -74,12 +72,17 @@ export class Tractor extends Component implements IActor {
         })
 
         this.collider.on('onTriggerEnter', this.collideCoinTower, this);
+        this.schedule(() => {
+            this.blades.forEach(blade => {
+                blade.eulerAngles = new Vec3(blade.eulerAngles.x, blade.eulerAngles.y + 2, blade.eulerAngles.z);
+            });
+        });
     }
     collideCoinTower(event: ITriggerEvent) {
         if (event.otherCollider.node.name == "CoinTowerCollider") {
             const coinTower = event.otherCollider.node.getParent().getComponent(CoinTower);
             GameEvent.emit(EventEnum.CollideCoinTower);
-            if (coinTower.level > this.gearsLevel) {
+            if (coinTower.level > this.sawBladeLevel) {
                 GameEvent.emit(EventEnum.TractorMoveBack);
                 GameEvent.emit(EventEnum.SawBladeNeedUpgrade);
                 this.isBackForward = true;
@@ -90,9 +93,41 @@ export class Tractor extends Component implements IActor {
 
         }
     }
-    upgradeCargoBed() { }
-    upgradeSawBlade() { }
-    upgradeSpeed() { }
+    upgradeCargoBed() {
+
+        this.cargoBedLevel++;
+        this.cargoBeds.forEach((bed, index) => {
+            bed.active = (index + 1) == this.cargoBedLevel;
+            if (bed.active) {
+                this.firstCoinPosInCargo = GameGlobal.FirstCoinPosInCargo[this.cargoBedLevel].clone()
+                this.whereToPutNextCoin = GameGlobal.FirstCoinPosInCargo[this.cargoBedLevel].clone()
+                this.cargoBedX = -this.whereToPutNextCoin.x
+                this.cargoBedZ = -this.whereToPutNextCoin.z
+                this.coinSizeX = GameGlobal.CoinSize[this.cargoBedLevel][0];
+                this.coinSizeY = GameGlobal.CoinSize[this.cargoBedLevel][1];
+                this.coinSizeZ = GameGlobal.CoinSize[this.cargoBedLevel][2];
+                this.reArrangeAllCoins()
+                this.cargoBed.worldPosition = bed.getChildByName("CargoBed").getChildByName("CargoArea").worldPosition;
+            }
+        });
+    }
+    upgradeSawBlade() {
+
+        this.isUpgrading = true;
+        this.scheduleOnce(() => {
+            this.isUpgrading = false;
+        }, 2);
+        this.sawBladeLevel++;
+        this.sawBlades.forEach((blade, index) => {
+            blade.active = (index + 1) == this.sawBladeLevel;
+            if (blade.active) {
+                this.blades = blade.children.filter(n => n.name == 'SawBlade');
+            }
+        });
+    }
+    upgradeSpeed() {
+        this.speedLevel++;
+    }
     showSparkEffect() {
         this.sawBlades.forEach((blade, index) => {
             if (blade.active) {
@@ -121,14 +156,19 @@ export class Tractor extends Component implements IActor {
             }
         });
         this.speed = 0;
+
+        this.firstCoinPosInCargo = GameGlobal.FirstCoinPosInCargo[this.cargoBedLevel].clone()
+        this.whereToPutNextCoin = GameGlobal.FirstCoinPosInCargo[this.cargoBedLevel].clone()
+        this.cargoBedX = -this.whereToPutNextCoin.x
+        this.cargoBedZ = -this.whereToPutNextCoin.z
+        this.coinSizeX = GameGlobal.CoinSize[this.cargoBedLevel][0];
+        this.coinSizeY = GameGlobal.CoinSize[this.cargoBedLevel][1];
+        this.coinSizeZ = GameGlobal.CoinSize[this.cargoBedLevel][2];
     }
 
 
     update(deltaTime: number) {
-        this.blades.forEach(blade => {
-            blade.eulerAngles = new Vec3(blade.eulerAngles.x, blade.eulerAngles.y + 2, blade.eulerAngles.z);
-        });
-        if (this.coinsInCargoBed.length < GameGlobal.CargoBedUp[this.cargoBedLevel][1]) {
+        if (Player.getMoney() < GameGlobal.CargoBedUp[this.cargoBedLevel][1]) {
             if (!this.isUpgrading && !this.isUnloading) {
                 let coin = GameGlobal.CoinsPool.pop();
                 if (coin) {
@@ -184,75 +224,41 @@ export class Tractor extends Component implements IActor {
         }
     }
     reArrangeAllCoins() {
+        this.whereToPutNextCoin = this.firstCoinPosInCargo.clone();
         this.coinsInCargoBed.forEach(coin => {
             this.loadCoin(coin);
             // coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
         });
     }
 
-    levelUpSawBlade(lv: number) {
-        this.isUpgrading = true;
-        this.scheduleOnce(() => {
-            this.isUpgrading = false;
-        }, 2);
-        lv = lv - 1;
-        this.sawBladeLevel = lv;
-        this.sawBlades.forEach((blade, index) => {
 
-            blade.active = index == lv;
-            if (blade.active) {
-                this.blades = blade.children.filter(n => n.name == 'SawBlade');
-            }
-        });
-    }
-    LevelUpCargoBed(lv: number) {
-        lv = lv - 1;
-        this.cargoBedLevel = lv;
-        this.cargoBeds.forEach((bed, index) => {
-            bed.active = index == lv;
-            if (bed.active) {
-                this.whereToPutNextCoin = GameGlobal.FirstCoinPosInCargo[lv + 1]
-                this.cargoBedX = -this.whereToPutNextCoin.x
-                this.cargoBedZ = -this.whereToPutNextCoin.z
-                this.coinSizeX = GameGlobal.CoinSize[lv + 1][0];
-                this.coinSizeY = GameGlobal.CoinSize[lv + 1][1];
-                this.coinSizeZ = GameGlobal.CoinSize[lv + 1][2];
-                this.reArrangeAllCoins()
-                this.cargoBed.worldPosition = bed.getChildByName("CargoBed").getChildByName("CargoArea").worldPosition;
-            }
-        });
-    }
 
-    unloadCoins(n: number) {
+    unloadCoins(n: number, toWhere: Node, callback: Function = null) {
         this.isUnloading = true;
-        // if (!this.coin) return;
-        // if (GameGlobal.isRun) {
-        //     AudioManager.audioPlay("coin")
-        // }
-        // const centerPos = this.captureEffectOnGround.position;
-        for (let i = 0; i < Math.min(this.coinsInCargoBed.length, n); i++) {
+        let total = Math.min(this.coinsInCargoBed.length, n);
+        for (let i = 0; i < total; i++) {
             this.scheduleOnce(() => {
-                const coin = this.coinsInCargoBed[i];
-                // if (!coin) return;
-                // coin.active = true;
-                // let tempPos = coin.position.clone();
-                // tempPos.add(new Vec3(math.randomRange(-1, 1), math.randomRange(-1, 1), math.randomRange(-1, 1)).multiplyScalar(0.1));
-                // coin.position = tempPos;
-                const angle = Math.random() * Math.PI * 2;
-                const force = (20 + Math.random() * 5) * 0.2;
-                const x = Math.cos(angle) * force;
-                const z = Math.sin(angle) * force;
+                let coin = this.coinsInCargoBed.pop();
+                let angle = Math.random() * Math.PI * 2;
+                let force = (20 + Math.random() * 5) * 0.2;
+                let x = Math.cos(angle) * force;
+                let z = Math.sin(angle) * force;
                 // 使用贝塞尔曲线进行丢出
-                const targetPos = coin.position.clone().add(new Vec3(x * 0.5 + 10, 0, z * 0.5));
-                this.bezierTweenAnimLocal(coin, targetPos, 2.5, () => {
+                let targetPos = coin.position.clone().add(new Vec3(x * 0.5 + 10, 0, z * 0.5));
+                this.bezierTweenAnimLocal(coin, targetPos, 0.2, () => {
                     // 物理运动完成后回调
+                    if (i >= total - 1) {
+                        this.isUnloading = false;
+                        callback && callback();
+                        this.reArrangeAllCoins();
+                    }
                 }, randomRange(2, 4));
-                // this.scheduleOnce(() => {
-                //     this.goldFly(i, coin, this.oneButton);
-                // }, 1.3);
+                this.scheduleOnce(() => {
+                    this.goldFly(i, coin, toWhere);
+                    coin.active = false;
+                }, 0.4);
             }, Math.floor(i / 20) * 0.05)
         }
-        this.isUnloading = false;
     }
     goldFly(index: number, from: Node, toWhere: Node) {
         let coin = instantiate(this.coin2d);

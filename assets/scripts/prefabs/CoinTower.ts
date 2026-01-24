@@ -24,7 +24,7 @@ export class CoinTower extends Component {
 
             if (event.otherCollider.node.name == "TractorGearsCollider") {
                 let tractor = event.otherCollider.node.getParent().getComponent(Tractor);
-                if (!this.hasBePushed && tractor.gearsLevel >= this.level) {
+                if (!this.hasBePushed && tractor.sawBladeLevel >= this.level) {
                     AudioManager.audioStop("TowerCollapse");
                     AudioManager.audioPlay("TowerCollapse", false);
                     this.hasBePushed = true;

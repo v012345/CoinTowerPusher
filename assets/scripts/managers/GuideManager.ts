@@ -78,8 +78,8 @@ export class GuideManager extends Component {
         // }).start();
     }
     toLearnSawBladeUp() {
-        let nextLv = GameGlobal.actor.gearsLevel + 1;
-        let Tractor = GameGlobal.actor.tractorNode.getComponent(Tractor);
+        let nextLv = GameGlobal.Tractor.sawBladeLevel + 1;
+        let Tractor = GameGlobal.Tractor;
         this.isGuiding = true;
         if (nextLv <= Tractor.sawBlades.length) {
             if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {

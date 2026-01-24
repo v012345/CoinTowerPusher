@@ -4,20 +4,17 @@ import { Player } from '../Player';
 import { GameGlobal } from '../GameGlobal';
 import { Tractor } from '../prefabs/Tractor';
 import { GameEvent } from '../managers/EventManager';
+import { Utils } from '../Utils';
 const { ccclass, property } = _decorator;
 
-@ccclass('LevelupBtn')
-export class LevelupBtn extends Component {
-    @property(String)
-    ReceiveEvent: string = "";
+@ccclass('SpeedBtn')
+export class SpeedBtn extends Component {
     isShowMax: boolean = false;
     price: number = 0;
     isBreathing: boolean = false;
     isTouching: boolean = false;
     start() {
-        GameEvent.on(this.ReceiveEvent, (cost: number) => {
-            this.setDisplayPrice(cost);
-        })
+        this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.Tractor.speedLevel + 1]);
     }
     onLoad() {
         this.node.on(Node.EventType.TOUCH_START, this.onTouchStart, this);
@@ -67,7 +64,7 @@ export class LevelupBtn extends Component {
             if (this.isBreathing) return;
             this.isBreathing = true;
             if (this.isTouching) return;
-            this.breathEffect(this.node.getParent());
+            Utils.breathEffect(this.node.getParent());
         }
 
 
@@ -85,61 +82,20 @@ export class LevelupBtn extends Component {
         this.node.off(Node.EventType.TOUCH_END, this.onTouchEnd, this);
         this.node.off(Node.EventType.TOUCH_CANCEL, this.onTouchCancel, this);
     }
-    breathEffect(node: Node) {
-        tween(node).repeatForever(
-            tween(node)
-                .by(0.8, { scale: v3(0.05, 0.05, 0) }, { easing: 'quadInOut' })
-                .by(0.8, { scale: v3(-0.05, -0.05, 0) }, { easing: 'quadInOut' })
-        ).start();
-    }
 
 
-    cargoBedUpgrade() {
-        let nextLv = GameGlobal.actor.cargoBedLevel + 1;
-        let Tractor = GameGlobal.actor.tractorNode.getComponent(Tractor);
-        if (nextLv <= Tractor.cargoBeds.length) {
-            if (Player.getMoney() >= GameGlobal.CargoBedUp[nextLv][0]) {
-                GameEvent.emit("CargoBedUpgrade");
-                AudioManager.audioPlay("Click", false);
-                Player.addMoney(-GameGlobal.CargoBedUp[nextLv][0]);
-                if (GameGlobal.CargoBedUp[GameGlobal.actor.cargoBedLevel + 1]) {
-                    this.setDisplayPrice(GameGlobal.CargoBedUp[GameGlobal.actor.cargoBedLevel + 1][0]);
-                } else { this.showMaxLevel(); }
-                return
-            }
-        } else {
-            this.showMaxLevel();
-        }
-        AudioManager.audioPlay("Reject", false);
-    }
-    sawBladeUpgrade() {
-        let nextLv = GameGlobal.actor.gearsLevel + 1;
-        let Tractor = GameGlobal.actor.tractorNode.getComponent(Tractor);
-        if (nextLv <= Tractor.sawBlades.length) {
-            if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
-                GameEvent.emit("SawBladeUpgrade");
-                AudioManager.audioPlay("Click", false);
-                Player.addMoney(-GameGlobal.GearsUp[nextLv]);
-                if (GameGlobal.GearsUp[GameGlobal.actor.gearsLevel + 1]) {
-                    this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.actor.gearsLevel + 1]);
-                } else { this.showMaxLevel(); }
-                return
-            }
-        } else {
-            this.showMaxLevel();
-        }
-        AudioManager.audioPlay("Reject", false);
-    }
     speedUpgrade() {
-        let nextLv = GameGlobal.actor.speedLevel + 1;
+        let nextLv = GameGlobal.Tractor.speedLevel + 1;
         if (GameGlobal.SpeedUp[nextLv]) {
             if (Player.getMoney() >= GameGlobal.SpeedUp[nextLv][0]) {
                 GameEvent.emit("SpeedUpgrade");
                 AudioManager.audioPlay("Click", false);
                 Player.addMoney(-GameGlobal.SpeedUp[nextLv][0]);
-                if (GameGlobal.SpeedUp[GameGlobal.actor.speedLevel + 1]) {
-                    this.setDisplayPrice(GameGlobal.SpeedUp[GameGlobal.actor.speedLevel + 1][0]);
+                GameGlobal.Tractor.unloadCoins(GameGlobal.SpeedUp[nextLv][0], this.node, () => { });
+                if (GameGlobal.SpeedUp[nextLv + 1]) {
+                    this.setDisplayPrice(GameGlobal.SpeedUp[nextLv + 1][0]);
                 } else { this.showMaxLevel(); }
+
                 return
             }
         } else {
@@ -148,5 +104,7 @@ export class LevelupBtn extends Component {
         AudioManager.audioPlay("Reject", false);
     }
 }
+
+
 
 
