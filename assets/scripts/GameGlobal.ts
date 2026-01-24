@@ -26,8 +26,7 @@ export class GameGlobal {
     // public static failNum: number = 0;
     public static cargoBed: Node;
     public static CoinsPool: Array<Coin> = [];
-    public static Tractor: Node;
-    public static TractorScript: Tractor;
+    public static Tractor: Tractor;
     public static levelMap: Record<number, number> = {
         1: 1,
         2: 1,

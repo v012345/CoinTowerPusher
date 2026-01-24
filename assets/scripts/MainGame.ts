@@ -11,7 +11,7 @@ import { Player } from './Player';
 const { ccclass, property } = _decorator;
 
 declare var window: any;
-@ccclass('MainGame')
+@ccclass('MainGame') // MainGame.ts 挂到 UILayer 节点上
 export class MainGame extends Component {
     @property(Camera)
     mainCamera: Camera;

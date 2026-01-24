@@ -18,8 +18,7 @@ export class Tractor extends Component implements IActor {
 
     @property(ParticleSystem)
     speedupEffect: ParticleSystem;
-    @property(Node)
-    tractorNode: Node;
+
     @property(PathLine)
     path: PathLine;
     @property(BoxCollider)
@@ -57,54 +56,73 @@ export class Tractor extends Component implements IActor {
     isUnloading: boolean = false; // 是否正在卸货中
     start() {
         Player.setLeadAcotor(this);
-        GameGlobal.cargoBed = this.cargoBed;
-        GameGlobal.Tractor = this.node;
-        GameGlobal.TractorScript = this;
 
-        this.sawBlades.forEach((blade, index) => {
-            blade.active = index == this.sawBladeLevel - 1;
-            if (blade.active) {
-                this.blades = blade.children.filter(n => n.name == 'SawBlade');
-            }
-        });
+        GameGlobal.Tractor = this;
 
-        GameEvent.on(EventEnum.CollideCoinTower, () => {
-            this.sawBlades.forEach((blade, index) => {
-                if (blade.active) {
-                    let effectNodes = blade.children.filter(n => n.name == 'collideEffect');
-                    effectNodes.forEach(effectNode => {
-                        effectNode.children.forEach(effect => {
-                            effect.getComponent(ParticleSystem).play();
-                        });
-                    });
-                }
-            });
-        }, this);
-        GameEvent.on(EventEnum.CargoBedUpgrade, this.LevelUpCargoBed, this);
-        GameEvent.on(EventEnum.SawBladeUpgrade, this.LevelUpGears, this);
-        GameEvent.on(EventEnum.SpeedUpgrade, this.levelUpSpeed, this);
+        this.init();
+
+        GameEvent.on(EventEnum.CollideCoinTower, this.showSparkEffect, this);
+
+        GameEvent.on(EventEnum.CargoBedUpgrade, this.upgradeCargoBed, this);
+        GameEvent.on(EventEnum.SawBladeUpgrade, this.upgradeSawBlade, this);
+        GameEvent.on(EventEnum.SpeedUpgrade, this.upgradeSpeed, this);
+
         this.moveAlongPath = this.node.getComponent(MoveAlongPath);
         this.scheduleOnce(() => {
             this.moveAlongPath.pathLine = this.path;
             this.moveAlongPath.startMove();
         })
 
-        this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
-            if (event.otherCollider.node.name == "CoinTowerCollider") {
-                const coinTower = event.otherCollider.node.getParent().getComponent(CoinTower);
-                GameEvent.emit(EventEnum.CollideCoinTower);
-                if (coinTower.level > this.gearsLevel) {
-                    GameEvent.emit(EventEnum.TractorMoveBack);
-                    GameEvent.emit(EventEnum.SawBladeNeedUpgrade);
-                    this.isBackForward = true;
-                    this.scheduleOnce(() => {
-                        this.isBackForward = false;
-                    }, 0.2);
-                }
-
-            }
-        }, this);
+        this.collider.on('onTriggerEnter', this.collideCoinTower, this);
     }
+    collideCoinTower(event: ITriggerEvent) {
+        if (event.otherCollider.node.name == "CoinTowerCollider") {
+            const coinTower = event.otherCollider.node.getParent().getComponent(CoinTower);
+            GameEvent.emit(EventEnum.CollideCoinTower);
+            if (coinTower.level > this.gearsLevel) {
+                GameEvent.emit(EventEnum.TractorMoveBack);
+                GameEvent.emit(EventEnum.SawBladeNeedUpgrade);
+                this.isBackForward = true;
+                this.scheduleOnce(() => {
+                    this.isBackForward = false;
+                }, 0.2);
+            }
+
+        }
+    }
+    upgradeCargoBed() { }
+    upgradeSawBlade() { }
+    upgradeSpeed() { }
+    showSparkEffect() {
+        this.sawBlades.forEach((blade, index) => {
+            if (blade.active) {
+                let effectNodes = blade.children.filter(n => n.name == 'collideEffect');
+                effectNodes.forEach(effectNode => {
+                    effectNode.children.forEach(effect => {
+                        effect.getComponent(ParticleSystem).play();
+                    });
+                });
+            }
+        });
+    }
+    init() {
+
+        this.sawBlades.forEach((blade, index) => {
+            blade.active = (index + 1) == this.sawBladeLevel;
+            if (blade.active) {
+                this.blades = blade.children.filter(n => n.name == 'SawBlade');
+            }
+        });
+
+        this.cargoBeds.forEach((cargoBed, index) => {
+            cargoBed.active = (index + 1) == this.cargoBedLevel;
+            if (cargoBed.active) {
+                this.cargoBed.worldPosition = cargoBed.getChildByName("CargoBed").getChildByName("CargoArea").worldPosition;
+            }
+        });
+        this.speed = 0;
+    }
+
 
     update(deltaTime: number) {
         this.blades.forEach(blade => {
@@ -112,19 +130,17 @@ export class Tractor extends Component implements IActor {
         });
         if (this.coinsInCargoBed.length < GameGlobal.CargoBedUp[this.cargoBedLevel][1]) {
             if (!this.isUpgrading && !this.isUnloading) {
-                let recieveNum = 1;
-                for (let i = 0; i < recieveNum; i++) {
-                    let coin = GameGlobal.CoinsPool.pop();
-                    if (coin) {
-                        Player.addMoney(1);
-                        coin.flyToCargoBed();
-                    }
+                let coin = GameGlobal.CoinsPool.pop();
+                if (coin) {
+                    Player.addMoney(1);
+                    coin.flyTo(this.cargoBed);
                 }
             }
         } else {
             GameEvent.emit("CargoBedIsFull");
         }
     }
+
     arrangeCoin(coin: Node) {
         this.coinsInCargoBed.push(coin);
         this.loadCoin(coin);
@@ -273,7 +289,7 @@ export class Tractor extends Component implements IActor {
 
     move() {
         GameEvent.emit("TractorMove");
-        this.speed = this.currentSpeed;
+        this.speed = GameGlobal.SpeedUp[this.speedLevel][1];
     }
     stop() {
         GameEvent.emit("TractorStop");

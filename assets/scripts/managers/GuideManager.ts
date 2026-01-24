@@ -67,10 +67,10 @@ export class GuideManager extends Component {
     }
     showCargoBedIsFullTip() {
         // GameEvent.off("CargoBedIsFull", this.showCargoBedIsFullTip, this);
-        if (this.cargoBedLevel != GameGlobal.TractorScript.cargoBedLevel) {
+        if (this.cargoBedLevel != GameGlobal.Tractor.cargoBedLevel) {
             AudioManager.audioPlay("Reject", false);
             this.cargoBedIsFull.play()
-            this.cargoBedLevel = GameGlobal.TractorScript.cargoBedLevel;
+            this.cargoBedLevel = GameGlobal.Tractor.cargoBedLevel;
         }
 
         // tween(this.node).delay(3).call(() => {
@@ -79,9 +79,9 @@ export class GuideManager extends Component {
     }
     toLearnSawBladeUp() {
         let nextLv = GameGlobal.actor.gearsLevel + 1;
-        let TractorScript = GameGlobal.actor.tractorNode.getComponent(Tractor);
+        let Tractor = GameGlobal.actor.tractorNode.getComponent(Tractor);
         this.isGuiding = true;
-        if (nextLv <= TractorScript.sawBlades.length) {
+        if (nextLv <= Tractor.sawBlades.length) {
             if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
                 let button_pos = this.sawBladeUpBtn.worldPosition.clone();
                 let uiTransform = this.uiLayer.getComponent(UITransform);

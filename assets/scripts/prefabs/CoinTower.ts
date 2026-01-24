@@ -2,6 +2,7 @@ import { _decorator, Component, instantiate, Node, tween, ITriggerEvent, MeshRen
 import { OneLayerOfCoins } from './OneLayerOfCoins';
 import { GameGlobal } from '../GameGlobal';
 import { AudioManager } from '../PASDK/AudioManager';
+import { Tractor } from './Tractor';
 const { ccclass, property } = _decorator;
 
 @ccclass('CoinTower')
@@ -22,8 +23,8 @@ export class CoinTower extends Component {
         this.collider.on('onTriggerEnter', (event: ITriggerEvent) => {
 
             if (event.otherCollider.node.name == "TractorGearsCollider") {
-                const actor = event.otherCollider.getComponent('TractorGearsCollider').getPusherScript();
-                if (!this.hasBePushed && actor.gearsLevel >= this.level) {
+                let tractor = event.otherCollider.node.getParent().getComponent(Tractor);
+                if (!this.hasBePushed && tractor.gearsLevel >= this.level) {
                     AudioManager.audioStop("TowerCollapse");
                     AudioManager.audioPlay("TowerCollapse", false);
                     this.hasBePushed = true;

@@ -85,8 +85,8 @@ export class GearsBtn extends Component {
 
     sawBladeUpgrade() {
         let nextLv = GameGlobal.actor.gearsLevel + 1;
-        let TractorScript = GameGlobal.actor.tractorNode.getComponent(Tractor);
-        if (nextLv <= TractorScript.sawBlades.length) {
+        let Tractor = GameGlobal.actor.tractorNode.getComponent(Tractor);
+        if (nextLv <= Tractor.sawBlades.length) {
             if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
                 GameEvent.emit("SawBladeUpgrade");
                 AudioManager.audioPlay("Click", false);

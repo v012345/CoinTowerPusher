@@ -46,10 +46,10 @@ export class Coin extends Component {
         }
     }
 
-    flyToCargoBed() {
+    flyTo(where:Node) {
         const originalWorldPos = this.node.worldPosition.clone();
 
-        this.node.setParent(GameGlobal.cargoBed);
+        this.node.setParent(where);
         this.node.setScale(new Vec3(2.6, 2.6, 2.6));
         this.node.worldPosition = originalWorldPos;
         const start = this.node.position.clone();   // P0
@@ -75,7 +75,7 @@ export class Coin extends Component {
                 this.node.setScale(new Vec3(scaleValue, scaleValue, scaleValue));
             }
         }).call(() => {
-            GameGlobal.TractorScript.arrangeCoin(this.node);
+            GameGlobal.Tractor.arrangeCoin(this.node);
         }).start();
 
     }
