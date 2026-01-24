@@ -1,4 +1,4 @@
-import { _decorator, Vec3 } from 'cc';
+import { _decorator, Vec3, tween, v3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Utils')
@@ -20,6 +20,14 @@ export class Utils {
             x * from.y + y * controlPoint.y + z * to.y,
             x * from.z + y * controlPoint.z + z * to.z
         );
+    }
+
+    public static breathEffect(node: Node) {
+        tween(node).repeatForever(
+            tween(node)
+                .by(0.8, { scale: v3(0.05, 0.05, 0) }, { easing: 'quadInOut' })
+                .by(0.8, { scale: v3(-0.05, -0.05, 0) }, { easing: 'quadInOut' })
+        ).start();
     }
 }
 

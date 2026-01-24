@@ -2,12 +2,12 @@
   "ver": "1.1.50",
   "importer": "prefab",
   "imported": true,
-  "uuid": "95a7a7ae-fb80-4b79-b67d-e56d808ea42d",
+  "uuid": "7aa08063-11e1-4725-9c82-2a9aba34dc8c",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "Pusher"
+    "syncNodeName": "Coin2D"
   }
 }

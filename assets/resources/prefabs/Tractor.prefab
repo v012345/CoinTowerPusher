@@ -6942,6 +6942,10 @@
       }
     ],
     "sawBlades": [],
+    "coin2d": {
+      "__uuid__": "7aa08063-11e1-4725-9c82-2a9aba34dc8c",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": ""
   },
   {

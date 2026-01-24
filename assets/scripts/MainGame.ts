@@ -6,6 +6,8 @@ import { LeadActor } from './LeadActor';
 import { Vendor } from './Vendor';
 import { EventEnum } from './Event/EventEnum';
 import { GameEvent } from './managers/EventManager';
+import { Prefab } from 'cc';
+import { Player } from './Player';
 const { ccclass, property } = _decorator;
 
 declare var window: any;
@@ -20,11 +22,14 @@ export class MainGame extends Component {
     JoyStickNode: Node;
     @property(Node)
     logo: Node;
+    @property(Prefab)
+    coin2d: Prefab;
     onLoad() {
         GameGlobal.mainGame = this;
         GameGlobal.mainCamera = this.camera;
         GameGlobal.effectLay = this.effectLay;
         GameGlobal.uiLay = this.node;
+
     }
 
 
