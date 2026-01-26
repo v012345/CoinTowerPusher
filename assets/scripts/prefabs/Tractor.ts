@@ -94,6 +94,7 @@ export class Tractor extends Component implements IActor {
         }
     }
     upgradeCargoBed() {
+        this.isUpgrading = true;
         this.cargoBeds.forEach((bed, index) => {
             if (bed.active) {
                 let effectNodes = bed.children.filter(n => n.name == 'levelup');
@@ -104,22 +105,25 @@ export class Tractor extends Component implements IActor {
                 });
             }
         });
+        this.scheduleOnce(() => {
+            this.cargoBedLevel++;
+            this.cargoBeds.forEach((bed, index) => {
+                bed.active = (index + 1) == this.cargoBedLevel;
+                if (bed.active) {
+                    this.firstCoinPosInCargo = GameGlobal.FirstCoinPosInCargo[this.cargoBedLevel].clone()
+                    this.whereToPutNextCoin = GameGlobal.FirstCoinPosInCargo[this.cargoBedLevel].clone()
+                    this.cargoBedX = -this.whereToPutNextCoin.x
+                    this.cargoBedZ = -this.whereToPutNextCoin.z
+                    this.coinSizeX = GameGlobal.CoinSize[this.cargoBedLevel][0];
+                    this.coinSizeY = GameGlobal.CoinSize[this.cargoBedLevel][1];
+                    this.coinSizeZ = GameGlobal.CoinSize[this.cargoBedLevel][2];
+                    this.reArrangeAllCoins()
+                    this.cargoBed.worldPosition = bed.getChildByName("CargoBed").getChildByName("CargoArea").worldPosition;
+                    this.isUpgrading = false;
+                }
+            });
+        }, 1);
 
-        this.cargoBedLevel++;
-        this.cargoBeds.forEach((bed, index) => {
-            bed.active = (index + 1) == this.cargoBedLevel;
-            if (bed.active) {
-                this.firstCoinPosInCargo = GameGlobal.FirstCoinPosInCargo[this.cargoBedLevel].clone()
-                this.whereToPutNextCoin = GameGlobal.FirstCoinPosInCargo[this.cargoBedLevel].clone()
-                this.cargoBedX = -this.whereToPutNextCoin.x
-                this.cargoBedZ = -this.whereToPutNextCoin.z
-                this.coinSizeX = GameGlobal.CoinSize[this.cargoBedLevel][0];
-                this.coinSizeY = GameGlobal.CoinSize[this.cargoBedLevel][1];
-                this.coinSizeZ = GameGlobal.CoinSize[this.cargoBedLevel][2];
-                this.reArrangeAllCoins()
-                this.cargoBed.worldPosition = bed.getChildByName("CargoBed").getChildByName("CargoArea").worldPosition;
-            }
-        });
     }
     upgradeSawBlade() {
 
@@ -127,13 +131,27 @@ export class Tractor extends Component implements IActor {
         this.scheduleOnce(() => {
             this.isUpgrading = false;
         }, 2);
-        this.sawBladeLevel++;
+        this.isUpgrading = true;
         this.sawBlades.forEach((blade, index) => {
-            blade.active = (index + 1) == this.sawBladeLevel;
             if (blade.active) {
-                this.blades = blade.children.filter(n => n.name == 'SawBlade');
+                let effectNodes = blade.children.filter(n => n.name == 'levelup');
+                effectNodes.forEach(effectNode => {
+                    effectNode.children.forEach(effect => {
+                        effect.getComponent(ParticleSystem).play();
+                    });
+                });
             }
         });
+        this.scheduleOnce(() => {
+            this.sawBladeLevel++;
+            this.sawBlades.forEach((blade, index) => {
+                blade.active = (index + 1) == this.sawBladeLevel;
+                if (blade.active) {
+                    this.blades = blade.children.filter(n => n.name == 'SawBlade');
+                }
+            });
+        }, 1);
+
     }
     upgradeSpeed() {
         this.speedLevel++;
