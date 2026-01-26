@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Animation, tween, Tween, v3, UIOpacity, TiledUserNodeData } from 'cc';
+import { _decorator, Component, Node, Animation, tween, Tween, v3, UIOpacity, TiledUserNodeData, Vec3 } from 'cc';
 import { AudioManager } from '../PASDK/AudioManager';
 import { Player } from '../Player';
 import { GameGlobal } from '../GameGlobal';
@@ -6,6 +6,7 @@ import { Tractor } from '../prefabs/Tractor';
 import { GameEvent } from '../managers/EventManager';
 import { Utils } from '../Utils';
 import { EventEnum } from '../Event/EventEnum';
+import { PlayableSDK } from '../PASDK/PlayableSDK';
 const { ccclass, property } = _decorator;
 
 @ccclass('LevelupBtn')
@@ -18,7 +19,9 @@ export class LevelupBtn extends Component {
     levelup: Animation;
     @property(Node)
     outline: Node;
+    originalScale: Vec3;
     start() {
+        this.originalScale = this.node.getParent().scale.clone();
         this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.Tractor.cargoBedLevel + 1]);
     }
     onLoad() {
@@ -30,7 +33,7 @@ export class LevelupBtn extends Component {
 
     onTouchStart() {
         Tween.stopAllByTarget(this.node.getParent());
-        this.node.getParent().setScale(v3(1, 1, 1));
+        this.node.getParent().setScale(this.originalScale);
         this.isBreathing = false;
         this.isTouching = true;
 
@@ -63,7 +66,7 @@ export class LevelupBtn extends Component {
         if (playerMoney < this.price) {
             this.node.getComponent('cc.Sprite').grayscale = true;
             Tween.stopAllByTarget(this.node.getParent());
-            this.node.getParent().setScale(v3(1, 1, 1));
+            this.node.getParent().setScale(this.originalScale);
             this.isBreathing = false;
         } else {
             this.node.getComponent('cc.Sprite').grayscale = false;
@@ -79,7 +82,7 @@ export class LevelupBtn extends Component {
     showMaxLevel() {
         this.isShowMax = true;
         Tween.stopAllByTarget(this.node.getParent());
-        this.node.getParent().setScale(v3(1, 1, 1));
+        this.node.getParent().setScale(this.originalScale);
         this.node.getChildByName("max").active = true;
         this.node.getChildByName("coin").active = false;
         this.node.getChildByName("cost").active = false;
@@ -90,6 +93,10 @@ export class LevelupBtn extends Component {
     }
 
     cargoBedUpgrade() {
+        if (GameGlobal.GameOver) {
+            PlayableSDK.download();
+            return;
+        }
         GameEvent.emit(EventEnum.BtnClicked);
         let nextLv = GameGlobal.Tractor.cargoBedLevel + 1;
         if (GameGlobal.CargoBedUp[nextLv]) {

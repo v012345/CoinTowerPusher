@@ -10,6 +10,7 @@ import { Coin } from './prefabs/Coin';
 
 
 export class GameGlobal {
+    static GameOver = false;
     static realWidth = 720;
     static realHeight = 720;
     static viewScale: number = 1;

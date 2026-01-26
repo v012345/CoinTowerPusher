@@ -1,5 +1,6 @@
 import { Node } from 'cc';
 import { GameGlobal } from "./GameGlobal";
+import { PlayableSDK } from './PASDK/PlayableSDK';
 
 export class LeadActor {
     private static _instance: LeadActor;
@@ -14,6 +15,10 @@ export class LeadActor {
         return this._instance;
     }
     static move(): void {
+        if (GameGlobal.GameOver) {
+            PlayableSDK.download()
+            return;
+        }
         LeadActor.Actor.move();
     }
     static stop(): void {

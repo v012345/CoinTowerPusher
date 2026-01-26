@@ -6,6 +6,7 @@ import { Tractor } from '../prefabs/Tractor';
 import { GameEvent } from '../managers/EventManager';
 import { Utils } from '../Utils';
 import { EventEnum } from '../Event/EventEnum';
+import { PlayableSDK } from '../PASDK/PlayableSDK';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpeedBtn')
@@ -18,7 +19,9 @@ export class SpeedBtn extends Component {
     levelup: Animation;
     @property(Node)
     outline: Node;
+    originalScale: Vec3;
     start() {
+        this.originalScale = this.node.getParent().scale.clone();
         this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.Tractor.speedLevel + 1]);
     }
     onLoad() {
@@ -29,7 +32,7 @@ export class SpeedBtn extends Component {
     }
     onTouchStart() {
         Tween.stopAllByTarget(this.node.getParent());
-        this.node.getParent().setScale(v3(1, 1, 1));
+        this.node.getParent().setScale(this.originalScale);
         this.isBreathing = false;
         this.isTouching = true;
 
@@ -62,7 +65,7 @@ export class SpeedBtn extends Component {
         if (playerMoney < this.price) {
             this.node.getComponent('cc.Sprite').grayscale = true;
             Tween.stopAllByTarget(this.node.getParent());
-            this.node.getParent().setScale(v3(1, 1, 1));
+            this.node.getParent().setScale(this.originalScale);
             this.isBreathing = false;
         } else {
             this.node.getComponent('cc.Sprite').grayscale = false;
@@ -78,7 +81,7 @@ export class SpeedBtn extends Component {
     showMaxLevel() {
         this.isShowMax = true;
         Tween.stopAllByTarget(this.node.getParent());
-        this.node.getParent().setScale(v3(1, 1, 1));
+        this.node.getParent().setScale(this.originalScale);
         this.node.getChildByName("max").active = true;
         this.node.getChildByName("coin").active = false;
         this.node.getChildByName("cost").active = false;
@@ -90,6 +93,10 @@ export class SpeedBtn extends Component {
 
 
     speedUpgrade() {
+        if (GameGlobal.GameOver) {
+            PlayableSDK.download();
+            return;
+        }
         GameEvent.emit(EventEnum.BtnClicked);
         let nextLv = GameGlobal.Tractor.speedLevel + 1;
         if (GameGlobal.SpeedUp[nextLv]) {

@@ -5,6 +5,7 @@ import { GameGlobal } from '../GameGlobal';
 import { EventEnum } from '../Event/EventEnum';
 import { Tractor } from '../prefabs/Tractor';
 import { Player } from '../Player';
+import { PlayableSDK } from '../PASDK/PlayableSDK';
 const { ccclass, property } = _decorator;
 
 @ccclass('GuideManager')
@@ -41,6 +42,9 @@ export class GuideManager extends Component {
             GameEvent.off('TractorMove', this.hasLearnedMove, this);
             GameEvent.off('TractorMove', this.updateStopTime, this);
             GameEvent.off(EventEnum.HeartBeat, cb, this);
+            this.scheduleOnce(() => {
+                GameGlobal.GameOver = true;
+            }, 1);
         }, this);
         GameEvent.on('TractorMove', this.hasLearnedMove, this);
         GameEvent.on('TractorMove', this.updateStopTime, this);
