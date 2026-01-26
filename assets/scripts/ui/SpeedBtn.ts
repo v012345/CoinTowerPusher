@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Animation, tween, Tween, v3 } from 'cc';
+import { _decorator, Component, Node, Animation, tween, Tween, v3, UIOpacity } from 'cc';
 import { AudioManager } from '../PASDK/AudioManager';
 import { Player } from '../Player';
 import { GameGlobal } from '../GameGlobal';
@@ -57,7 +57,7 @@ export class SpeedBtn extends Component {
     }
 
     update(deltaTime: number) {
-        if (this.isShowMax) return;
+        if (this.isShowMax) { this.node.getComponent('cc.Sprite').grayscale = false; return; }
         let playerMoney = Player.getMoney();
         if (playerMoney < this.price) {
             this.node.getComponent('cc.Sprite').grayscale = true;
@@ -107,7 +107,13 @@ export class SpeedBtn extends Component {
                         } else { this.showMaxLevel(); }
                     }, 1)
                 });
-
+                this.scheduleOnce(() => {
+                    this.outline.getComponent(Animation).play();
+                    this.scheduleOnce(() => {
+                        this.outline.getComponent(Animation).stop();
+                        this.outline.getComponent(UIOpacity).opacity = 0;
+                    }, 0.3);
+                }, 0.8);
 
                 return
             }

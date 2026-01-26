@@ -1,4 +1,4 @@
-import { _decorator, Component, Animation, Node, Sprite, tween, Tween, v3, Color } from 'cc';
+import { _decorator, Component, Animation, Node, Sprite, tween, Tween, v3, Color, UIOpacity } from 'cc';
 import { AudioManager } from '../PASDK/AudioManager';
 import { Player } from '../Player';
 import { GameGlobal } from '../GameGlobal';
@@ -18,7 +18,7 @@ export class GearsBtn extends Component {
     levelup: Animation;
     @property(Node)
     outline: Node;
-    
+
     start() {
         this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.Tractor.sawBladeLevel + 1]);
     }
@@ -57,7 +57,7 @@ export class GearsBtn extends Component {
     }
 
     update(deltaTime: number) {
-        if (this.isShowMax) return;
+          if (this.isShowMax) { this.node.getComponent('cc.Sprite').grayscale = false; return; }
         let playerMoney = Player.getMoney();
         if (playerMoney < this.price) {
             this.node.getComponent('cc.Sprite').grayscale = true;
@@ -106,6 +106,13 @@ export class GearsBtn extends Component {
                         } else { this.showMaxLevel(); }
                     }, 1)
                 });
+                this.scheduleOnce(() => {
+                    this.outline.getComponent(Animation).play();
+                    this.scheduleOnce(() => {
+                        this.outline.getComponent(Animation).stop();
+                        this.outline.getComponent(UIOpacity).opacity = 0;
+                    }, 0.3);
+                }, 0.8);
 
 
 
