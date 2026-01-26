@@ -5,6 +5,7 @@ import { GameGlobal } from '../GameGlobal';
 import { Tractor } from '../prefabs/Tractor';
 import { GameEvent } from '../managers/EventManager';
 import { Utils } from '../Utils';
+import { EventEnum } from '../Event/EventEnum';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpeedBtn')
@@ -85,6 +86,7 @@ export class SpeedBtn extends Component {
 
 
     speedUpgrade() {
+        GameEvent.emit(EventEnum.BtnClicked);
         let nextLv = GameGlobal.Tractor.speedLevel + 1;
         if (GameGlobal.SpeedUp[nextLv]) {
             if (Player.getMoney() >= GameGlobal.SpeedUp[nextLv][0]) {

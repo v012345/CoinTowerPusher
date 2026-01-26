@@ -31,6 +31,11 @@ export class GuideManager extends Component {
         let cb = () => {
             this.stopTime += 1;
         }
+        GameEvent.on(EventEnum.BtnClicked, () => {
+            this.stopTime = 0;
+            this.tipNode.active = false;
+            this.handNode.active = false;
+        }, this);
         GameEvent.on(EventEnum.HeartBeat, cb, this);
         GameEvent.on(EventEnum.DomeCollapse, () => {
             GameEvent.off('TractorMove', this.hasLearnedMove, this);

@@ -5,6 +5,7 @@ import { GameGlobal } from '../GameGlobal';
 import { Tractor } from '../prefabs/Tractor';
 import { GameEvent } from '../managers/EventManager';
 import { Utils } from '../Utils';
+import { EventEnum } from '../Event/EventEnum'; 
 const { ccclass, property } = _decorator;
 
 @ccclass('GearsBtn')
@@ -83,6 +84,7 @@ export class GearsBtn extends Component {
     }
 
     sawBladeUpgrade() {
+        GameEvent.emit(EventEnum.BtnClicked);
         let nextLv = GameGlobal.Tractor.sawBladeLevel + 1;
         if (GameGlobal.GearsUp[nextLv]) {
             if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {

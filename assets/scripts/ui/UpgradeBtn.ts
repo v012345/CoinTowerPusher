@@ -5,6 +5,7 @@ import { GameGlobal } from '../GameGlobal';
 import { Tractor } from '../prefabs/Tractor';
 import { GameEvent } from '../managers/EventManager';
 import { Utils } from '../Utils';
+import { EventEnum } from '../Event/EventEnum';
 const { ccclass, property } = _decorator;
 
 @ccclass('LevelupBtn')
@@ -84,6 +85,7 @@ export class LevelupBtn extends Component {
     }
 
     cargoBedUpgrade() {
+        GameEvent.emit(EventEnum.BtnClicked);
         let nextLv = GameGlobal.Tractor.cargoBedLevel + 1;
         if (GameGlobal.CargoBedUp[nextLv]) {
             if (Player.getMoney() >= GameGlobal.CargoBedUp[nextLv][0]) {
