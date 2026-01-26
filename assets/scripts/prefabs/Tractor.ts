@@ -94,6 +94,7 @@ export class Tractor extends Component implements IActor {
         }
     }
     upgradeCargoBed() {
+        AudioManager.audioPlay("FunclevelUp", false);
         this.isUpgrading = true;
         this.cargoBeds.forEach((bed, index) => {
             if (bed.active) {
@@ -126,7 +127,7 @@ export class Tractor extends Component implements IActor {
 
     }
     upgradeSawBlade() {
-
+        AudioManager.audioPlay("FunclevelUp", false);
         this.isUpgrading = true;
         this.scheduleOnce(() => {
             this.isUpgrading = false;
@@ -150,10 +151,11 @@ export class Tractor extends Component implements IActor {
                     this.blades = blade.children.filter(n => n.name == 'SawBlade');
                 }
             });
-        }, 1);
+        }, 0.7);
 
     }
     upgradeSpeed() {
+        AudioManager.audioPlay("FunclevelUp", false);
         this.speedLevel++;
         this.speedupEffectNode.children.forEach((effect, index) => {
             if (index < this.speedLevel) {
