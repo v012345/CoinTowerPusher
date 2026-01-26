@@ -151,7 +151,7 @@ export class Tractor extends Component implements IActor {
                     this.blades = blade.children.filter(n => n.name == 'SawBlade');
                 }
             });
-        }, 0.7);
+        }, 0.6);
 
     }
     upgradeSpeed() {
