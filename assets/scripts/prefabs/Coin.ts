@@ -69,7 +69,7 @@ export class Coin extends Component {
 
                 // scale 从 2.6 -> 1
                 const startScale = 2.6;
-                const endScale = 1.0;
+                const endScale = 1.3;
                 const scaleValue = startScale + (endScale - startScale) * ratio;
 
                 this.node.setScale(new Vec3(scaleValue, scaleValue, scaleValue));

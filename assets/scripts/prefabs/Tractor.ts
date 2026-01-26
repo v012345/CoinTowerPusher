@@ -187,7 +187,7 @@ export class Tractor extends Component implements IActor {
 
         // coin.eulerAngles = new Vec3(Math.random() * 360, Math.random() * 360, Math.random() * 360);
         coin.eulerAngles = new Vec3();
-        this.jellyEffect(coin, 1);
+        this.jellyEffect(coin, 1.3);
     }
     jellyEffect(node: Node, t: number) {
         // let uiOpacity = node.getComponent(UIOpacity);
@@ -244,7 +244,8 @@ export class Tractor extends Component implements IActor {
                 let x = Math.cos(angle) * force;
                 let z = Math.sin(angle) * force;
                 // 使用贝塞尔曲线进行丢出
-                let targetPos = coin.position.clone().add(new Vec3(x * 0.5 + 10, 0, z * 0.5));
+                // let targetPos = coin.position.clone().add(new Vec3(x * 0.5 + 10, 0, z * 0.5));
+                let targetPos = coin.position.clone();
                 this.bezierTweenAnimLocal(coin, targetPos, 0.2, () => {
                     // 物理运动完成后回调
                     if (i >= total - 1) {

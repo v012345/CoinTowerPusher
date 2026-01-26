@@ -85,6 +85,7 @@ export class PathLine extends Component {
 	}
 
 	public createPathPoints() {
+		// 记录控制点位置
 		this._ctrlPoints = [];
 		for (let i = 0; i < this.ctrlNodes.length; i++) {
 			this.ctrlNodes[i] && this._ctrlPoints.push(this.ctrlNodes[i].getPosition());
