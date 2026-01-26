@@ -158,9 +158,7 @@ export class Tractor extends Component implements IActor {
         AudioManager.audioPlay("FunclevelUp", false);
         this.speedLevel++;
         this.speedupEffectNode.children.forEach((effect, index) => {
-            if (index < this.speedLevel) {
-                effect.getComponent(ParticleSystem).play();
-            }
+            effect.getComponent(ParticleSystem).play();
         });
     }
     showSparkEffect() {
