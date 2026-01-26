@@ -40,6 +40,10 @@
       "4": 105,
       "5": 16,
       "6": 16
+    },
+    "gravity": {
+      "y": -10
     }
-  }
+  },
+  "custom_joint_texture_layouts": []
 }

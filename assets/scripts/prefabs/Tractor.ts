@@ -16,8 +16,8 @@ const { ccclass, property } = _decorator;
 @ccclass('Tractor')
 export class Tractor extends Component implements IActor {
 
-    @property(ParticleSystem)
-    speedupEffect: ParticleSystem;
+    @property(Node)
+    speedupEffectNode: Node;
 
     @property(PathLine)
     path: PathLine;
@@ -94,6 +94,16 @@ export class Tractor extends Component implements IActor {
         }
     }
     upgradeCargoBed() {
+        this.cargoBeds.forEach((bed, index) => {
+            if (bed.active) {
+                let effectNodes = bed.children.filter(n => n.name == 'levelup');
+                effectNodes.forEach(effectNode => {
+                    effectNode.children.forEach(effect => {
+                        effect.getComponent(ParticleSystem).play();
+                    });
+                });
+            }
+        });
 
         this.cargoBedLevel++;
         this.cargoBeds.forEach((bed, index) => {
@@ -127,6 +137,11 @@ export class Tractor extends Component implements IActor {
     }
     upgradeSpeed() {
         this.speedLevel++;
+        this.speedupEffectNode.children.forEach((effect, index) => {
+            if (index < this.speedLevel) {
+                effect.getComponent(ParticleSystem).play();
+            }
+        });
     }
     showSparkEffect() {
         this.sawBlades.forEach((blade, index) => {
