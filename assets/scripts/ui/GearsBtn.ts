@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, tween, Tween, v3 } from 'cc';
+import { _decorator, Component, Node, Sprite, tween, Tween, v3, Color } from 'cc';
 import { AudioManager } from '../PASDK/AudioManager';
 import { Player } from '../Player';
 import { GameGlobal } from '../GameGlobal';
@@ -27,7 +27,6 @@ export class GearsBtn extends Component {
         this.node.getParent().setScale(v3(1, 1, 1));
         this.isBreathing = false;
         this.isTouching = true;
-
     }
 
     onTouchMove() {
