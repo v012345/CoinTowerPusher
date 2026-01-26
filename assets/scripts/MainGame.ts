@@ -105,7 +105,7 @@ export class MainGame extends Component {
                 }
                 v.updateImpl();
             })
-
+            
         } else {
             let ratio = screen.windowSize.width / screen.windowSize.height;
             let isRect = ratio >= 1 && ratio <= 1.77;

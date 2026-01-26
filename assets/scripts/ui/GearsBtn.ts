@@ -1,4 +1,4 @@
-import { _decorator, Component, Animation, Node, Sprite, tween, Tween, v3, Color, UIOpacity, Vec3 } from 'cc';
+import { _decorator, Component, screen, Animation, Node, Sprite, tween, Tween, v3, Color, UIOpacity, Vec3, view } from 'cc';
 import { AudioManager } from '../PASDK/AudioManager';
 import { Player } from '../Player';
 import { GameGlobal } from '../GameGlobal';
@@ -24,6 +24,22 @@ export class GearsBtn extends Component {
     start() {
         this.originalScale = this.node.getParent().scale.clone();
         this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.Tractor.sawBladeLevel + 1]);
+        if (screen.windowSize.height > screen.windowSize.width) {
+            this.originalScale = new Vec3(1.3, 1.3, 1.3);
+        } else {
+            this.originalScale = new Vec3(1, 1, 1);
+        }
+        Tween.stopAllByTarget(this.node.getParent());
+        this.node.getParent().setScale(this.originalScale);
+        view.on("canvas-resize", () => {
+            if (screen.windowSize.height > screen.windowSize.width) {
+                this.originalScale = new Vec3(1.3, 1.3, 1.3);
+            } else {
+                this.originalScale = new Vec3(1, 1, 1);
+            }
+            Tween.stopAllByTarget(this.node.getParent());
+            this.node.getParent().setScale(this.originalScale);
+        }, this);
     }
     onLoad() {
         this.node.on(Node.EventType.TOUCH_START, this.onTouchStart, this);
