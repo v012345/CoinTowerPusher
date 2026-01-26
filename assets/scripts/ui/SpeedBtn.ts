@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Animation, tween, Tween, v3, UIOpacity } from 'cc';
+import { _decorator, Component, Node, Animation, tween, Tween, v3, UIOpacity, Vec3 } from 'cc';
 import { AudioManager } from '../PASDK/AudioManager';
 import { Player } from '../Player';
 import { GameGlobal } from '../GameGlobal';
@@ -107,13 +107,14 @@ export class SpeedBtn extends Component {
                         } else { this.showMaxLevel(); }
                     }, 1)
                 });
+
                 this.scheduleOnce(() => {
-                    this.outline.getComponent(Animation).play();
-                    this.scheduleOnce(() => {
-                        this.outline.getComponent(Animation).stop();
-                        this.outline.getComponent(UIOpacity).opacity = 0;
-                    }, 0.3);
-                }, 0.8);
+                    this.outline.getComponent(UIOpacity).opacity = 255;
+                    tween(this.outline.getComponent(UIOpacity))
+                        .to(1, { opacity: .0 })
+                        .start()
+                }, 1);
+
 
                 return
             }

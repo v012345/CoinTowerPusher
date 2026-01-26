@@ -57,7 +57,7 @@ export class GearsBtn extends Component {
     }
 
     update(deltaTime: number) {
-          if (this.isShowMax) { this.node.getComponent('cc.Sprite').grayscale = false; return; }
+        if (this.isShowMax) { this.node.getComponent('cc.Sprite').grayscale = false; return; }
         let playerMoney = Player.getMoney();
         if (playerMoney < this.price) {
             this.node.getComponent('cc.Sprite').grayscale = true;
@@ -107,12 +107,12 @@ export class GearsBtn extends Component {
                     }, 1)
                 });
                 this.scheduleOnce(() => {
-                    this.outline.getComponent(Animation).play();
-                    this.scheduleOnce(() => {
-                        this.outline.getComponent(Animation).stop();
-                        this.outline.getComponent(UIOpacity).opacity = 0;
-                    }, 0.3);
-                }, 0.8);
+                    this.outline.getComponent(UIOpacity).opacity = 255;
+                    tween(this.outline.getComponent(UIOpacity))
+                        .to(1, { opacity: .0 })
+                        .start()
+                }, 1);
+
 
 
 
