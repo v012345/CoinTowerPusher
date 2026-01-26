@@ -123,7 +123,7 @@ export class Tractor extends Component implements IActor {
                     this.isUpgrading = false;
                 }
             });
-        }, 1);
+        }, 0.5);
 
     }
     upgradeSawBlade() {
@@ -151,7 +151,7 @@ export class Tractor extends Component implements IActor {
                     this.blades = blade.children.filter(n => n.name == 'SawBlade');
                 }
             });
-        }, 0.6);
+        }, 0.3);
 
     }
     upgradeSpeed() {
