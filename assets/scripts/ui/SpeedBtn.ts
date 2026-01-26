@@ -88,10 +88,15 @@ export class SpeedBtn extends Component {
         let nextLv = GameGlobal.Tractor.speedLevel + 1;
         if (GameGlobal.SpeedUp[nextLv]) {
             if (Player.getMoney() >= GameGlobal.SpeedUp[nextLv][0]) {
-                GameEvent.emit("SpeedUpgrade");
+                GameGlobal.Tractor.isUpgrading = true;
                 AudioManager.audioPlay("Click", false);
                 Player.addMoney(-GameGlobal.SpeedUp[nextLv][0]);
-                GameGlobal.Tractor.unloadCoins(GameGlobal.SpeedUp[nextLv][0], this.node, () => { });
+                GameGlobal.Tractor.unloadCoins(GameGlobal.SpeedUp[nextLv][0], this.node, () => {
+                    this.scheduleOnce(() => {
+                        GameGlobal.Tractor.isUpgrading = false;
+                        GameEvent.emit("SpeedUpgrade");
+                    }, 1)
+                });
                 if (GameGlobal.SpeedUp[nextLv + 1]) {
                     this.setDisplayPrice(GameGlobal.SpeedUp[nextLv + 1][0]);
                 } else { this.showMaxLevel(); }

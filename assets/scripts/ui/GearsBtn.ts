@@ -88,9 +88,15 @@ export class GearsBtn extends Component {
         if (GameGlobal.GearsUp[nextLv]) {
             if (Player.getMoney() >= GameGlobal.GearsUp[nextLv]) {
                 AudioManager.audioPlay("Click", false);
+                GameGlobal.Tractor.isUpgrading = true;
                 Player.addMoney(-GameGlobal.GearsUp[nextLv]);
-                GameGlobal.Tractor.unloadCoins(GameGlobal.GearsUp[nextLv], this.node, () => { });
-                GameEvent.emit("SawBladeUpgrade");
+                GameGlobal.Tractor.unloadCoins(GameGlobal.GearsUp[nextLv], this.node, () => {
+                    this.scheduleOnce(() => {
+                        GameGlobal.Tractor.isUpgrading = false;
+                        GameEvent.emit("SawBladeUpgrade");
+                    }, 1)
+                });
+
                 if (GameGlobal.GearsUp[nextLv + 1]) {
                     this.setDisplayPrice(GameGlobal.GearsUp[nextLv + 1]);
                 } else { this.showMaxLevel(); }

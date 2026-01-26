@@ -87,10 +87,15 @@ export class LevelupBtn extends Component {
         let nextLv = GameGlobal.Tractor.cargoBedLevel + 1;
         if (GameGlobal.CargoBedUp[nextLv]) {
             if (Player.getMoney() >= GameGlobal.CargoBedUp[nextLv][0]) {
-                GameEvent.emit("CargoBedUpgrade");
                 AudioManager.audioPlay("Click", false);
                 Player.addMoney(-GameGlobal.CargoBedUp[nextLv][0]);
-                GameGlobal.Tractor.unloadCoins(GameGlobal.CargoBedUp[nextLv][0], this.node, () => { });
+                GameGlobal.Tractor.isUpgrading = true
+                GameGlobal.Tractor.unloadCoins(GameGlobal.CargoBedUp[nextLv][0], this.node, () => {
+                    this.scheduleOnce(() => {
+                        GameGlobal.Tractor.isUpgrading = false
+                        GameEvent.emit("CargoBedUpgrade");
+                    }, 1)
+                });
                 if (GameGlobal.CargoBedUp[nextLv + 1]) {
                     this.setDisplayPrice(GameGlobal.CargoBedUp[nextLv + 1][0]);
                 } else { this.showMaxLevel(); }
