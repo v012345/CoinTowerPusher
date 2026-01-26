@@ -132,7 +132,6 @@ export class Tractor extends Component implements IActor {
         this.scheduleOnce(() => {
             this.isUpgrading = false;
         }, 2);
-        this.isUpgrading = true;
         this.sawBlades.forEach((blade, index) => {
             if (blade.active) {
                 let effectNodes = blade.children.filter(n => n.name == 'levelup');
