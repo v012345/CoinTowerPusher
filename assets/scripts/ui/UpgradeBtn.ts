@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, tween, Tween, v3 } from 'cc';
+import { _decorator, Component, Node, Animation, tween, Tween, v3 } from 'cc';
 import { AudioManager } from '../PASDK/AudioManager';
 import { Player } from '../Player';
 import { GameGlobal } from '../GameGlobal';
@@ -14,6 +14,10 @@ export class LevelupBtn extends Component {
     price: number = 0;
     isBreathing: boolean = false;
     isTouching: boolean = false;
+    @property(Animation)
+    levelup: Animation;
+    @property(Node)
+    outline: Node;
     start() {
         this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.Tractor.cargoBedLevel + 1]);
     }
@@ -96,11 +100,13 @@ export class LevelupBtn extends Component {
                     this.scheduleOnce(() => {
                         GameGlobal.Tractor.isUpgrading = false
                         GameEvent.emit("CargoBedUpgrade");
+                        this.levelup.play();
+                        if (GameGlobal.CargoBedUp[nextLv + 1]) {
+                            this.setDisplayPrice(GameGlobal.CargoBedUp[nextLv + 1][0]);
+                        } else { this.showMaxLevel(); }
                     }, 1)
                 });
-                if (GameGlobal.CargoBedUp[nextLv + 1]) {
-                    this.setDisplayPrice(GameGlobal.CargoBedUp[nextLv + 1][0]);
-                } else { this.showMaxLevel(); }
+
                 return
             }
         } else {

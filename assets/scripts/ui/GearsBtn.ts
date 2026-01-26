@@ -1,11 +1,11 @@
-import { _decorator, Component, Node, Sprite, tween, Tween, v3, Color } from 'cc';
+import { _decorator, Component, Animation, Node, Sprite, tween, Tween, v3, Color } from 'cc';
 import { AudioManager } from '../PASDK/AudioManager';
 import { Player } from '../Player';
 import { GameGlobal } from '../GameGlobal';
 import { Tractor } from '../prefabs/Tractor';
 import { GameEvent } from '../managers/EventManager';
 import { Utils } from '../Utils';
-import { EventEnum } from '../Event/EventEnum'; 
+import { EventEnum } from '../Event/EventEnum';
 const { ccclass, property } = _decorator;
 
 @ccclass('GearsBtn')
@@ -14,6 +14,11 @@ export class GearsBtn extends Component {
     price: number = 0;
     isBreathing: boolean = false;
     isTouching: boolean = false;
+    @property(Animation)
+    levelup: Animation;
+    @property(Node)
+    outline: Node;
+    
     start() {
         this.setDisplayPrice(GameGlobal.GearsUp[GameGlobal.Tractor.sawBladeLevel + 1]);
     }
@@ -95,12 +100,14 @@ export class GearsBtn extends Component {
                     this.scheduleOnce(() => {
                         GameGlobal.Tractor.isUpgrading = false;
                         GameEvent.emit("SawBladeUpgrade");
+                        this.levelup.play();
+                        if (GameGlobal.GearsUp[nextLv + 1]) {
+                            this.setDisplayPrice(GameGlobal.GearsUp[nextLv + 1]);
+                        } else { this.showMaxLevel(); }
                     }, 1)
                 });
 
-                if (GameGlobal.GearsUp[nextLv + 1]) {
-                    this.setDisplayPrice(GameGlobal.GearsUp[nextLv + 1]);
-                } else { this.showMaxLevel(); }
+
 
                 return
             }
