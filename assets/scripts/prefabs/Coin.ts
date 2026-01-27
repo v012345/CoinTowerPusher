@@ -1,28 +1,59 @@
 import { _decorator, Component, Node, tween, PhysicsSystem, RigidBody, v3, Vec3, PhysicsGroup, CylinderCollider, ICollisionEvent } from 'cc';
 import { GameGlobal } from '../GameGlobal';
+import { Const } from '../Const';
 const { ccclass, property } = _decorator;
 
 @ccclass('Coin')
 export class Coin extends Component {
+    isDropped: boolean = false;
     start() {
 
     }
 
     update(deltaTime: number) {
+        if (this.isDropped) {
+            let p1 = this.node.worldPosition.clone();
+            let p2 = GameGlobal.Tractor.cargoBed.worldPosition.clone();
+            p1.y = 0;
+            p2.y = 0;
+            if (p1.z < p2.z && Vec3.distance(p1, p2) > 30) {
+                this.node.getComponent(CylinderCollider)?.destroy();
+                this.node.getComponent(RigidBody)?.destroy();
+            }
+        }
 
     }
-    drop(RigidBodyGroup: number) {
-        const rb = this.node.addComponent(RigidBody);
-        rb.group = RigidBodyGroup;
-        rb.mass = 0.3;
-        // PhysicsSystem.instance.gravity = new Vec3(0, -30, 0);
-        rb.useGravity = true;
-        // rb.gravityScale = 100;   // 重力放大 2 倍
-        let f = this.node.position.clone().subtract(new Vec3(0, Math.random() * 3 + 2, 0)).normalize()
-        // rb.applyForce(new Vec3(20,20,20), this.node.getWorldPosition());
-        rb.applyImpulse(f.multiplyScalar(Math.random() * 5 + 3));
-        rb.applyForce(new Vec3(0, Math.random() * 25 - 5, 0), this.node.getWorldPosition());
-        // this.scheduleOnce(() => { rb.applyImpulse(new Vec3(0, -2, 0)); }, 0.5)
+    drop(isDome: boolean) {
+        if (this.isDropped) {
+            const rb = this.node.addComponent(RigidBody);
+            rb.setGroup(Const.PhysicsGroup.Coin);
+            rb.setMask(Const.PhysicsGroup.Coin | Const.PhysicsGroup.Ground | Const.PhysicsGroup.Tractor);
+
+            rb.mass = 0.3;
+            // PhysicsSystem.instance.gravity = new Vec3(0, -30, 0);
+            rb.useGravity = true;
+            // rb.gravityScale = 100;   // 重力放大 2 倍
+            let f = this.node.position.clone().subtract(new Vec3(0, Math.random() * 3 + 2, 0)).normalize()
+            // rb.applyForce(new Vec3(20,20,20), this.node.getWorldPosition());
+            rb.applyImpulse(f.multiplyScalar(Math.random() * 5 + 3));
+            rb.applyForce(new Vec3(0, Math.random() * 25 - 5, 0), this.node.getWorldPosition());
+            // this.scheduleOnce(() => { rb.applyImpulse(new Vec3(0, -2, 0)); }, 0.5)
+        } else {
+            const rb = this.node.addComponent(RigidBody);
+            rb.setGroup(Const.PhysicsGroup.Coin);
+            rb.setMask(Const.PhysicsGroup.Coin | Const.PhysicsGroup.Ground | Const.PhysicsGroup.Tractor);
+
+            rb.mass = 0.3;
+            // PhysicsSystem.instance.gravity = new Vec3(0, -30, 0);
+            rb.useGravity = true;
+            // rb.gravityScale = 100;   // 重力放大 2 倍
+            let f = this.node.position.clone().subtract(new Vec3(0, Math.random() * 3 + 2, 0)).normalize()
+            // rb.applyForce(new Vec3(20,20,20), this.node.getWorldPosition());
+            rb.applyImpulse(f.multiplyScalar(Math.random() * 5 + 3));
+            rb.applyForce(new Vec3(0, Math.random() * 25 - 5, 0), this.node.getWorldPosition());
+            // this.scheduleOnce(() => { rb.applyImpulse(new Vec3(0, -2, 0)); }, 0.5)
+        }
+
         const collider = this.node.addComponent(CylinderCollider);
         collider.radius = 1.311;
         collider.height = 0.7;
@@ -35,18 +66,28 @@ export class Coin extends Component {
             // console.log('Coin landed on the ground');
             const collider = this.node.getComponent(CylinderCollider);
             collider.off('onCollisionEnter', this.onCollisionEnter, this);
+            // const rb = this.node.getComponent(RigidBody);
+            // rb.setGroup(Const.PhysicsGroup.DroppedCoin);
+            // rb.setMask(Const.PhysicsGroup.DroppedCoin | Const.PhysicsGroup.Ground);
+            this.isDropped = true;
+            GameGlobal.CoinsPool.push(this);
+            // this.scheduleOnce(() => {
+            //     // this.flyToCargoBed();
+            //     GameGlobal.CoinsPool.push(this);
+            // }, 0.5);
+        } else if (other.node.name == "Tractor") {
+            // 避免与拖拉机碰撞时反弹
+            // const collider = this.node.getComponent(CylinderCollider);
+            // collider.off('onCollisionEnter', this.onCollisionEnter, this);
+            // this.isDropped = true;
+            // GameGlobal.CoinsPool.push(this);
             const rb = this.node.getComponent(RigidBody);
-            rb.group = PhysicsGroup.DroppedCoin;
-            this.scheduleOnce(() => {
-                this.node.getComponent(CylinderCollider)?.destroy();
-                this.node.getComponent(RigidBody)?.destroy();
-                // this.flyToCargoBed();
-                GameGlobal.CoinsPool.push(this);
-            }, 0.5);
+            const f = this.node.position.clone().subtract(other.node.worldPosition).normalize();
+            rb.applyImpulse(f.multiplyScalar(Math.random() * 5 + 3));
         }
     }
 
-    flyTo(where:Node) {
+    flyTo(where: Node) {
         const originalWorldPos = this.node.worldPosition.clone();
 
         this.node.setParent(where);

@@ -30,6 +30,10 @@
       {
         "index": 6,
         "name": "DomeCoin"
+      },
+      {
+        "index": 7,
+        "name": "Tractor"
       }
     ],
     "collisionMatrix": {

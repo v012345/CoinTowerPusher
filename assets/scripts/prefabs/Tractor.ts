@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec3, tween, v3, BoxCollider, ITriggerEvent, math, ParticleSystem, randomRange } from 'cc';
+import { _decorator, Component, Node, Vec3, tween, v3, BoxCollider, ITriggerEvent, math, ParticleSystem, randomRange, RigidBody, CylinderCollider } from 'cc';
 import { GameGlobal } from '../GameGlobal';
 import { GameEvent } from '../managers/EventManager';
 import { EventEnum } from '../Event/EventEnum';
@@ -205,6 +205,8 @@ export class Tractor extends Component implements IActor {
                 let coin = GameGlobal.CoinsPool.pop();
                 if (coin) {
                     Player.addMoney(1);
+                    coin.getComponent(CylinderCollider)?.destroy();
+                    coin.getComponent(RigidBody)?.destroy();
                     coin.flyTo(this.cargoBed);
                 }
             }

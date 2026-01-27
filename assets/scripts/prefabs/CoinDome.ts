@@ -31,7 +31,7 @@ export class CoinDome extends Component {
                 AudioManager.audioPlay("DomeCollapse", false);
                 GameEvent.emit(EventEnum.DomeCollapse);
                 this.coins.children.forEach(coin => {
-                    coin.getComponent(Coin).drop(PhysicsGroup.DomeCoin);
+                    coin.getComponent(Coin).drop(true);
                 })
                 // this.node.destroy();
             }
