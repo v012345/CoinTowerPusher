@@ -7,6 +7,7 @@ const { ccclass, property } = _decorator;
 @ccclass('Coin')
 export class Coin extends Component {
     isDropped: boolean = false;
+    heightAboveCargoBed: number = 0;
     start() {
 
     }

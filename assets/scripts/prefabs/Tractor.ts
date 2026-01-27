@@ -12,6 +12,7 @@ import { MoveAlongPath } from '../Utils/MoveAlongPath';
 import { PathLine } from '../Utils/PathLine';
 import { CoinTower } from './CoinTower';
 import { Const } from '../Const';
+import { Coin } from './Coin';
 const { ccclass, property } = _decorator;
 
 @ccclass('Tractor')
@@ -28,6 +29,8 @@ export class Tractor extends Component implements IActor {
     isOver: boolean = false;
     speed: number = 0;
     isBackForward: boolean = false;
+    realSpeed: number = 0;
+    lastFlamePosZ: number = 0;
 
 
 
@@ -224,12 +227,13 @@ export class Tractor extends Component implements IActor {
         coin.eulerAngles = new Vec3();
         Utils.jellyEffect(coin, Const.Config.CoinScaleOnCargoBed);
     }
-  
+
     loadCoin(coin: Node) {
         AudioManager.audioPlay("loadCoin", false);
         coin.position = this.whereToPutNextCoin;
         coin.position.x += this.coinSizeX / 2;
         coin.position.z += this.coinSizeZ / 2;
+        coin.getComponent(Coin).heightAboveCargoBed = this.whereToPutNextCoin.y;
         this.whereToPutNextCoin.x += this.coinSizeX;
         if (this.whereToPutNextCoin.x + this.coinSizeX > this.cargoBedX) {
             this.whereToPutNextCoin.x = -this.cargoBedX;
@@ -328,6 +332,10 @@ export class Tractor extends Component implements IActor {
         } else {
             this.moveAlongPath.setSpeed(-20);
         }
+        let posZ = this.node.worldPosition.z;
+        let distance = posZ - this.lastFlamePosZ
+        this.realSpeed = distance / deltaTime;
+        this.lastFlamePosZ = posZ;
     }
 }
 
